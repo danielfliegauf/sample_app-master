@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem "bundler", "~> 1.2.0.rc.2"
-gem "heroku"
+# gem "bundler", "~> 1.3.0.pre.2"
+gem "bundler", "~> 1.2.0.rc.2" #version conflict on heroku
 
 gem 'rails', '3.2.8'
 gem 'bootstrap-sass', '2.0.0'
