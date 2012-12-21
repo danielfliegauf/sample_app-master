@@ -1,14 +1,26 @@
 <li id="<%= micropost.id %>">
-	<span class="user">
-		<%= link_to micropost.user.name, micropost.user %>
-	</span><br> 
-	<b><span class="hobbyplace"><%= t('home.micropost.'+micropost.hobby) %><br>in <%= t('home.micropost.'+micropost.place) %></b> <em><br><%= t('home.micropost.time_on') %> <%= I18n.localize(micropost.datetime) %></em></span>
-	<span class="content"><%= micropost.content %></span>
-	<span class="timestamp">
-		<%= t('feed_item.posted') %> <%= time_ago_in_words(micropost.created_at) %> <%= t('feed_item.ago') %>.
-	</span><br>
-	<%= link_to t('link.details'), micropost, method: :show, :'data-ajax' => "false", :rel => "external", :class => "btn" %>
-	<% if current_user?(micropost.user) %>
-	 | <%= link_to t('link.delete'), micropost, method: :delete, :class => "btn", data: { confirm: "You sure?" }, title: micropost.content %>
-	<% end %>
+	<a href="../microposts/<%= micropost.id %>">
+		<div class="user_wall">
+			<%= micropost.user.name %>
+		</div> 
+		<div class="hobby_wall">
+			<%= t('home.micropost.'+micropost.hobby) %>
+		</div>
+		<div class="place_wall">
+			<%= infrom(micropost.hobby) %> <%= t('home.micropost.'+micropost.place) %>
+		</div>
+
+		<% if micropost.weekday != "11" %>
+			<div class="time_wall">
+				<%= t('home.micropost.time_on') %> <%= I18n.localize(micropost.datetime) %>
+			</div>
+		<% else %>
+			<div style="color: red;"><%= t('home.micropost.time_till_delete_from_searchindex') + " (in " + time_ago_in_words(micropost.datetime) + ")"  if ((micropost.datetime - Time.now) < (60*60*24*7*3)) %>
+			</div>
+		<% end %>
+		<div class="timestamp_wall" style="clear: left; position: static;">
+			<%= t('micropost.posted') %> <%= time_ago_in_words(micropost.created_at) %> <%= t('micropost.ago') %>.
+		</div>
+	</a>
+	<%= link_to t('link.delete'), micropost, method: :delete, :class => "btn", data: { confirm: "You sure?" }, title: micropost.content, :'data-icon' => 'delete' %>
 </li>

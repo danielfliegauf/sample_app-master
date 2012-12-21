@@ -21,7 +21,7 @@ en:
   signed_in_as: ""
   search_result: Search Result
   search_not_valid: Please enter all search parameters.
-  search_for: Search for
+  search_for: 'Chose your city:'
   knock: "*knock *knock ... nobody's there :[ "
   destroyuser: "Delete user"
   privacy: "Privacy Politics"

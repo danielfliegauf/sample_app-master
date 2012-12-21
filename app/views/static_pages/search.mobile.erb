@@ -5,13 +5,13 @@
 		<section>
 			<%= form_tag("/result", :method => "get") do %>
 <%= label_tag(:hobby, t('search_for')) %>
-<%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one'), ""]))) %>
-<%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_one'), ""],["-------------------------------------------", ""]))) %>
+<!-- <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one'), ""])), :'data-corners' => 'false') %> --> <br><br>
+<%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_one'), ""],["-------------------------------------------", ""])), :'data-corners' => 'false') %><br><br><br>
 <%= submit_tag t('home.micropost.gogetit'), :name => nil, :'data-role' => 'button', :'data-corners' => 'false', :'data-ajax' => "false" %>
 <% end %>
 		</section>
 	
-	<div class="span8">
+<!-- 	<div class="span8">
 		<% if params[:hobby] == '' && params[:place] == '' %>
 		<br>
 		<br>
@@ -42,7 +42,7 @@
 				<% end %>
 			</ol>
 		<% end %>
-	</div>
+	</div> -->
 </div>
 <% else %>
 <div class="center hero-unit">

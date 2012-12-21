@@ -9,14 +9,11 @@
 		<%= f.label t('home.micropost.what') %>
 		<%= f.select :hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one'), ""])), :class => '' %></div>
 	</div> -->
-    <%= f.select :hobby, options_for_select('a','a') %>
+   <!--  <%= f.select :hobby, options_for_select('a','a') %> -->
 	<div class="field">
 		<div class="ui-widget">
 	   <%= f.label t('home.micropost.what') %>
 	    <select id="combobox" name="micropost[hobby]" class="micropost_hobby">
-	    	
-	    	
-	    	
 	        <option value="">Select one...</option>
 	        <% sportlist.each do |a| %>
 	        	<option value="<%= a[1] %>"><%= a[0] %></option>

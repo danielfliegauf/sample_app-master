@@ -60,7 +60,11 @@ class MicropostsController < ApplicationController
 			flash[:success] = t('postsuccessfull')
 			# Tell the UserMailer to send a welcome Email after save // DISABLED FOR HEROKU need to install addon sendgrid http://stackoverflow.com/questions/11446094/heroku-errnoeconnrefused-connection-refused-connect2
         		# UserMailer.welcome_email(@micropost.user).deliver
-			redirect_to root_path
+        	if params[:mobile] == 0
+				redirect_to root_path
+			else
+				redirect_to current_user
+			end
 		else
 			@feed_items = current_user.feed.paginate(page: params[:page])
 			# if @micropost.country != " Germany"
@@ -68,13 +72,17 @@ class MicropostsController < ApplicationController
 			# else
 				flash[:error] = "There was an Error... :( Please try again!"
 			# end
-			render 'static_pages/home'
+			if params[:mobile] == 0
+				render 'static_pages/home'
+			else
+				render 'static_pages/write'
+			end
 		end
 	end
 
 	def destroy
 		@micropost.destroy
-		redirect_to root_path
+		redirect_to current_user
 	end
 
 

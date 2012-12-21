@@ -21,7 +21,7 @@ de:
   signed_in_as: ""
   search_result: Suchergebnis
   search_not_valid: Bitte gib alle Such-Parameter an. :)
-  search_for: Suche nach
+  search_for: 'Wähle deine Stadt:'
   knock: '*klopf *klopf ... niemand da :[ '
   datetime_clock: Uhr
   allusers: "alle User"

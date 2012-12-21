@@ -3,14 +3,16 @@
 <% if signed_in? %>
 <div>
 	<div data-role="controlgroup" data-type="horizontal"></div>
-    <div class="center" style="padding-left: 16%;">
+    <div class="center" style="padding-left: 16%;>
       <section>
         <%= render 'shared/user_info' %>
       </section>
     </div>
 
 </div>
-<%= render 'shared/feed' %>
+<div style='clear:both;'>
+  <%= render 'shared/feed' %>
+</div>
 <% else %>
 
 <div class="center hero-unit">

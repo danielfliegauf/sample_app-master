@@ -2,34 +2,53 @@
 	<%= render 'shared/error_messages', object: f.object %>
 	<%= f.hidden_field :latlng, :value => "" %>
 	<%= f.hidden_field :country, :value => "" %>
-	<br /><p><b><%= t('home.micropost.create') %></b></p>
-	<div class="field">
+	<br /><p><b><span class="lsf-icon" title="write" style="font-size: 23px; float: left;"></span><%= t('home.micropost.create') %></b></p><br>
+    <span style="clear:both;"></span>
+	<!-- <div class="field">
+		<div class="ui-widget">
 		<%= f.label t('home.micropost.what') %>
-		<%= f.select :hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one'), ""])), :class => '' %>
+		<%= f.select :hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one'), ""])), :class => '' %></div>
+	</div> -->
+   <!--  <%= f.select :hobby, options_for_select('a','a') %> -->
+	<div class="field">
+		<div class="ui-widget">
+	   <%= f.label t('home.micropost.what') %>
+	    <select id="combobox" name="micropost[hobby]" class="micropost_hobby" data-corners="false">
+	        <option value="">Select one...</option>
+	        <% sportlist.each do |a| %>
+	        	<option value="<%= a[1] %>"><%= a[0] %></option>
+	        <% end %>
+	    </select>
+		</div>
+		<div style="clear: both"></div>
 	</div>
 	<div class="field">
 		<%= f.label t('home.micropost.where') %>
-		<%= f.select :place, options_for_select(citylist.sort.unshift([t('home.micropost.select_one'), ""],["-------------------------------------------", ""])), :class => '' %>
-		
-		<div id="testland"></div>
+		<%= f.select :place, options_for_select(citylist.sort.unshift([t('home.micropost.select_one'), ""],["-------------------------------------------", ""])), :'data-corners' => 'false' %>
+
+
 	</div>
 		<div id="address"></div>
-	<div class="canvas">
+	<%= t('home.micropost.whereexact') %>
+	<div class="canvas" id="canvas2">
 
-		<div id="map_canvas" style="width:100%; height:350px"></div>
+		<div id="map_canvas" style="width:85%; height:250px"></div>
 	</div>
 	<br />
 	<div class="field">
 		<%= f.label t('home.micropost.when') %>
-		<%= f.datetime_select :datetime,  
-                        {:default => 24.hours.from_now, 
-                       :minute_step => 15, :order => [:day, :month, :year, :hour, :minute]}, :class => 'datetime' %> <clock><%= t('datetime_clock') %></clock>
+		<%= f.text_field :datetime, :class => 'datepicker', placeholder: t('home.micropost.datetime') %>
 	</div>
 	<div style="clear: both"></div>
 	<div class="field">
 		<%= f.label t('home.micropost.about') %>
-		<%= f.select :level, options_for_select([[t('home.micropost.select_level'), ""], "Newbie", "Advanced", "Pro"]), :class => '' %>
-		<%= f.text_area :content, placeholder: t('home.micropost.textbox_text') %>
+<!-- 		<%= f.select :level, options_for_select([[t('home.micropost.select_level'), ""], "Newbie", "Advanced", "Pro"]), :class => '' %>
+ -->		<%= f.text_area :content, placeholder: t('home.micropost.textbox_text'), :'data-corners' => 'false' %>
 	</div>
-	<%= f.submit t('home.micropost.submit'), class: "btn btn-large btn-primary", :'data-role' => "none" %>
+	<%= f.submit t('home.micropost.submit'), :'data-corners' => 'false' %>
 <% end %>
+
+  
+ 
+
+ 
