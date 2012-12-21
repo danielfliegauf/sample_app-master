@@ -1,0 +1,45 @@
+<%provide(:title, @user.name) %>
+<% if signed_in? %>
+<div class="row">
+	<aside class="span4">
+		<section>
+			<h1>
+				<%= gravatar_for @user %>
+				<%= @user.name %>
+			</h1>
+		</section>
+		<section>
+			<%= render 'shared/stats' %>
+		</scetion>
+		<% unless current_user?(@user) %>
+		<section>
+			<%= link_to "write #{ @user.name } on Facebook", "https://facebook.com/messages/#{@user.uid}", :target => '_blank' %>
+		</section>
+		<% end %>
+	</aside>
+	<div class="span8">
+		<%= render 'follow_form' if signed_in? %>
+		<%= render 'invite_form' if signed_in? %>
+	</div>
+	<div class="span8">
+		<% if @user.microposts.any? %>
+			<h3>Microposts (<%= @user.microposts.count %>)</h3>
+			<ol class="microposts">
+				<%= render @microposts %>
+			</ol>
+			<%= will_paginate @microposts %>
+		<% end %>
+	</div>
+</div>
+
+<% else %>
+<div class="center hero-unit">
+<h1>Connectify</h1>
+<p>
+	... a great place to <b>find people</b> doing the things you love most, too!
+  
+</p>It's just one click away... <br/><br />
+<%= link_to "Connect me!", "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary" %>
+</div>
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://google.com/' %>
+<% end %>

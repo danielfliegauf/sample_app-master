@@ -1,0 +1,10 @@
+<% provide(:title, 'Help') %>
+<h1><%= t('help') %></h1>
+<p>
+<%= t('helptext') %>
+<% unless I18n.locale == I18n.default_locale %>
+	<%= image_tag("help_de.png") %>
+<% else %>
+	<%= image_tag("help_de.png") %>
+<% end %>
+</p>

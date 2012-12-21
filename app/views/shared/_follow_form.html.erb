@@ -1,0 +1,7 @@
+<div id="follow_form2">
+	<% if current_user.remembering?(micropost) %>
+	<%= render 'mindposts/unfollow' %>
+<% else %>
+	<%= render 'mindposts/follow' %>
+<% end %>
+</div>

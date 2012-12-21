@@ -1,0 +1,14 @@
+<li id="<%= micropost.id %>">
+	<span class="user">
+		<%= link_to micropost.user.name, micropost.user %>
+	</span><br> 
+	<b><span class="hobbyplace"><%= t('home.micropost.'+micropost.hobby) %><br>in <%= t('home.micropost.'+micropost.place) %></b> <em><br><%= t('home.micropost.time_on') %> <%= I18n.localize(micropost.datetime) %></em></span>
+	<span class="content"><%= micropost.content %></span>
+	<span class="timestamp">
+		<%= t('feed_item.posted') %> <%= time_ago_in_words(micropost.created_at) %> <%= t('feed_item.ago') %>.
+	</span><br>
+	<%= link_to t('link.details'), micropost, method: :show, :'data-ajax' => "false", :rel => "external", :class => "btn" %>
+	<% if current_user?(micropost.user) %>
+	 | <%= link_to t('link.delete'), micropost, method: :delete, :class => "btn", data: { confirm: "You sure?" }, title: micropost.content %>
+	<% end %>
+</li>

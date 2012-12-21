@@ -1,0 +1,95 @@
+<ol class="micropost">
+    <p class="hobby"><%= t('home.micropost.'+@micropost.hobby) %></p>
+  <p class="place"><%= infrom(@micropost.hobby) %> <%= t('home.micropost.'+@micropost.place) %></p>
+  <% if @micropost.weekday != "11" %>
+    <p class="time"><%= t('home.micropost.time_on') %> <%= I18n.localize(@micropost.datetime) %></p><br>
+  <% end %>
+  <li>
+    <p id='msg'></p>
+
+    <% if current_user == @micropost.user %>
+      <span class="writeFacebook"><%= link_to_function "poste an deine Facebook Pinnwand", "postToFeed('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', #{@micropost.weekday}); return false;", :class => "btn btn-primary btn-large" %> </span>
+      
+    <% else %>
+      <span class="writeFacebook"><%= link_to t('write_on_fb')+@micropost.user.name+t('write_on_fb2'), "https://facebook.com/messages/#{@micropost.user.uid}", :target => '_blank',class: "btn btn-large btn-primary" %></span>
+      <% end %>
+      <li>
+	<li id="<%= @micropost.id %>">
+					<%= link_to gravatar_for(@micropost.user), @micropost.user %>
+					<span class="user">
+						<%= link_to @micropost.user.name, @micropost.user %>
+					<span class="content"><%= @micropost.content %></span>
+					
+					<span class="timestamp">
+    <%= t('feed_item.posted') %> <%= time_ago_in_words(@micropost.created_at) %> <%= t('feed_item.ago') %>.
+  </span>
+					
+
+						
+  <li>
+    <div id="map_canvas" style="width:100%; height:450px"></div>
+  </li>
+  <% if @micropost.comments.count > 0 %>
+    <li>
+      <h2><%= t('justcomments') %></h2>
+      <%= render @micropost.comments %>
+    </li>
+  <% end %>
+  <li>
+    <%= render "comments/form" %>
+  </li>
+</ol>
+<script type="text/javascript">
+
+window.onload = initialize();
+  
+  $(document).ready(function() {
+    $('#popup').hide();
+  });
+
+  function popup(){
+    $('#popup').fadeIn();
+  }
+
+  function hide(){
+    $('#popup').fadeOut();
+  }
+
+  function initialize() {
+	
+  
+
+
+ 
+    var latlng = "<%=@micropost.latlng %>";
+      var stringLL = latlng.split(",",2);
+      var lat = parseFloat(stringLL[0].substring(1));
+      var lng = parseFloat(stringLL[1]);
+       
+    var pos = new google.maps.LatLng(lat, lng);
+           var myOptions = {
+               zoom: 15,
+               center: pos,
+               disableDefaultUI: true,
+               mapTypeId: google.maps.MapTypeId.ROADMAP,
+               zoomControl: true,
+                zoomControlOptions: {
+                  style: google.maps.ZoomControlStyle.SMALL
+                }
+           };
+           var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+           
+           var marker = new google.maps.Marker({
+               position: pos, 
+               map: map, 
+               title: "This is the place"
+           }); 
+
+   }
+
+        
+
+
+
+
+</script>

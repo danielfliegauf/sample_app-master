@@ -1,0 +1,77 @@
+
+.button1 {
+  -moz-box-shadow:inset 0px 0px 0px 0px #000000;
+  -webkit-box-shadow:inset 0px 0px 0px 0px #000000;
+  box-shadow:inset 0px 0px 0px 0px #000000;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #363636), color-stop(1, #262626) );
+  background:-moz-linear-gradient( center top, #363636 5%, #262626 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#363636', endColorstr='#262626');
+  background-color:#363636;
+  -moz-border-radius:6px;
+  -webkit-border-radius:6px;
+  border-radius:6px;
+  border:1px solid #615f61;
+  display:inline-block;
+  margin: 10px;
+  color:#ffffff;
+  font-family:arial;
+  font-size:15px;
+  font-weight:bold;
+  padding:6px 24px;
+  text-decoration:none;
+  text-shadow:1px 1px 0px #a8a5a8;
+}.classname:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #262626), color-stop(1, #363636) );
+  background:-moz-linear-gradient( center top, #262626 5%, #363636 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#262626', endColorstr='#363636');
+  background-color:#262626;
+}.classname:active {
+  position:relative;
+  top:1px;
+}
+
+
+
+
+@font-face {
+    font-family: 'LigatureSymbols';
+    src: url("LigatureSymbols-2.09.eot");
+    src: url("LigatureSymbols-2.09.eot?#iefix") format('embedded-opentype'),
+         url("LigatureSymbols-2.09.woff") format('woff'),
+         url("LigatureSymbols-2.09.ttf") format('truetype'),
+         url("LigatureSymbols-2.09.svg#LigatureSymbols") format('svg');
+    src: url("LigatureSymbols-2.09.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.lsf {
+  font-family: 'LigatureSymbols';
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}
+
+.lsf-icon:before {
+  content:attr(title);
+  margin-right:0.3em;
+  font-size:130%;
+  font-family: 'LigatureSymbols';
+  -webkit-text-rendering: optimizeLegibility;
+  -moz-text-rendering: optimizeLegibility;
+  -ms-text-rendering: optimizeLegibility;
+  -o-text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+}

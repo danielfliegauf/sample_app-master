@@ -1,0 +1,12 @@
+<h2><%= t('create_a_comment') %>: </h2>
+<%= form_for([@micropost, @comment]) do |f| %>
+  <div class="field">
+    <%= f.hidden_field :commenter, :value => current_user.uid%>
+  </div>
+  <div class="field">
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit t('home.micropost.submit'), class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>

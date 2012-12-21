@@ -1,0 +1,6 @@
+<%= form_for(current_user.invitations.build(invited_id: @user.id), remote: true) do |f| %>
+<div>
+	<%= f.hidden_field :invited_id %>
+</div>
+<%= f.submit "Invite", class: "btn btn-large btn-primary" %>
+<% end %>

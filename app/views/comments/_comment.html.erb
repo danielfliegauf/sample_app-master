@@ -1,0 +1,21 @@
+<p><%= link_to gravatar_for(comment.user), comment.user %></p>
+<p>
+  <%= link_to comment.user.name.split[0], comment.user %><%= " "+t('says') %>:
+  <br>
+  <%= comment.body %>
+</p>
+<p>
+	<% if current_user?(comment.user) %>
+		<%= link_to t('destroy_comment'), [comment.micropost, comment],
+               :confirm => 'Are you sure?',
+               :method => :delete %> <em> | </em>
+        <%= link_to t('edit_comment'), [comment.micropost, comment] %>
+	<% end %>
+  <% if current_user.admin %>
+    <%= link_to t('destroy_comment')+"ADMIN", [comment.micropost, comment],
+               :confirm => 'Are you sure?',
+               :method => :delete %> <em> | </em>
+        <%= link_to t('edit_comment')+"ADMIN", [comment.micropost, comment] %>
+  <% end %>
+    <br><br>
+</p>

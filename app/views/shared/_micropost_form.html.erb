@@ -1,0 +1,204 @@
+<%= form_for(@micropost) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.hidden_field :latlng, :value => "" %>
+	<%= f.hidden_field :country, :value => "" %>
+	<br /><p><b><span class="lsf-icon" title="write" style="font-size: 23px; float: left;"></span><%= t('home.micropost.create') %></b></p>
+    <span style="clear:both;"></span>
+	<!-- <div class="field">
+		<div class="ui-widget">
+		<%= f.label t('home.micropost.what') %>
+		<%= f.select :hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one'), ""])), :class => '' %></div>
+	</div> -->
+    <%= f.select :hobby, options_for_select('a','a') %>
+	<div class="field">
+		<div class="ui-widget">
+	   <%= f.label t('home.micropost.what') %>
+	    <select id="combobox" name="micropost[hobby]" class="micropost_hobby">
+	    	
+	    	
+	    	
+	        <option value="">Select one...</option>
+	        <% sportlist.each do |a| %>
+	        	<option value="<%= a[1] %>"><%= a[0] %></option>
+	        <% end %>
+	    </select>
+		</div>
+		<div style="clear: both"></div>
+	</div>
+	<div class="field">
+		<%= f.label t('home.micropost.where') %>
+		<%= f.select :place, options_for_select(citylist.sort.unshift([t('home.micropost.select_one'), ""],["-------------------------------------------", ""])) %>
+
+
+	</div>
+		<div id="address"></div>
+	<%= t('home.micropost.whereexact') %>
+	<div class="canvas" id="canvas2">
+
+		<div id="map_canvas" style="width:100%; height:350px"></div>
+	</div>
+	<br />
+	<div class="field">
+		<%= f.label t('home.micropost.when') %>
+		<%= f.text_field :datetime, :class => 'datepicker', placeholder: t('home.micropost.datetime') %>
+<!-- 		<%= f.datetime_select :datetime,  
+                        {:default => 24.hours.from_now, 
+                       :minute_step => 15, :order => [:day, :month, :year, :hour, :minute]}, :class => 'datetime' %> <clock><%= t('datetime_clock') %></clock>
+ -->	</div>
+	<div style="clear: both"></div>
+	<div class="field">
+		<%= f.label t('home.micropost.about') %>
+<!-- 		<%= f.select :level, options_for_select([[t('home.micropost.select_level'), ""], "Newbie", "Advanced", "Pro"]), :class => '' %>
+ -->		<%= f.text_area :content, placeholder: t('home.micropost.textbox_text') %>
+	</div>
+	<%= f.submit t('home.micropost.submit'), class: "btn btn-large btn-primary" %>
+<% end %>
+
+    <script>
+    $(document).ready(function() {
+    (function( $ ) {
+        $.widget( "ui.combobox", {
+            _create: function() {
+                var input,
+                    that = this,
+                    select = this.element.hide(),
+                    selected = select.children( ":selected" ),
+                    value = selected.val() ? selected.text() : "",
+                    wrapper = this.wrapper = $( "<span>" )
+                        .addClass( "ui-combobox" )
+                        .insertAfter( select );
+ 
+                function removeIfInvalid(element) {
+                    var value = $( element ).val(),
+                        matcher = new RegExp( "^" + $.ui.autocomplete.escapeRegex( value ) + "$", "i" ),
+                        valid = false;
+                    select.children( "option" ).each(function() {
+                        if ( $( this ).text().match( matcher ) ) {
+                            this.selected = valid = true;
+                            return false;
+                        }
+                    });
+                    if ( !valid ) {
+                        // remove invalid value, as it didn't match anything
+                        $( element )
+                            .val( "" )
+                            .attr( "title", value + " didn't match any item" )
+                            .tooltip( "open" );
+                        select.val( "" );
+                        setTimeout(function() {
+                            input.tooltip( "close" ).attr( "title", "" );
+                        }, 2500 );
+                        input.data( "autocomplete" ).term = "";
+                        return false;
+                    }
+                }
+ 
+                input = $( "<input>" )
+                    .appendTo( wrapper )
+                    .val( value )
+                    .attr( "title", "" )
+                    .attr( "style", "float: left;")
+                    .attr( "placeholder", "<%= t('home.micropost.hobby_example') %>" ) 
+                    .addClass( "ui-state-default ui-combobox-input" )
+                    .autocomplete({
+                        delay: 0,
+                        minLength: 0,
+                        source: function( request, response ) {
+                            var matcher = new RegExp( $.ui.autocomplete.escapeRegex(request.term), "i" );
+                            response( select.children( "option" ).map(function() {
+                                var text = $( this ).text();
+                                if ( this.value && ( !request.term || matcher.test(text) ) )
+                                    return {
+                                        label: text.replace(
+                                            new RegExp(
+                                                "(?![^&;]+;)(?!<[^<>]*)(" +
+                                                $.ui.autocomplete.escapeRegex(request.term) +
+                                                ")(?![^<>]*>)(?![^&;]+;)", "gi"
+                                            ), "<strong>$1</strong>" ),
+                                        value: text,
+                                        option: this
+                                    };
+                            }) );
+                        },
+                        select: function( event, ui ) {
+                            ui.item.option.selected = true;
+                            that._trigger( "selected", event, {
+                                item: ui.item.option
+                            });
+                        },
+                        change: function( event, ui ) {
+                            if ( !ui.item )
+                                return removeIfInvalid( this );
+                        }
+                    })
+                    .addClass( "ui-widget ui-widget-content ui-corner-left" );
+ 
+                input.data( "autocomplete" )._renderItem = function( ul, item ) {
+                    return $( "<li>" )
+                        .data( "item.autocomplete", item )
+                        .append( "<a>" + item.label + "</a>" )
+                        .appendTo( ul );
+                };
+ 
+                $( "<div>" )
+                    .attr( "tabIndex", -1 )
+                    .attr( "title", "Show All Items" )
+                    .attr( "style", "position: absolute; float: right; margin-left: 263px; height: 0px; padding: 7px 0px 0px 6px;")
+                    .html( "<img src='/assets/ad.png' alt='show all'/>" )
+                    .tooltip()
+                    .appendTo( wrapper )
+                    .button({
+                        icons: {
+                            primary: "ui-icon-triangle-1-s"
+                        },
+                        text: false
+                    })
+                    .removeClass( "ui-corner-all" )
+                    .addClass( "ui-corner-right ui-combobox-toggle" )
+                    .click(function() {
+                        // close if already visible
+                        if ( input.autocomplete( "widget" ).is( ":visible" ) ) {
+                            input.autocomplete( "close" );
+                            removeIfInvalid( input );
+                            return;
+                        }
+ 
+                        // work around a bug (likely same cause as #5265)
+                        $( this ).blur();
+ 
+                        // pass empty string as value to search for, displaying all results
+                        input.autocomplete( "search", "" );
+                        input.focus();
+                    });
+ 
+                    input
+                        .tooltip({
+                            position: {
+                                of: this.button
+                            },
+                            tooltipClass: "ui-state-highlight"
+                        });
+            },
+ 
+            destroy: function() {
+                this.wrapper.remove();
+                this.element.show();
+                $.Widget.prototype.destroy.call( this );
+            }
+        });
+    })( jQuery );
+ 
+    $(function() {
+        $( "#combobox" ).combobox();
+        $( "#toggle" ).click(function() {
+            $( "#combobox" ).toggle();
+        });
+    });
+
+}); //close doc ready
+    </script>
+</head>
+<body>
+ 
+
+ 

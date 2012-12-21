@@ -1,0 +1,2 @@
+module MindpostsHelper
+end

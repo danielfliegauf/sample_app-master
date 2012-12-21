@@ -1,0 +1,239 @@
+<% provide(:title, 'Home') %>
+
+<% if signed_in? %>
+<div class="row">
+	<aside class="span4">
+		<section>
+			<%= render 'shared/user_info' %>
+		</section>
+		<section>
+			<%= render 'shared/stats' %>
+		</section>
+		<section>
+			<%= render 'shared/micropost_form' %>
+		</section>
+	</aside>
+	<div class="span8">
+		<h3>Micropost Feed</h3>
+		<%= render 'shared/feed' %>
+
+	</div>
+</div>
+<% else %>
+<div class="center hero-unit">
+<h1>Connectify</h1>
+<p>
+	... a great place to <b>find people</b> doing the things you love most, too!
+  
+</p>It's just one click away... <br/><br />
+<%= link_to "Connect me!", "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary" %>
+</div>
+<%= link_to image_tag("rails.png", alt: "Rails"), 'http://google.com/' %>
+<% end %>
+
+
+
+
+<script type="text/javascript">
+
+//code for GMAPS
+
+  var geocoder = new google.maps.Geocoder();
+  var map;
+  // var infowindow = new google.maps.InfoWindow();
+  var marker;
+  var city; //2mal vorhanden!
+  var country;
+  document.getElementById("testland").innerHTML = "anders";
+ 
+   
+
+  function initialize() {
+   //if user changes the place via select menu 
+document.getElementById('micropost_place').addEventListener("change",
+                         function(){
+                          setMap(this.value);
+                         }, false);
+
+//GMpas Options + map
+
+    var myOptions = {
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+            streetViewControl: false,
+            mapTypeControl: false
+        };
+
+        map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+
+        // Try HTML5 geolocation
+        if(navigator.geolocation) { 
+          //alert("ifnavgeo");
+          navigator.geolocation.getCurrentPosition(function(position) { 
+            //alert("successcallbacK");
+            var pos = new google.maps.LatLng(position.coords.latitude,
+                                             position.coords.longitude);
+
+
+            //center the map at the current location in the beginning
+            map.setCenter(pos);
+            marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    animation: google.maps.Animation.DROP
+            });
+
+            //set hidden field in micropost_form
+            document.getElementById("micropost_latlng").value = pos;
+
+           
+
+            //set micropost_place with the geolocation position
+            geocoder.geocode({'latLng': pos}, function(results, status) {
+                  if (status == google.maps.GeocoderStatus.OK) {
+                  if (results[1]) {
+
+                      //find citycounty name
+                      for (var i=0; i<results[0].address_components.length; i++) {
+                      for (var b=0;b<results[0].address_components[i].types.length;b++) {
+
+                        //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+                        if (results[0].address_components[i].types[b] == "locality") {
+                            //this is the object you are looking for
+                            city= results[0].address_components[i];
+                            adress = results[0].formatted_address;
+                            country = results[0].address_components[7]; //TODO! stimmt das ?
+                            
+                            break;
+                        }
+                      }
+                      }
+
+                    //document.getElementById('address').innerHTML = city.short_name + " " + city.long_name;
+                      
+                    document.getElementById('micropost_place').childNodes[0].value = city.short_name;
+                    document.getElementById('micropost_place').childNodes[0].innerHTML = city.short_name;
+                    document.getElementById('micropost_place').selectedIndex = 0;
+                    document.getElementById('adress').innerHTML = adress;
+                    document.getElementById("testland").innerHTML = country.long_name
+                    //set hidden field in micropost_form country
+                        document.getElementById("micropost_country").value = country.long_name;
+                  }
+                  } else {
+                  alert("Geocoder failed due to: " + status);
+                    }
+            });
+            
+             
+                        
+
+          }, function() {
+            //alert("handleNoGeolocationTRUE");
+            handleNoGeolocation(true);
+          }); //close function(postition)
+        } else {
+          // Browser doesn't support Geolocation
+          //alert("handleNoGeolocationFALSE");
+          handleNoGeolocation(false);
+        }
+
+          // add Marker Event
+        google.maps.event.addListener(map, 'click', function(event) {
+            placeMarker(event.latLng);
+        });
+ 
+
+        function placeMarker(location) {
+
+          //var city;
+          geocoder.geocode({'latLng': location}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+
+              //find country name
+              for (var i=0; i<results[0].address_components.length; i++) {
+              for (var b=0;b<results[0].address_components[i].types.length;b++) {
+
+                //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+                if (results[0].address_components[i].types[b] == "locality") {
+                    //this is the object you are looking for
+                    city= results[0].address_components[i];
+                    break;
+                }
+            }
+            }
+
+          //document.getElementById('address').innerHTML = city.short_name + " " + city.long_name;
+            
+          document.getElementById('micropost_place').childNodes[0].value = city.short_name;
+          document.getElementById('micropost_place').childNodes[0].innerHTML = city.short_name;
+          document.getElementById('micropost_place').selectedIndex = 0;
+          document.getElementById('adress').innerHTML = results[0].formatted_address;
+          document.getElementById("testland").innerHTML = results[0].address_components[7].long_name;
+          //set hidden field in micropost_form country
+                        document.getElementById("micropost_country").value = results[0].address_components[7].long_name;
+        }
+      } else {
+        alert("Geocoder failed due to: " + status);
+      }
+    });
+
+
+            //make a new marker or delete the old one and create a new one on click
+            if (marker == undefined){
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    animation: google.maps.Animation.DROP
+                });
+                //document.getElementById("latitude").innerHTML = location.lng();
+                document.getElementById("micropost_latlng").value = location;
+            }
+            else{
+                marker.setPosition(location);
+                //document.getElementById("latitude").innerHTML = location.lng();
+                document.getElementById("micropost_latlng").value = location;
+            }
+            map.setCenter(location);
+
+        }
+
+  }
+
+  function handleNoGeolocation(errorFlag) {
+
+    if (errorFlag) {
+      var content = 'Error: The Geolocation service failed. Please choose your location manually!';
+    } else {
+      var content = 'Error: Your browser doesn\'t support geolocation. Please choose your location manually!';
+    }
+    //alert("errorcallback") // Hat genervt TODO: Wieder einfügen
+    var options = {
+      map: map,
+      position: new google.maps.LatLng(60, 105),
+      content: content,
+      zoom: 14
+    };
+
+    var infowindow = new google.maps.InfoWindow(options);
+    map.setCenter(options.position);
+  }
+
+  function setMap(address){
+    geocoder.geocode({'address': address}, function(results, status){
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+          map.setCenter(results[0].geometry.location);
+          //change hiden_field latlng
+         document.getElementById("micropost_latlng").value = results[0].geometry.location;
+
+        
+        }
+      } else {
+        alert("Geocoder failed due to: " + status);
+      }
+    }); 
+  }
+
+
+</script>

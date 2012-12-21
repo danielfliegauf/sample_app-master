@@ -1,0 +1,39 @@
+<li id="<%= feed_item.id %>">
+	<a href="<%= params[:locale] %>/microposts/<%= feed_item.id %>">
+		<div class="user_wall">
+			<%= feed_item.user.name %>
+		</div> 
+		<div class="hobby_wall">
+			<%= t('home.micropost.'+feed_item.hobby) %>
+		</div>
+		<div class="place_wall">
+			<%= infrom(feed_item.hobby) %> <%= t('home.micropost.'+feed_item.place) %>
+		</div>
+
+		<% if feed_item.weekday != "11" %>
+			<div class="time_wall">
+				<%= t('home.micropost.time_on') %> <%= I18n.localize(feed_item.datetime) %>
+			</div>
+		<% else %>
+			<div style="color: red;"><%= t('home.micropost.time_till_delete_from_searchindex') + " (in " + time_ago_in_words(feed_item.datetime) + ")"  if ((feed_item.datetime - Time.now) < (60*60*24*7*3)) %>
+			</div>
+		<% end %>
+		<div class="timestamp_wall" style="clear: left; position: static;">
+			<%= t('feed_item.posted') %> <%= time_ago_in_words(feed_item.created_at) %> <%= t('feed_item.ago') %>.
+		</div>
+	</a>
+</li>
+
+<!-- 
+	<%= link_to t('link.details'), feed_item, method: :show %> | &nbsp;
+	<% if current_user?(feed_item.user) %>
+		  <%= link_to "trash", feed_item, method: :delete, data: { confirm: "You sure?" }, title: t('link.delete'), class: "lsf", style: "color: #9B9B9B; font-size: 25px;" %>&nbsp;&nbsp;&nbsp;
+		  <span class="lsf" style="color: #C9C9C9; font-size: 25px;">comment</span> <%= feed_item.comments.count %>
+		 <% @unread = feed_item.comments.where("read = ?", false).count %>
+		<b><%= "("+@unread+")" if (@unread > 0) %></b>
+	<% else %>
+		 <span class="lsf" style="color: #C9C9C9; font-size: 25px;">comment</span> <%= feed_item.comments.count %>
+	<% end %> 
+	
+	 &nbsp;&nbsp;&nbsp;<%= link_to_function "facebook", "postToFeed('#{feed_item.id}', '#{t('home.micropost.'+feed_item.hobby)}', '#{feed_item.place}', '#{I18n.localize(feed_item.datetime)}', '#{feed_item.weekday}'); return false;", class: "lsf", style: "color: #9B9B9B; font-size: 25px;", title: "share on Facebook" %></span>
+ -->

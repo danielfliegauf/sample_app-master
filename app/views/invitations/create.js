@@ -1,0 +1,1 @@
+$("#invite_form").html("<%= escape_javascript(render('users/uninvite')) %>")

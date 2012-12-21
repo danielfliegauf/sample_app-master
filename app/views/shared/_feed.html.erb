@@ -1,0 +1,13 @@
+<% if @feed_items.any? %>
+	<ol class="microposts">
+		<h3>Micropost Feed</h3>
+		<%= render partial: 'shared/feed_item', collection: @feed_items %>
+	</ol>
+	<%= will_paginate @feed_items %>
+<% else %>
+	<!-- <h3>Neu hier? Kein Problem. Wir helfen dir dabei dich zurechtzufinden. Es ist ganz einfach:</h3> -->
+	<div id="helptext">
+		<%= image_tag("help.gif") %>
+		<%= render 'helptext' %>
+	</div>
+<% end %>

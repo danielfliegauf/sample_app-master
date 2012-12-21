@@ -1,0 +1,34 @@
+<div class="span3">
+		<% if params[:place] == '' %>
+		<br>
+		<br>
+			<%= t('search_not_valid') %>
+			<a data-role='button' data-corners='false' data-icon='back' data-shadow='false' data-rel='back'>go back</a>
+		<% end %>
+
+		<% if params[:place] != '' %>
+			<h3><%= t('search_result') %> (<%= @microposts.count %>)</h3>
+			<% if @microposts.empty? %>
+				<br />
+				<p><%= t('knock') %><%= link_to "Change it!", root_path %></p>
+			<% end %>
+			<ul class="microposts" data-role="listview">
+				<% for micropost in @microposts %>	
+					<li id="<%= micropost.id %>">
+<!-- 						<%= image_tag('https://graph.facebook.com/'+micropost.user.uid.to_s+'/picture?type=square', alt: micropost.user_id, class: "gravatar") %>
+ -->						<a href="<%= params[:locale] %>/microposts/<%= micropost.id %>">
+						<div class="hobby_list"><%= t('home.micropost.'+micropost.hobby) %></div><br>
+						<div class="place_list">in <%= t('home.micropost.'+micropost.place) %></div>
+						<% if micropost.weekday != "11" %><br>
+						<div class="time_list"><%= t('home.micropost.time_on') %> <%= I18n.localize(micropost.datetime) %></div>
+						<% end %>
+						<div class="timestamp_list"><%= t('feed_item.posted') %> <%= time_ago_in_words(micropost.created_at) %> <%= t('feed_item.ago') %>. </div>
+						<!-- <div class="details_result"><%= link_to t('link.details'), micropost, method: :show, :class => "btn btn-primary btn-small white", :rel => "external", :'data-ajax' => "false" %></div> -->
+<!-- 						<%= link_to "auth/facebook", "auth/facebook", :rel =>"external" %>
+ -->					</a></li>
+				<% end %>
+			</ul>
+		<% end %>
+	</div>
+
+	

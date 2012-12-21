@@ -1,0 +1,141 @@
+/* mixins, variables, etc. */
+$grayMediumLight: #eaeaea;
+$gray: #08C;
+$blue: #EEFFCC;
+$grayLight: #999;
+
+/* Anzeige Schrift Micropost Detail */
+.hobby {
+	font-size: 2.3em;
+	font-weight: bold;
+	text-align: center;
+	color: $grayLight;
+	margin-bottom: -10px;
+	margin-top: -10px;
+}
+
+.place {
+	font-size: 1.0em;
+	font-weight: bold;
+	text-align: right;
+	color: $grayLight;
+}
+
+.time {
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: left;
+
+}
+
+.timestamp {
+	font-size: 0.7em;
+	font-weight: normal;
+	text-align: right;
+	float: right;
+	padding-top: 3px;
+}
+
+/* Anzeige Schrift Micropost LIST */
+.hobby_list {
+	font-size: 2.0em;
+	font-weight: bold;
+	text-align: center;
+	color: $grayLight;
+	margin-bottom: -10px;
+	margin-top: -10px;
+}
+
+.place_list {
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: right;
+	color: $grayLight;
+}
+
+.time_list {
+	font-size: 0.8em;
+	font-weight: bold;
+	text-align: left;
+
+}
+
+.timestamp_list {
+	font-size: 0.7em;
+	font-weight: normal;
+	text-align: center;
+	float: right;
+	padding-top: 4px;
+
+}
+
+/* Anzeige Schrift Micropost WALL */
+
+.user_wall {
+	font-size: 1.0em;
+	padding-bottom: 13px;
+}
+.hobby_wall {
+	font-size: 1.3em;
+	font-weight: bold;
+	text-align: center;
+	color: $grayLight;
+	margin-bottom: -5px;
+	margin-top: -10px;
+}
+
+.place_wall {
+	font-size: 0.8em;
+	font-weight: bold;
+	text-align: right;
+	color: $grayLight;
+}
+
+.time_wall {
+	font-size: 0.8em;
+	font-weight: normal;
+	text-align: left;
+
+}
+
+.timestamp_wall {
+	font-size: 0.6em;
+	font-weight: normal;
+	text-align: center;
+	float: right;
+	padding-top: 6px;
+
+}
+
+/* CSS Symbol Font */
+
+ul, ol {
+  list-style-type: none;
+  margin-left: -40px;
+
+}
+a {
+  text-decoration: none;
+}
+
+.comment {
+	padding-top: 200px;
+}
+
+.userprofile {
+	bottom: 15px;
+}
+
+.line {
+	border-top: 1px solid black;
+	margin-bottom: 10px;
+}
+
+.gravatar {
+	float: left;
+	padding-right: 2px;
+}
+
+clearfix {
+	clear: both;
+}

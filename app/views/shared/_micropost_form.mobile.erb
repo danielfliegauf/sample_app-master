@@ -1,0 +1,35 @@
+<%= form_for(@micropost) do |f| %>
+	<%= render 'shared/error_messages', object: f.object %>
+	<%= f.hidden_field :latlng, :value => "" %>
+	<%= f.hidden_field :country, :value => "" %>
+	<br /><p><b><%= t('home.micropost.create') %></b></p>
+	<div class="field">
+		<%= f.label t('home.micropost.what') %>
+		<%= f.select :hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one'), ""])), :class => '' %>
+	</div>
+	<div class="field">
+		<%= f.label t('home.micropost.where') %>
+		<%= f.select :place, options_for_select(citylist.sort.unshift([t('home.micropost.select_one'), ""],["-------------------------------------------", ""])), :class => '' %>
+		
+		<div id="testland"></div>
+	</div>
+		<div id="address"></div>
+	<div class="canvas">
+
+		<div id="map_canvas" style="width:100%; height:350px"></div>
+	</div>
+	<br />
+	<div class="field">
+		<%= f.label t('home.micropost.when') %>
+		<%= f.datetime_select :datetime,  
+                        {:default => 24.hours.from_now, 
+                       :minute_step => 15, :order => [:day, :month, :year, :hour, :minute]}, :class => 'datetime' %> <clock><%= t('datetime_clock') %></clock>
+	</div>
+	<div style="clear: both"></div>
+	<div class="field">
+		<%= f.label t('home.micropost.about') %>
+		<%= f.select :level, options_for_select([[t('home.micropost.select_level'), ""], "Newbie", "Advanced", "Pro"]), :class => '' %>
+		<%= f.text_area :content, placeholder: t('home.micropost.textbox_text') %>
+	</div>
+	<%= f.submit t('home.micropost.submit'), class: "btn btn-large btn-primary", :'data-role' => "none" %>
+<% end %>

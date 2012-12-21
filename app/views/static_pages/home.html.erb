@@ -1,0 +1,341 @@
+<% provide(:title, 'Home') %>
+
+<% if signed_in? %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <%= render 'shared/user_info' %>
+    </section>
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+    <section>
+      <div id="ie08"></div>
+      <%= render 'shared/micropost_form' %>
+    </section>
+  </aside>
+  <div class="span8">
+    
+    <%= render 'shared/feed' %>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+
+
+window.onload = initialize();
+
+//code for GMAPS
+
+  var geocoder = new google.maps.Geocoder();
+  var map;
+  // var infowindow = new google.maps.InfoWindow();
+  var marker;
+  var city; //2mal vorhanden!
+  var country;
+ 
+   
+
+  function initialize() {
+   //if user changes the place via select menu
+   if (document.getElementById('micropost_place').addEventListener) {
+    document.getElementById('micropost_place').addEventListener("change",
+                         function(){
+                          setMap(this.value);
+                         }, false);
+   }
+   else {
+    //has to be there otherwhise the ie08 innerHTML is not changing. because of an error? i dont know ;)
+    document.getElementById('micropost_place').attachEvent("change",
+                         function(){
+                          setMap(this.value);
+                         });
+   }
+
+
+//GMpas Options + map
+
+    var myOptions = {
+          zoom: 14,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+            streetViewControl: false,
+            mapTypeControl: false
+        };
+
+        map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+
+        // Try HTML5 geolocation
+        if(navigator.geolocation) { 
+          //alert("ifnavgeo");
+          navigator.geolocation.getCurrentPosition(function(position) { 
+            //alert("successcallbacK");
+            var pos = new google.maps.LatLng(position.coords.latitude,
+                                             position.coords.longitude);
+
+
+            //center the map at the current location in the beginning
+            map.setCenter(pos);
+            marker = new google.maps.Marker({
+                    position: pos,
+                    map: map,
+                    animation: google.maps.Animation.DROP
+            });
+
+            //set hidden field in micropost_form
+            document.getElementById("micropost_latlng").value = pos;
+
+            //set micropost_place with the geolocation position
+            geocoder.geocode({'latLng': pos}, function(results, status) {
+                  if (status == google.maps.GeocoderStatus.OK) {
+                  if (results[1]) {
+
+                      //find citycounty name
+                      for (var i=0; i<results[0].address_components.length; i++) {
+                      for (var b=0;b<results[0].address_components[i].types.length;b++) {
+
+                        //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+                        if (results[0].address_components[i].types[b] == "locality") {
+                            //this is the object you are looking for
+                            city= results[0].address_components[i];
+                            address = results[0].formatted_address;
+                            country = results[0].formatted_address.split(","); //TODO! stimmt das ?
+                            
+                            break;
+                        }
+                      }
+                      }
+
+                    //document.getElementById('address').innerHTML = city.short_name + " " + city.long_name;
+                      
+                    document.getElementById('micropost_place').childNodes[0].value = city.short_name;
+                    document.getElementById('micropost_place').childNodes[0].innerHTML = city.short_name;
+                    document.getElementById('micropost_place').selectedIndex = 0;
+                    //document.getElementById('address').innerHTML = address;
+                    //document.getElementById('testland').innerHTML = country[country.length-1];
+                    document.getElementById('micropost_country').value = country[country.length-1];
+                  }
+                  } else {
+                  alert("Geocoder failed due to: " + status);
+                    }
+            });
+
+
+          }, function() {
+            //alert("handleNoGeolocationTRUE");
+            handleNoGeolocation(true);
+          }); //close function(postition)
+        } else {
+          // Browser doesn't support Geolocation
+          //alert("handleNoGeolocationFALSE");
+          handleNoGeolocation(false);
+        }
+
+          // add Marker Event
+        google.maps.event.addListener(map, 'click', function(event) {
+            placeMarker(event.latLng);
+        });
+ 
+
+        function placeMarker(location) {
+
+          //var city;
+          geocoder.geocode({'latLng': location}, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+
+              //find country name
+              for (var i=0; i<results[0].address_components.length; i++) {
+              for (var b=0;b<results[0].address_components[i].types.length;b++) {
+
+                //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+                if (results[0].address_components[i].types[b] == "locality") {
+                    //this is the object you are looking for
+                    city= results[0].address_components[i];
+                    country = results[0].address_components[4]; //TODO! stimmt das ?
+                    break;
+                }
+            }
+            }
+
+          //document.getElementById('address').innerHTML = city.short_name + " " + city.long_name;
+            
+          document.getElementById('micropost_place').childNodes[0].value = city.short_name;
+          document.getElementById('micropost_place').childNodes[0].innerHTML = city.short_name;
+          document.getElementById('micropost_place').selectedIndex = 0;
+          //document.getElementById('address').innerHTML = results[0].formatted_address;
+          //Array for country
+          country = results[0].formatted_address.split(","); //TODO! stimmt das ?
+          //document.getElementById('testland').innerHTML = country[country.length-1];
+          document.getElementById('micropost_country').value = country[country.length-1];
+        }
+      } else {
+        alert("Geocoder failed due to: " + status);
+      }
+    });
+
+
+            //make a new marker or delete the old one and create a new one on click
+            if (marker == undefined){
+                marker = new google.maps.Marker({
+                    position: location,
+                    map: map,
+                    animation: google.maps.Animation.DROP
+                });
+                //document.getElementById("latitude").innerHTML = location.lng();
+                document.getElementById("micropost_latlng").value = location;
+            }
+            else{
+                marker.setPosition(location);
+                //document.getElementById("latitude").innerHTML = location.lng();
+                document.getElementById("micropost_latlng").value = location;
+            }
+            map.setCenter(location);
+
+        }
+
+  }
+
+  function handleNoGeolocation(errorFlag) {
+
+    if (errorFlag) {
+      var content = 'Error: The Geolocation service failed. Please choose your location manually!';
+    } else {
+      var content = 'Error: Your browser doesn\'t support geolocation. Please choose your location manually!';
+    }
+    //alert("Leider hast du keine Geolocation aktiviert. Allerdings kannstu selbst dienen Ort auswählen!") // Hat genervt TODO: Wieder einfügen
+    
+    var options = {
+      map: map,
+      position: new google.maps.LatLng('50.2979254', '10.486495800000057'),
+      // content: content,
+      zoom: 4
+    };
+
+    var infowindow = new google.maps.InfoWindow(options);
+    map.setCenter(options.position);
+
+    // add Marker Event
+        google.maps.event.addListener(map, 'click', function(event) {
+            placeMarker(event.latLng);
+        });
+
+        //IE08 doesnt know addEventListener
+        if (document.getElementById('micropost_place').addEventListener) {
+        document.getElementById('micropost_place').addEventListener('click', placeMarker(options.position));
+        }
+        else {
+          document.getElementById('ie08').innerHTML = "Please get yourself a better and SAFE browser: <a href='http://abetterbrowser.org/' target='_new'>Go here for more Information</a>";
+          document.getElementById('micropost_latlng').value = '(50.2979254, 10.486495800000057)';
+           document.getElementById('micropost_country').value = "Germany"; //TODO: Need to get city.object!
+           document.getElementById('canvas2').innerHTML = "Sorry but this function is not supported with your browser!";
+        }
+  }
+
+  function setMap(address){
+    geocoder.geocode({'address': address}, function(results, status){
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[0]) {
+          map.setCenter(results[0].geometry.location);
+          //change hiden_field latlng
+         document.getElementById("micropost_latlng").value = results[0].geometry.location;
+         document.getElementById("micropost_country").value = " Germany";
+
+        
+        }
+      } else {
+        // alert("Geocoder failed due to: " + status);
+      }
+    }); 
+  }
+
+//allgemein und für IE
+document.getElementById('micropost_place').childNodes[0].innerHTML = "Bitte auswählen";
+document.getElementById('micropost_latlng').value = '(50.2979254, 10.486495800000057)';
+
+var xaa = document.getElementsByName('micropost[latlng]');
+document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.2979254, 10.486495800000057)';
+
+
+//Datepicker for Micropost Form
+ $(document).ready(function() {
+  $.datepicker.regional['de'] = {
+    closeText: 'fertig', // Display text for close link
+    prevText: 'zurück', // Display text for previous month link
+    nextText: 'vor', // Display text for next month link
+    currentText: 'heute', // Display text for current month link
+    monthNames: ['Januar','Februar','März','April','Mai','Juni',
+      'Juli','August','September','Oktober','November','Dezember'], // Names of months for drop-down and formatting
+    monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sept', 'Okt', 'Nov', 'Dez'], // For formatting
+    dayNames: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'], // For formatting
+    dayNamesShort: ['Son', 'Mon', 'Die', 'Mit', 'Don', 'Fr', 'Sam'], // For formatting
+    dayNamesMin: ['So','Mo','Di','Mi','Do','Fr','Sa'], // Column headings for days starting at Sunday
+    weekHeader: 'Wk', // Column header for week of the year
+    dateFormat: 'dd.mm.yy', // See format options on parseDate
+    firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
+    isRTL: false, // True if right-to-left language, false if left-to-right
+    showMonthAfterYear: false, // True if the year select precedes month, false for month then year
+    yearSuffix: '' // Additional text to append to the year in the month headers
+  };
+  $('.datepicker').datetimepicker( $.datepicker.regional['de'], 
+                                    $.timepicker.setDefaults($.timepicker.regional['de']) 
+                                    );
+  
+
+
+
+});
+
+
+</script>
+
+
+
+
+
+
+
+
+<% else %>
+<div class="center">
+
+<!-- When sombody got redirected from Search (*knock knock) he should see a message that he has to be logged in -->
+<% if (@not_logged_in) %><h1>Connectify</h1>
+<p> We're sorry, but you must be logged in to write a Micropost.</p>
+  <% else %>
+
+  <% end %> 
+
+<%= image_tag "connectifybanner2.jpg" %><br>
+<a href="#" id="show_whatfbknows" style="
+    float: left;
+    font-weight: bold;
+    padding-left: 300px;
+    padding-top: 50px;
+"><%= t('doesfbknow') %></a>
+<span><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "66px", heigth: "66px" %>
+<%= link_to "Connect me!", "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary" %></span>
+
+</div>
+<div id="whatfbknows"><h4>Du brauchst keine Bedenken haben...</h4>sobald du Connectify nutzt, weiß Facebook nur, dass du diese Seite besucht hast. <b>Sonst nichts.</b><br> Es werden keine Daten an Facebook übertragen.<br> Wir versuchen deine Privatssphäre soweit es geht zu schützen, indem nur die nötigsten Daten von Facebook angefordert werden. Dazu zählen deine eMail, dein Name und dein aktuelles Profilbild. <br><h4>Indianerehrenwort! ;)</h4>
+<!-- <br>Allerdings hast du von einem Login mit Facebook folgende Vorteile:<br>
+<ul>
+  <li>Melde dich superschnell an</li>
+  <li>Es stellt sicher, dass Connectify-Nutzer ihre wirkliche Identität verweden</li>
+  <li>Connectify-Nutzer können direkt in Facebook angeschrieben werden</li>
+  </ul> --> </div>
+
+<script>
+$(document).ready(function() {
+  $('#show_whatfbknows').click( function(event) {
+      event.preventDefault();
+      $('#whatfbknows').fadeIn();
+  })
+
+});
+
+</script>
+
+<% end %>
+
+

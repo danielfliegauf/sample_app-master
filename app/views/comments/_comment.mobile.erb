@@ -1,0 +1,29 @@
+<li>
+<div class="gravatar"> 
+   <%= image_tag('https://graph.facebook.com/'+comment.user.uid.to_s+'/picture?type=square', alt: comment.user_id, class: "gravatar") %>
+</div>
+<p>
+  <b><%= t('says') %>:</b>
+  <%= comment.body %>
+</p>
+<div class="clearfix"></div>
+  <% if current_user.admin %>
+    <br>
+    <%= link_to t('destroy_comment_mobile'), [comment.micropost, comment],
+               :confirm => 'Are you sure?',
+               :method => :delete,
+               :'data-role' => 'button', :'data-inline' => 'true', :'data-corners' => 'false', :'data-shadow' => 'false' %>
+    <%= link_to t('edit_comment_mobile'), [comment.micropost, comment], :'data-role' => 'button', :'data-inline' => 'true', :'data-corners' => 'false', :'data-shadow' => 'false' %>
+    <% else %>
+  	<% if current_user.uid = comment.user_id %>
+  		<%= link_to t('destroy_comment_mobile'), [comment.micropost, comment],
+                 :confirm => 'Are you sure?',
+                 :method => :delete,
+                 :'data-role' => 'button', :'data-inline' => 'true', :'data-corners' => 'false', :'data-shadow' => 'false' %>
+          <%= link_to t('edit_comment_mobile'), [comment.micropost, comment], :'data-role' => 'button', :'data-inline' => 'true', :'data-corners' => 'false', :'data-shadow' => 'false' %>
+  	<% end %>
+  
+  <% end %>
+    <br>
+<div class="line"></div>
+</li>

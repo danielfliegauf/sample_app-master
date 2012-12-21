@@ -1,0 +1,74 @@
+<% provide(:title, 'Search') %>
+
+<div class="row">
+	<aside class="span4">
+		<section>
+			<%= render 'shared/search_form' %>
+		</section>
+	</aside>
+	<div class="span8">
+		<% if params[:place] == '' %>
+		<br>
+		<br>
+			<%= t('search_not_valid') %>
+		<% else %>
+				<% if @microposts.empty? %>
+					<br>
+					<p><%= t('knock') %><%= link_to "Change it!", root_path(:not_logged_in => true) %></p>
+				<% else %>
+					<h3><%= t('search_result') %></h3>
+					<ol class="microposts">
+						<% for @micropost in @microposts %>
+							<li class="<%= @micropost.id %>">
+								<%= link_to gravatar_for(@micropost.user), @micropost.user %>
+								<span class="user">
+									<%= link_to @micropost.user.name, @micropost.user %>
+								</span> | 
+								<b><span class="hobbyplace"><%= t('home.micropost.'+@micropost.hobby) %> <%= infrom(@micropost.hobby) %> <%= t('home.micropost.'+@micropost.place) %></b>
+								<% if @micropost.weekday != "11" %>
+									<em><%= t('home.micropost.time_on') %> <%= I18n.localize(@micropost.datetime) %></em>
+								<% else %>
+									<div style="color: red;"><%= t('home.micropost.time_till_delete_from_searchindex') + " (in " + time_ago_in_words(feed_item.datetime) + ")"  if ((@micropost.datetime - Time.now) < (60*60*24*7*3) && current_user == @micropost.user) %></div>
+								<% end %></span>
+								<span class="content"><%= truncate(@micropost.content, length: 250) %></span>
+								</li><span class="timestamp">
+									<%= t('feed_item.posted') %> <%= time_ago_in_words(@micropost.created_at) %> <%= t('feed_item.ago') %>.
+								
+								<%= link_to t('link.details'), @micropost, method: :show %>
+								| <%= link_to t('link.delete'), @micropost, method: :delete, data: { confirm: "You sure?" }, title: @micropost.content if current_user?(@micropost.user) %></span>
+								<% if signed_in? %>
+									<div class="follow_form_<%= @micropost.id %>" id="remember">
+										<% unless current_user.remembering?(@micropost) %>
+											<div class="followhellobar"><%= render 'mindposts/follow' %></div>
+										<% else %>
+											<div class="unfollow"><%= render 'mindposts/unfollow' %></div>
+										<% end %>
+									</div>
+								<% end %>
+							
+						<% end %>
+					</ol>
+				<% end %> <!-- micropost.empty? -->
+		
+		<% end %> <!-- params != "" -->
+	</div>
+</div>
+
+
+<script type="text/javascript">
+// 	$(document).ready(function(){
+// 		$(":input[value|='Merken']").on('click', function(e) {
+//     var a = $(this).parents('div#follow_form2');
+//     a.html("<div test=testttt'>TEST</div>");
+//     return false;
+//     // e.preventDefault();
+//   });
+
+// 		$(":input[value|='UnMerken']").on('click', function(e) {
+//     var b = $(this).parents('div#follow_form2');
+//     b.html("<div test=testttt'>TEST7</div>");
+//     // e.preventDefault();
+//     return false;
+//   });
+// 	});
+// </script>

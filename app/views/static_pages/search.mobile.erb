@@ -1,0 +1,56 @@
+<% provide(:title, 'Search') %>
+<% if signed_in? %>
+<div>
+	
+		<section>
+			<%= form_tag("/result", :method => "get") do %>
+<%= label_tag(:hobby, t('search_for')) %>
+<%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one'), ""]))) %>
+<%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_one'), ""],["-------------------------------------------", ""]))) %>
+<%= submit_tag t('home.micropost.gogetit'), :name => nil, :'data-role' => 'button', :'data-corners' => 'false', :'data-ajax' => "false" %>
+<% end %>
+		</section>
+	
+	<div class="span8">
+		<% if params[:hobby] == '' && params[:place] == '' %>
+		<br>
+		<br>
+			<%= t('search_not_valid') %>
+		<% else %>
+			<h3><%= t('search_result') %></h3>
+			<% if @microposts.empty? %>
+				<br />
+				<p><%= t('knock') %><%= link_to "Change it!", root_path %></p>
+			<% end %>
+			<ol class="microposts">
+				<% for micropost in @microposts %>
+					<li id="<%= micropost.id %>">
+						<%= link_to gravatar_for(micropost.user), micropost.user %>
+						<span class="user">
+							<%= link_to micropost.user.name, micropost.user %>
+						</span> | 
+						<b><span class="hobbyplace"><%= t('home.micropost.'+micropost.hobby) %> in <%= t('home.micropost.'+micropost.place) %></b> <em><%= t('home.micropost.time_on') %> <%= I18n.localize(micropost.datetime) %></em></span>
+						<span class="content"><%= micropost.content %></span>
+						<span class="timestamp">
+							<%= t('feed_item.posted') %> <%= time_ago_in_words(micropost.created_at) %> <%= t('feed_item.ago') %>.
+						</span>
+						<%= link_to t('link.details'), micropost, method: :show %>
+						<% if current_user?(micropost.user) %>
+						 | <%= link_to t('link.delete'), micropost, method: :delete, data: { confirm: "You sure?" }, title: micropost.content %>
+						<% end %>
+					</li>
+				<% end %>
+			</ol>
+		<% end %>
+	</div>
+</div>
+<% else %>
+<div class="center hero-unit">
+<h1>Connectify</h1>
+<p>
+	... a great place to <b>find people</b> doing the things you love most, too!
+  
+</p>It's just one click away... <br/><br />
+<%= link_to "Connect me!", "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary" %>
+</div>
+<% end %>

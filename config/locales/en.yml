@@ -1,0 +1,112 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  comments:
+    one: "1 Comment"
+    other: "%{count} Comments"
+  justcomments: "Comments"
+  create_a_comment: "Create a Comment"
+  destroy_comment: "delete Comment"
+  destroy_comment_mobile: "delete"
+  edit_comment: "edit Comment"
+  edit_comment_mobile: "edit"
+  says: "says"
+  write_on_fb: 'Write '
+  write_on_fb2: ' on Facebook'
+  will_paginate:
+    previous_label: "&#8592; Previous"
+    next_label: "Next &#8594;"
+    page_gap: "&hellip;"
+  signed_in_as: ""
+  search_result: Search Result
+  search_not_valid: Please enter all search parameters.
+  search_for: Search for
+  knock: "*knock *knock ... nobody's there :[ "
+  destroyuser: "Delete user"
+  privacy: "Privacy Politics"
+  datetime_clock: "o'clock"
+  allusers: "all Users"
+  aboutus: "about Us"
+  help: "Introduction"
+  helptext: "you'll get help here - soon ;)"
+  postsuccessfull: "Your micropost was created successfully!"
+  whatweknow: "What data is saved on Connectify?"
+  following: "following"
+  followers: "followers"
+  remember: "remember!"
+  noremember: "don't remember"
+  doesfbknow: "...does Facebook know what I'm doing here?!"
+  allusers: "discover the other Users..."
+  nojs: "You don't have javascript enabled.  Unfortunatly you need it to access this app."
+  home:
+    micropost:
+      hobby_example: "e.g. climbing"
+      from: 'from'
+      Karlsruhe: Carlsruhe
+      Konstanz: Constance
+      Munich: Munich
+      Berlin: Berlin
+      create: 'Create a new Micropost'
+      what: 'What?*'
+      when: 'When?'
+      where: 'Where?*'
+      whereexact: 'Where exactly? (click on the map)'
+      datetime: 'if not fix - just leave it blank'
+      about: 'About me:'
+      select_one: 'Select one'
+      select_city: 'Select city'
+      select_one_optional: "Select hobby (optional)"
+      select_level: 'Select your level'
+      textbox_text: 'Write a few lines...'
+      submit: 'Post'
+      other: Other
+      timezone: London
+      time_on: 'on'
+      time_at: at
+      time_till_delete_from_searchindex: 'Your Posting will be deleted from our search-index soon!'
+      gogetit: Go get it...
+      beachvolleyball: Beachvolleyball
+      biking: Biking
+      bouldering: Bouldering
+      climbing: Climbing
+      hiking: Hiking
+      jogging: Jogging
+      martialarts: Martialarts
+      nordicwalking: Nordicwalking
+      pilates: Pilates
+      skiing: Skiing
+      slacklining: Slacklining
+      soccer: Soccer
+      surfing: Surfing
+      swimming: Swimming
+      volleyball: Volleyball
+      windsurfing: Windsurfing
+      workout: Workout
+      yoga: Yoga
+    feed_header: 'Micropost Feed'
+  link:
+    about: 'About'
+    contact: 'Contact'
+    home: 'my pinwall'
+    search: 'Search'
+    help: 'Introduction'
+    users: 'Users'
+    signout: 'Sign out'
+    signin: 'Sign in with Facebook'
+    details: 'details'
+    delete: 'delete'
+    profile: 'view my profile'
+    news: 'News'
+    destroyuser: "Delete account"
+    settings: "Settings"
+    agb: "GTC"
+    destroyuser: "Delete user"
+    privacy: "Privacy Politics"
+  feed_item:
+    posted: posted
+    ago: ago
+  time:
+    am: am
+    formats:
+      default: ! '%A, %v, %l:%M %p'

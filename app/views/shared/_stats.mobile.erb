@@ -1,0 +1,17 @@
+<% @user ||= current_user %>
+<div class="stats capitals">
+	<div data-role="controlgroup" data-type="horizontal">
+	<a href="<%= following_user_path(@user) %>" data-role="button">
+		<strong id="following" class="stat">
+			<%= @user.followed_users.count %>
+		</strong>
+		<%= t("following") %>
+	</a>
+	<a href="<%= followers_user_path(@user) %>" data-role="button">
+		<strong id="followers" class="stat">
+			<%= @user.followers.count %>
+		</strong>
+		<%= t("followers") %>
+	</a>
+	</div>
+</div>

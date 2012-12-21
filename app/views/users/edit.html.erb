@@ -1,0 +1,22 @@
+<% provide(:title, "Edit user") %>
+<h1><%= t('whatweknow') %></h1>
+<div class="row">
+	<ul>
+		<li>1. <%= @user.name %></li>
+		<li>2. <%= @user.email %></li>
+		<li>3. <%= gravatar_for @user %> Your picture is accessible for everybody through Facebook. Therefore we don't have to save it.</li>
+	<!-- <div class="span6 offset3">
+		<%= form_for(@user) do |f| %>
+		<%= render 'shared/error_messages', object: f.object %>
+		<%= f.label :name %>
+		<%= f.text_field :name %>
+		<%= f.label :email %>
+		<%= f.text_field :email %>
+		<%= f.label :password %>
+		<%= f.password_field :password %>
+		<%= f.label :password_confirmation, "Confirm Password" %>
+		<%= f.password_field :password_confirmation %>
+		<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+		<% end %> -->
+	</div>
+</div>
