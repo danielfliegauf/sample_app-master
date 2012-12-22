@@ -3,9 +3,19 @@
 </section>
 <label for="mydate">Some Date</label>
 
-<input name="mydate" id="mydate" type="date" data-role="datebox none"
+<input name="mydate" id="mydate" type="date" data-role="datebox"
    data-options='{"mode": "calbox"}'>
 
+
+   <label for="mydate">Some Date and Time</label>
+
+<input name="mydate" id="mydate" type="date" data-role="datebox"
+   data-options='{"mode": "slidebox", "overrideDateFormat":"%Y-%m-%dT%I:%M%p", "overrideTimeFormat":12, "overrideSlideFieldOrder":["y","m","d","h","i"]}'>
+
+   <label for="mydate">Some Time</label>
+
+<input name="mydate" id="mydate" type="date" data-role="datebox"
+   data-options='{"mode": "timebox"}'>
 
    <label for="mydate">Some Date and Time</label>
 
