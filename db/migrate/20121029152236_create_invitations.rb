@@ -11,7 +11,7 @@ class CreateInvitations < ActiveRecord::Migration
 
 	add_index :invitations, :inviter_id
     add_index :invitations, :invited_id
-    add_index :invitations, :microposts
+    # add_index :invitations, :micropost
     add_index :invitations, [:inviter_id, :invited_id, :micropost], unique: true
   end
 
@@ -19,7 +19,7 @@ class CreateInvitations < ActiveRecord::Migration
   	drop_table :invitations
   	remove_index :invitations, :inviter_id
     remove_index :invitations, :invited_id
-    remove_index :invitations, :microposts
+    # remove_index :invitations, :micropost
     remove_index :invitations, [:inviter_id, :invited_id, :micropost], unique: true
   end
 end
