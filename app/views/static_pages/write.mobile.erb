@@ -109,8 +109,29 @@ document.getElementById('micropost_place').addEventListener("change",
           handleNoGeolocation(false);
         }
 
+        function LongClick(map, length) {
+    this.length_ = length;
+    var me = this;
+    me.map_ = map;
+    google.maps.event.addListener(map, 'mousedown', function(e) { me.onMouseDown_(e) });
+    google.maps.event.addListener(map, 'mouseup', function(e) { me.onMouseUp_(e) });   
+}   
+LongClick.prototype.onMouseUp_ = function(e) {
+    var now = +new Date;
+    if (now - this.down_ > this.length_) {
+        google.maps.event.trigger(this.map_, 'longpress', e);
+    }   
+}   
+LongClick.prototype.onMouseDown_ = function() {
+    this.down_ = +new Date;   
+}
+new LongClick(map, 300);
+
+
+
+
           // add Marker Event
-        google.maps.event.addListener(map, 'click', function(event) {
+        google.maps.event.addListener(map, 'longpress', function(event) {
             placeMarker(event.latLng);
         });
  
