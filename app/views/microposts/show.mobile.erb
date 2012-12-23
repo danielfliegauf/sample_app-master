@@ -7,7 +7,7 @@
      </li>
   	<li id="<%= @micropost.id %>">
       <% if current_user?(@micropost.user) %>
-   | <%= link_to t('link.delete'), @micropost, method: :delete, :class => "btn", data: { confirm: "You sure?" }, title: @micropost.content %>
+
   <% end %>
   					<div class="gravatar">
               <%= link_to gravatar_for(@micropost.user), @micropost.user %>

@@ -29,11 +29,11 @@
 			<%= full_title(yield(:title)) %>
 			<div data-role="navbar">
 				<ul>
-					<li><a href="<%= about_path(:mobile => 1) %>" id="options"><symbol class="lsf-icon" title="menu" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol>
-					<li><a href="<%= root_path %>"><symbol class="lsf-icon" title="tilemenu" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol></a></li>
-					<li><a href="<%= users_path %>"><symbol class="lsf-icon" title="users" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol></a></li>
-					<li><a href="<%= search_path(:mobile => 1) %>"><symbol class="lsf-icon" title="search" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol></a></li>
-					<li><a href="<%= write_path(:mobile => 1) %>"><symbol class="lsf-icon" title="write" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol>
+					<li><a href="<%= about_path(:mobile => 1) %>" id="options" data-ajax="false"><symbol class="lsf-icon" title="menu" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol>
+					<li><a href="<%= root_path %>" id="options" data-ajax="false"><symbol class="lsf-icon" title="tilemenu" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol></a></li>
+					<li><a href="<%= users_path %>" id="options" data-ajax="false"><symbol class="lsf-icon" title="users" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol></a></li>
+					<li><a href="<%= search_path(:mobile => 1) %>" id="options" data-ajax="false"><symbol class="lsf-icon" title="search" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol></a></li>
+					<li><a href="<%= write_path(:mobile => 1) %>" id="options" data-ajax="false"><symbol class="lsf-icon" title="write" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol>
 </a></li>
 				</ul>
 			</div><!-- /navbar -->
