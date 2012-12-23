@@ -12,7 +12,7 @@ class CreateInvitations < ActiveRecord::Migration
 	add_index :invitations, :inviter_id
     add_index :invitations, :invited_id
     # add_index :invitations, :micropost
-    add_index :invitations, [:inviter_id, :invited_id, :micropost], unique: true
+    # add_index :invitations, [:inviter_id, :invited_id, :micropost], unique: true
   end
 
   def down
@@ -20,6 +20,6 @@ class CreateInvitations < ActiveRecord::Migration
   	remove_index :invitations, :inviter_id
     remove_index :invitations, :invited_id
     # remove_index :invitations, :micropost
-    remove_index :invitations, [:inviter_id, :invited_id, :micropost], unique: true
+    # remove_index :invitations, [:inviter_id, :invited_id, :micropost], unique: true
   end
 end
