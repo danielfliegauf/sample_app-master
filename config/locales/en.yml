@@ -103,6 +103,10 @@ en:
     agb: "GTC"
     destroyuser: "Delete user"
     privacy: "Privacy Politics"
+    manage_micropost: "Manage your microposts"
+    take_tour: "Take a tour"
+    write_us: "Write us!"
+    read_terms: "Read the terms..."
   feed_item:
     posted: posted
     ago: ago

@@ -3,18 +3,24 @@
 	<span class="user">
 		<%= link_to micropost.user.name, micropost.user %>
 	</span> | 
-	<b><span class="hobbyplace"><%= t('home.micropost.'+micropost.hobby) %> in <%= t('home.micropost.'+micropost.place) %></b></span>
+	<b><span class="hobbyplace"><%= t('home.micropost.'+micropost.hobby) %> <%= infrom(micropost.hobby) %> <%= t('home.micropost.'+micropost.place) %></b> 
 		<% if micropost.weekday != "11" %>
 			<em><%= t('home.micropost.time_on') %> <%= I18n.localize(micropost.datetime) %></em>
 		<% else %>
 			<div style="color: red;"><%= t('home.micropost.time_till_delete_from_searchindex') + " (in " + time_ago_in_words(micropost.datetime) + ")"  if ((micropost.datetime - Time.now) < (60*60*24*7*3)) %></div>
 		<% end %>
-	<span class="content"><%= micropost.content %></span>
-	<span class="timestamp">
+	<span class="content"><%= truncate(micropost.content, length: 250) %></span>
+	</li><span class="timestamp">
 		<%= t('feed_item.posted') %> <%= time_ago_in_words(micropost.created_at) %> <%= t('feed_item.ago') %>.
-	</span>
-	<%= link_to t('link.details'), micropost, method: :show %>
+	
+	<%= link_to t('link.details'), micropost, method: :show %> | &nbsp;
 	<% if current_user?(micropost.user) %>
-	 | <%= link_to t('link.delete'), micropost, method: :delete, data: { confirm: "You sure?" }, title: micropost.content %>
-	<% end %>
-</li>
+		  <%= link_to "trash", micropost, method: :delete, data: { confirm: "You sure?" }, title: t('link.delete'), class: "lsf", style: "color: #9B9B9B; font-size: 25px;" %>&nbsp;&nbsp;&nbsp;
+		  <span class="lsf" style="color: #C9C9C9; font-size: 25px;">comment</span> <%= micropost.comments.count %>
+		 <% @unread = micropost.comments.where("read = ?", false).count %>
+		<b><%= "("+@unread+")" if (@unread > 0) %></b>
+	<% else %>
+		 <span class="lsf" style="color: #C9C9C9; font-size: 25px;">comment</span> <%= micropost.comments.count %>
+	<% end %> 
+	
+	 &nbsp;&nbsp;&nbsp;<%= link_to_function "facebook", "postToFeed('#{micropost.id}', '#{t('home.micropost.'+micropost.hobby)}', '#{micropost.place}', '#{I18n.localize(micropost.datetime)}', '#{micropost.weekday}'); return false;", class: "lsf", style: "color: #9B9B9B; font-size: 25px;", title: "share on Facebook" %></span>

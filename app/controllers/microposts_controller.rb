@@ -44,6 +44,9 @@ class MicropostsController < ApplicationController
 
 	def create 
 		@micropost = current_user.microposts.build(params[:micropost])
+		@user = current_user
+		@user.last_active = @micropost.place
+		@user.save
 		if (params[:micropost][:datetime] != "")
 			@micropost.datetime = Time.parse(params[:micropost][:datetime])
 			@micropost.weekday = @micropost.datetime.wday

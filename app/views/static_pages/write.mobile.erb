@@ -1,3 +1,7 @@
+<% provide(:title, 'Write') %>
+
+<% if signed_in? %>
+
 <section>
     <%= render 'shared/micropost_form' %>
 </section>
@@ -212,3 +216,15 @@ document.getElementById('micropost_place').addEventListener("change",
 
 initialize();
 </script>
+<% else %>
+
+<div class="center hero-unit">
+<h1>Connectify</h1>
+<p>
+  ... a great place to <b>find people</b> doing the things you love most, too!
+  
+</p>It's just one click away... <br/><br />
+<%= link_to "Connect me!", "/auth/facebook", :rel =>"external", :'data-role' => 'button', :'data-corners' => 'false', :'data-shadow' => 'false' %>
+</div>
+
+<% end %>

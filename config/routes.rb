@@ -25,6 +25,8 @@ match 'auth/:provider/callback', to: 'sessions#create'
 match 'auth/failure', to: redirect('/')
 match 'signout', to: 'sessions#destroy', as: 'signout'
 
+match 'de/auth/:provider/callback', to: 'sessions#create'
+
  match '/signup', to: 'users#new'
  match '/signin', to: 'sessions#new'
 # match '/signout', to: 'sessions#destroy', via: :delete

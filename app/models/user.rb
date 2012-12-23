@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :oauth_token#, :password, :password_confirmation
+  attr_accessible :email, :name, :oauth_token, :last_active#, :password, :password_confirmation
   has_many :comments
   has_many :mindposts
   has_many :microposts, dependent: :destroy

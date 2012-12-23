@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121029152236) do
+ActiveRecord::Schema.define(:version => 20121222141220) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20121029152236) do
     t.string   "provider"
     t.string   "oauth_token"
     t.string   "oauth_expires_at"
+    t.string   "last_active"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

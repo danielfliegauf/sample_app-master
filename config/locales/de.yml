@@ -100,6 +100,10 @@ de:
     privacy: "Datenschutz"
     destroyuser: "Account löschen"
     settings: "Optionen"
+    manage_micropost: "Verwalte deine Microposts"
+    take_tour: "Was kann ich hier machen?"
+    write_us: "Schreib uns!"
+    read_terms: "Lies unsere AGB's..."
   feed_item:
     posted: Vor
     ago: erstellt
