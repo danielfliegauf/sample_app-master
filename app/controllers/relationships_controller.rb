@@ -7,7 +7,7 @@ class RelationshipsController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to @user }
 			format.js
-			format.mobile { redirect_to @user }
+			format.mobile { redirect_to root_path }
 		end
 	end
 
@@ -17,7 +17,7 @@ class RelationshipsController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to @user }
 			format.js
-			format.mobile { redirect_to @user }
+			format.mobile { redirect_to root_path }
 		end
 	end
 end
