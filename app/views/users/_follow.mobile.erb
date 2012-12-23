@@ -2,5 +2,5 @@
 <div>
 	<%= f.hidden_field :followed_id %>
 </div>
-<%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+<%= f.submit "Follow", :'data-ajax' => "false" %>
 <% end %>
