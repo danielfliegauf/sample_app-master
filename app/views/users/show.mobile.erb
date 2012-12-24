@@ -13,7 +13,7 @@
 		</scetion>
 		<% unless current_user?(@user) %>
 		<section>
-			<%= link_to "write #{ @user.name } on Facebook", "https://facebook.com/messages/#{@user.uid}", :target => '_blank', :'data-role' => 'button', :'data-corners' => 'false', :'data-shadow' => 'false' %>
+			<%= link_to 'write #{ @user.name.split[0] } on <symbol class="lsf-icon" title="facebook"></symbol>"', "https://facebook.com/messages/#{@user.uid}", :target => '_blank', :'data-role' => 'button', :'data-corners' => 'false', :'data-shadow' => 'false' %>
 		</section>
 		<% end %>
 	</aside>

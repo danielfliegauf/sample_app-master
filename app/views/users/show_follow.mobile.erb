@@ -4,7 +4,7 @@
 		<section>
 			<%= gravatar_for @user %>
 			<h1><%= @user.name %></h1>
-			<span><%= link_to "view my profile", @user, :'data-role' => 'button', :'data-corners' => 'false', :'data-shadow' => 'false' %></span>
+			<span><%= link_to @user.name, @user, :'data-role' => 'button', :'data-corners' => 'false', :'data-shadow' => 'false' %></span>
 			<span><b>Microposts:</b> <%= @user.microposts.count %></span>
 		</section>
 		<section>
