@@ -2,7 +2,7 @@
 <% if signed_in? %>
 <div class="row">
 	<aside class="span4">
-		<section>
+		<section style="padding-bottom: 10px;">
 			<h1>
 				<%= gravatar_for @user, size: 110 %>
 				<%= @user.name %>
@@ -13,7 +13,7 @@
 		</scetion>
 		<% unless current_user?(@user) %>
 		<section>
-			<%= link_to "write #{ @user.name } on Facebook", "https://facebook.com/messages/#{@user.uid}", :target => '_blank' %>
+			<%= link_to "write #{ @user.name } on Facebook", "https://facebook.com/messages/#{@user.uid}", :target => '_blank', :'data-role' => 'button', :'data-corners' => 'false', :'data-shadow' => 'false' %>
 		</section>
 		<% end %>
 	</aside>
