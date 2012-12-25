@@ -27,7 +27,7 @@
 
 		<div data-role="header" data-position="fixed" data-transition="none">
 			<%= full_title(yield(:title)) %>
-			<% unless request.user_agent =~ /android|Android|bada/ %>
+			<% if request.user_agent =~ /android|Android|bada/ %>
 			<div data-role="navbar">
 				<ul>
 					<li><a href="<%= about_path(:mobile => 1) %>" id="options" data-ajax="false"><symbol class="lsf-icon" title="menu" style="font-size: 130%; color: #FFF; margin-right: -7px;text-shadow: 0px 0px 0px;"></symbol>
@@ -52,10 +52,9 @@
 					</a></li>
 					<li><a href="<%= search_path(:mobile => 1) %>" id="options" data-ajax="false">
 						<%= image_tag("search2.png", alt: "Write", width: "50%") %>
-						<img src='/assets/search2.png' width="50%" />
 					</a></li>
 					<li><a href="<%= write_path(:mobile => 1) %>" id="options" data-ajax="false">
-						<img src='/assets/uk.png' width="50%" />
+						<%= image_tag("write2.png", alt: "Write", width: "50%") %>
 					</a></li>
 				</ul>
 			</div><!-- /navbar -->
