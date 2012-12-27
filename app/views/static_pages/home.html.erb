@@ -305,30 +305,33 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
   <% else %>
 
   <% end %> 
+  <span><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
+<%= link_to "Connect me!", "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary" %></span> oder
 <%= link_to "Tour Start", "#", id: "tourstart", class: "btn btn-large btn-primary" %>
 <div id="tourdiv"><div id='tourwrapper'>
+  <%= link_to "x", "#", id: "tourclose" %>
   <div id="tourpic" style="position: relative;"><%= image_tag "Tour1.png" %></div>
   <%= link_to "next", "#", id: "tournext", class: "btn btn-large" %>
   <%= link_to "back", "#", id: "tourback", class: "btn btn-large" %></div>
 </div>
-<%= image_tag "connectifybanner2.jpg" %><br>
-<a href="#" id="show_whatfbknows" style="
-    float: left;
-    font-weight: bold;
-    padding-left: 300px;
-    padding-top: 50px;
-"><%= t('doesfbknow') %></a>
-<span><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "66px", heigth: "66px" %>
-<%= link_to "Connect me!", "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary" %></span>
+<%= image_tag "connectifybanner2.jpg", width: "50%" %>
+<div>
+  <a href="#" id="show_whatfbknows" style="clear: both; padding-left: 0px; position: relative; top: 20px; z-index: -2;"><%= t('doesfbknow') %></a>
+</div>
 
 </div>
-<div id="whatfbknows"><h4>Du brauchst keine Bedenken haben...</h4>sobald du Connectify nutzt, weiß Facebook nur, dass du diese Seite besucht hast. <b>Sonst nichts.</b><br> Es werden keine Daten an Facebook übertragen.<br> Wir versuchen deine Privatssphäre soweit es geht zu schützen, indem nur die nötigsten Daten von Facebook angefordert werden. Dazu zählen deine eMail, dein Name und dein aktuelles Profilbild. <br><h4>Indianerehrenwort! ;)</h4>
+<div id="whatfbknows" style="margin-top: 32px; border-color: #D4F0D4; background: #EBF3EC;"><h4>Lieber Nutzer,</h4>es ist eigentlich ein gutes Zeichen, dass du dir um deine Privatsphäre sorgen machst und deshalb auf diesen Link geklickt hast. Gerade in Zeiten, in denen Unternehmen die persönlichen Rechte der Menschen stark einschränken um Profite zu machen, ist es wichtig sich Gedanken zu machen, wem wir unsere Daten anvertrauen. Connectify ist ein Projekt (Masterarbeit) aber eigentlich vielmehr ein Hobby, dass aus dem Wunsch heraus geboren wurde, diesen Service eines Tages selbst nutzen zu können. Das selbsterklärte Ziel ist es Menschen miteinander zu verbinden: einfach, schnell und sicher. Aus diesem Grund habe ich mich bewusst dafür entschieden, Connectify mit Facebook zu verknüpfen. Facebook ist leider auch dafür bekannt, die Daten seiner User zu sammeln und damit zu arbeiten und daher sind die folgenden Sätze als eine Art Grundmanifest zu verstehen, welche meine persönliche Überzeugung widerspiegeln.<br><br>Sobald du Connectify nutzt, kann Facebook nur feststellen, dass du diese Seite besucht hast. <b>Sonst nichts.</b><br> Es werden keine persönlichen Daten an Facebook übertragen.<br> Ich versuche deine Privatssphäre soweit es geht zu schützen, indem nur die nötigsten Informationen von Facebook angefordert werden. Dazu zählen deine eMail, dein Name und dein aktuelles Profilbild. <br><h4>Danke für dein Vertrauen!</h4>
 <!-- <br>Allerdings hast du von einem Login mit Facebook folgende Vorteile:<br>
 <ul>
   <li>Melde dich superschnell an</li>
   <li>Es stellt sicher, dass Connectify-Nutzer ihre wirkliche Identität verweden</li>
   <li>Connectify-Nutzer können direkt in Facebook angeschrieben werden</li>
   </ul> --> </div>
+<div id="usertimeline">
+<% @users.each do |user| %>
+  <%= gravatar_for user, size: 80 %>
+<% end %>
+</div>
 
 <script>
 $(document).ready(function() {
@@ -390,6 +393,12 @@ $(document).ready(function() {
       
       return image;
     }).fadeIn(1300);    
+  });
+
+  //Tour close
+  $('#tourclose').click( function(event) {
+    event.preventDefault();
+    $('#tourdiv').fadeOut('slow');
   });
 
 });

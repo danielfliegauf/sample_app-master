@@ -106,7 +106,18 @@ line-height: 2.7em;
 }
 
 #tourclose {
-	
+	position: absolute;
+	left: 5px;
+	top: 1px;
+	z-index:97;
+}
+
+#usertimeline {
+	width: 100%;
+	background: #F3F2F2;
+	height: 100px;
+	margin-top: 40px;
+	overflow: hidden;
 }
 
 
