@@ -89,6 +89,7 @@ line-height: 2.7em;
 	left: 35%;
 	top: 90px;
 	border: 1px solid black;
+	z-index: 96;
 }
 
 #tournext {
@@ -120,6 +121,16 @@ line-height: 2.7em;
 	overflow: hidden;
 }
 
+#searchbox {
+	position: absolute;
+	top: 100px;
+	left: 22%;
+	border: solid 2px #CCC;
+	width: 200px;
+	height: 100px;
+	background: #F2F2F3;
+	padding: 10px;
+}
 
 /* header */
 #logo {

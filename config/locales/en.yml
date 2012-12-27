@@ -66,6 +66,7 @@ en:
       time_at: at
       time_till_delete_from_searchindex: 'Your Posting will be deleted from our search-index soon!'
       gogetit: Go get it...
+      searchwithoutreg: "search (without registration)"
       beachvolleyball: Beachvolleyball
       biking: Biking
       bouldering: Bouldering

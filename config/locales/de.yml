@@ -64,6 +64,7 @@ de:
       time_at: um
       time_till_delete_from_searchindex: 'Achtung! Dein Posting wird bald aus dem Suchindex genommen!'
       gogetit: Los gehts...
+      searchwithoutreg: "Suche (ohne Anmeldung)"
       beachvolleyball: Beachvolleyball
       biking: Biken
       bouldering: Bouldern

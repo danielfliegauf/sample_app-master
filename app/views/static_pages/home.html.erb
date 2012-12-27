@@ -304,7 +304,15 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
 <p> We're sorry, but you must be logged in to write a Micropost.</p>
   <% else %>
 
-  <% end %> 
+  <% end %>
+  <div id="searchbox">
+      <%= form_tag({ :action => "search"}, :method => "get") do %>
+    <!-- <%= label_tag(:hobby, t('search_for')) %>
+     <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one_optional'), ""]))) %> -->
+    <%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_city'), ""],["-------------------------------------------", ""]))) %>
+    <%= submit_tag t('home.micropost.searchwithoutreg'), :name => nil, class: "btn btn-small"%>
+    <% end %>
+</div>
   <span><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
 <%= link_to "Connect me!", "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary" %></span> oder
 <%= link_to "Tour Start", "#", id: "tourstart", class: "btn btn-large btn-primary" %>
@@ -316,11 +324,11 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
 </div>
 <%= image_tag "connectifybanner2.jpg", width: "50%" %>
 <div>
-  <a href="#" id="show_whatfbknows" style="clear: both; padding-left: 0px; position: relative; top: 20px; z-index: -2;"><%= t('doesfbknow') %></a>
+  <a href="#" id="show_whatfbknows" style="clear: both; padding-left: 0px; position: relative; top: 20px; z-index: 1;"><%= t('doesfbknow') %></a>
 </div>
 
 </div>
-<div id="whatfbknows" style="margin-top: 32px; border-color: #D4F0D4; background: #EBF3EC;"><h4>Lieber Nutzer,</h4>es ist eigentlich ein gutes Zeichen, dass du dir um deine Privatsphäre sorgen machst und deshalb auf diesen Link geklickt hast. Gerade in Zeiten, in denen Unternehmen die persönlichen Rechte der Menschen stark einschränken um Profite zu machen, ist es wichtig sich Gedanken zu machen, wem wir unsere Daten anvertrauen. Connectify ist ein Projekt (Masterarbeit) aber eigentlich vielmehr ein Hobby, dass aus dem Wunsch heraus geboren wurde, diesen Service eines Tages selbst nutzen zu können. Das selbsterklärte Ziel ist es Menschen miteinander zu verbinden: einfach, schnell und sicher. Aus diesem Grund habe ich mich bewusst dafür entschieden, Connectify mit Facebook zu verknüpfen. Facebook ist leider auch dafür bekannt, die Daten seiner User zu sammeln und damit zu arbeiten und daher sind die folgenden Sätze als eine Art Grundmanifest zu verstehen, welche meine persönliche Überzeugung widerspiegeln.<br><br>Sobald du Connectify nutzt, kann Facebook nur feststellen, dass du diese Seite besucht hast. <b>Sonst nichts.</b><br> Es werden keine persönlichen Daten an Facebook übertragen.<br> Ich versuche deine Privatssphäre soweit es geht zu schützen, indem nur die nötigsten Informationen von Facebook angefordert werden. Dazu zählen deine eMail, dein Name und dein aktuelles Profilbild. <br><h4>Danke für dein Vertrauen!</h4>
+<div id="whatfbknows" style="margin-top: 32px; border-color: #D4F0D4; background: #EBF3EC;"><h4>Lieber Nutzer,</h4>es ist ein gutes Zeichen, dass du dir um deine Privatsphäre sorgen machst und deshalb auf diesen Link geklickt hast. Gerade in Zeiten, in denen Unternehmen die persönlichen Rechte der Menschen stark einschränken um Profite zu machen, ist es wichtig sich Gedanken zu machen, wem wir unsere Daten anvertrauen. Connectify ist ein Projekt (Masterarbeit) aber eigentlich vielmehr ein Hobby, dass aus dem Wunsch heraus geboren wurde, diesen Service eines Tages selbst nutzen zu können. Das selbsterklärte Ziel ist es Menschen miteinander zu verbinden: einfach, schnell und sicher. Aus diesem Grund habe ich mich bewusst dafür entschieden, Connectify mit Facebook zu verknüpfen. Facebook ist leider auch dafür bekannt, die Daten seiner User zu sammeln und damit zu arbeiten und daher sind die folgenden Sätze als eine Art Grundmanifest zu verstehen, welche meine persönliche Überzeugung widerspiegeln.<br><br>Sobald du Connectify nutzt, kann Facebook nur feststellen, dass du diese Seite besucht hast. <b>Sonst nichts.</b><br> Es werden keine persönlichen Daten an Facebook übertragen.<br> Ich versuche deine Privatssphäre soweit es geht zu schützen, indem nur die nötigsten Informationen von Facebook angefordert werden. Dazu zählen deine eMail, dein Name und dein aktuelles Profilbild. <br><h4>Danke für dein Vertrauen!</h4>
 <!-- <br>Allerdings hast du von einem Login mit Facebook folgende Vorteile:<br>
 <ul>
   <li>Melde dich superschnell an</li>
