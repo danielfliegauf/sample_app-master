@@ -354,9 +354,9 @@ $(document).ready(function() {
   $('#tournext').click( function(event) {
     event.preventDefault();
     var k = i;
-    if (i == 6) {
+    if (i == 8) {
         $('#tournext').fadeOut();
-        j = 7;
+        j = 6;
       }
     i = i+1;
     j = j+1;
@@ -377,12 +377,12 @@ $(document).ready(function() {
     event.preventDefault();
     if (j == 1) {
         $('#tourback').fadeOut();
-        i = 1;
+        i = 3;
       }
       var k = j;
       j = j-1;
       i = i-1;
-      if (i == 6) {
+      if (i == 8) {
         $('#tournext').fadeIn();
       }
     $('#tourpic').hide().html( function(){
@@ -395,7 +395,29 @@ $(document).ready(function() {
 });
 
 </script>
-
+<div class="hidden">
+  <script type="text/javascript">
+    <!--//--><![CDATA[//><!--
+      var images = new Array()
+      function preload() {
+        for (i = 0; i < preload.arguments.length; i++) {
+          images[i] = new Image()
+          images[i].src = preload.arguments[i]
+        }
+      }
+      preload(
+        "/assets/Tour1.png",
+        "/assets/Tour2.png",
+        "/assets/Tour3.png",
+        "/assets/Tour4.png",
+        "/assets/Tour5.png",
+        "/assets/Tour6.png",
+        "/assets/Tour7.png",
+        "/assets/Tour8.png"
+      )
+    //--><!]]>
+  </script>
+</div>
 <% end %>
 
 
