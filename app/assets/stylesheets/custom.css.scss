@@ -135,19 +135,7 @@ line-height: 2.7em;
 /* header */
 #logo {
 float: left;
-margin-right: 10px;
-font-size: 1.7em;
-color: white;
-text-transform: uppercase;
-letter-spacing: -1px;
-padding-top: 0px;
-font-weight: bold;
-line-height: 1;
-max-height: 41px;
-&:hover {
-color: white;
-text-decoration: none;
-}
+margin-bottom: -41px;
 }
 
 
