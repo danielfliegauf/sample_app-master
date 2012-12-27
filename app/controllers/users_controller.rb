@@ -54,11 +54,11 @@ class UsersController < ApplicationController
        reset_session
       sleep 3
       User.find(params[:id]).destroy
-      redirect_to "https://www.facebook.com/logout.php?access_token=" + token + "&next=http%3A%2F%2Flocalhost:3000"
-      # redirect_to "https://www.facebook.com/logout.php?access_token=" + token + "&next=https%3A%2F%2Fconnectify.herokuapp.com%2F"
+      #redirect_to "https://www.facebook.com/logout.php?access_token=" + token + "&next=http%3A%2F%2Flocalhost:3000"
+       redirect_to "https://www.facebook.com/logout.php?access_token=" + token + "&next=https%3A%2F%2Fconnectify.herokuapp.com%2F"
     else
     flash[:success] = "User destroyed."
-    redirect_to search_path
+    redirect_to root_path
   end
   end
 
