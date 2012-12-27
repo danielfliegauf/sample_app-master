@@ -80,6 +80,34 @@ line-height: 2.7em;
 	
 }
 
+#tourdiv {
+	background: #FFF;
+	width: 600px;
+	max-width: 600px;
+	height: 437px;
+	position: absolute;
+	left: 35%;
+	top: 90px;
+	border: 1px solid black;
+}
+
+#tournext {
+	position: absolute;
+	left: 520px;
+	top: 385px;
+	z-index: 98;
+}
+
+#tourback {
+	position: absolute;
+	left: 20px;
+	top: 385px;
+	z-index: 99;
+}
+
+#tourclose {
+	
+}
 
 
 /* header */
