@@ -328,8 +328,9 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
   <li>Connectify-Nutzer können direkt in Facebook angeschrieben werden</li>
   </ul> --> </div>
 <div id="usertimeline">
+  <div style="size: 1.1em;">Neue Mitglieder:</div>
 <% @users.each do |user| %>
-  <%= gravatar_for user, size: 80 %>
+  <%= link_to gravatar_for(user, size: 80), user %>
 <% end %>
 </div>
 
