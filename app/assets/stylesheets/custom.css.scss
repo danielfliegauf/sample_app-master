@@ -126,8 +126,8 @@ line-height: 2.7em;
 	top: 100px;
 	left: 22%;
 	border: solid 2px #CCC;
-	width: 200px;
-	height: 100px;
+	width: 250px;
+	height: 120px;
 	background: #F2F2F3;
 	padding: 10px;
 }
@@ -241,11 +241,20 @@ aside {
 
 /* forms */
 
-input, textarea, select, .uneditable-input {
+input, textarea, .uneditable-input {
 	border: 1px solid #bbb;
 	width: 100%;
 	padding: 10px;
 	height: auto;
+	margin-bottom: 15px;
+	@include box_sizing;
+}
+
+select {
+	border: 1px solid #bbb;
+	width: 100%;
+	padding: 10px;
+	height: 38px;
 	margin-bottom: 15px;
 	@include box_sizing;
 }

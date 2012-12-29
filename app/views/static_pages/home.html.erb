@@ -306,21 +306,23 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
 
   <% end %>
   <div id="searchbox">
+    <p><symbol class="lsf-icon" title="search" style="font-size: 20px; color: #000;"></symbol><%= t('home.whatsupincity') %></p>
       <%= form_tag({ :action => "search"}, :method => "get") do %>
     <!-- <%= label_tag(:hobby, t('search_for')) %>
      <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one_optional'), ""]))) %> -->
     <%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_city'), ""],["-------------------------------------------", ""]))) %>
-    <%= submit_tag t('home.micropost.searchwithoutreg'), :name => nil, class: "btn btn-small"%>
+    
+    <%= submit_tag t('home.micropost.searchwithoutreg'), :name => nil, class: "btn btn-inverse"%>
     <% end %>
 </div>
   <span><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
-<%= link_to "Connect me!", "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary" %></span> oder
-<%= link_to "Tour Start", "#", id: "tourstart", class: "btn btn-large btn-primary" %>
+<%= link_to t('home.connectme'), "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary btn-success" %></span> <%= t('home.or') %>
+<%= link_to t('home.tourstart'), "#", id: "tourstart", class: "btn btn-large btn-primary btn-warning" %>
 <div id="tourdiv"><div id='tourwrapper'>
   <%= link_to "x", "#", id: "tourclose" %>
   <div id="tourpic" style="position: relative;"><%= image_tag "Tour1.png" %></div>
-  <%= link_to "next", "#", id: "tournext", class: "btn btn-large" %>
-  <%= link_to "back", "#", id: "tourback", class: "btn btn-large" %></div>
+  <%= link_to t('home.next'), "#", id: "tournext", class: "btn btn-large" %>
+  <%= link_to t('home.back'), "#", id: "tourback", class: "btn btn-large" %></div>
 </div>
 <%= image_tag "connectifybanner2.jpg", width: "50%" %>
 <div>
@@ -336,9 +338,9 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
   <li>Connectify-Nutzer können direkt in Facebook angeschrieben werden</li>
   </ul> --> </div>
 <div id="usertimeline">
-  <div style="size: 1.1em;">Neue Mitglieder:</div>
+  <div style="size: 1.1em;"><%= t('home.newmembers') %></div>
 <% @users.each do |user| %>
-  <%= link_to gravatar_for(user, size: 80), user %>
+  <%= link_to gravatar_for(user, size: 80), user, class: "img-polaroid" %>
 <% end %>
 </div>
 

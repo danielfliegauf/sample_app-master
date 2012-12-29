@@ -40,6 +40,13 @@ en:
   allusers: "discover the other Users..."
   nojs: "You don't have javascript enabled.  Unfortunatly you need it to access this app."
   home:
+    whatsupincity: "What's up in your city?"
+    connectme: "Connect me!"
+    tourstart: "Start the tour..."
+    next: "next"
+    back: "back"
+    or: "or"
+    newmembers: "New members:"
     micropost:
       hobby_example: "e.g. climbing"
       from: 'from'

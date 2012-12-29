@@ -38,6 +38,13 @@ de:
   allusers: "Entdecke die anderen User..."
   nojs: "Du hast kein Javascript aktiviert. Leider ist Javascript nötig, um diese App zu nutzen."
   home:
+    whatsupincity: "Was ist los in deiner Stadt?"
+    connectme: "Anmelden"
+    tourstart: "Einführungstour"
+    next: "weiter"
+    back: "zurück"
+    or: "oder"
+    newmembers: "Neue Mitglieder:"
     micropost:
       hobby_example: "z.B. Klettern"
       from: 'ab'
