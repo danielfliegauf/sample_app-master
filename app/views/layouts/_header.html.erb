@@ -11,16 +11,16 @@
     <%= link_to "Mobile Site", :mobile => 1 %>
   <% end %>
 </li> -->
-					<li><a href="" class="lsf-icon" title="tilemenu" style="font-size: 20px; color: #CCC; margin-right: -22px;"></a></li>
+					<li><a href="" class="lsf-icon" title="tilemenu" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 					<li><%= link_to t('link.home'), root_path %></li>
-					<li><a href="" class="lsf-icon" title="search" style="font-size: 20px; color: #CCC; margin-right: -22px;"></a></li>
+					<li><a href="<%= search_path %>" class="lsf-icon" title="search" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 					<li> <%= link_to t('link.search'), search_path %></li>
-					<li><a href="" class="lsf-icon" title="hot" style="font-size: 20px; color: #CCC; margin-right: -22px;"></a></li>
+					<li><a href="<%= help_path %>" class="lsf-icon" title="hot" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 					<li> <%= link_to t('link.help'), help_path %></li>
 					<% if current_user %>
-					<li><a href="" class="lsf-icon" title="users" style="font-size: 20px; color: #CCC; margin-right: -22px;"></a></li>
+					<li><a href="<%= users_path %>" class="lsf-icon" title="users" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 						<li><%= link_to t('link.users'), users_path %></li>
-						<li><a href="" class="lsf-icon" title="gear" style="font-size: 20px; color: #CCC; margin-right: -22px;"></a></li>
+						<li><a href="#" class="lsf-icon" title="gear" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 						<li id="fat-menu" class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 									<%= t('signed_in_as') %> <strong><%= current_user.name %></strong>! <b class="caret"></b>
@@ -35,7 +35,7 @@
 				    		</ul>
 				    	</li>
 					<% else %>
-					<li><a href="" class="lsf-icon" title="login" style="font-size: 20px; color: #CCC; margin-right: -22px;"></a></li>
+					<li><a href="" class="lsf-icon" title="login" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 			    		<li><%= link_to t('link.signin'), "/auth/facebook", id: "sign_in" %></li>
 					<% end %>
 					<li><% if I18n.locale == I18n.default_locale %>
@@ -43,7 +43,7 @@
 							<% else %>
 							  <%= link_to image_tag("de.png", :border => 0), '/de'%>
 						<%end%> </li>	
-					<li style="color: #FFF">beta</li>	
+					<li style="color: #CCC">beta</li>	
 				</ul>
 			</nav>
 		</div>

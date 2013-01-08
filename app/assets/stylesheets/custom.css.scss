@@ -82,9 +82,9 @@ line-height: 2.7em;
 
 #tourdiv {
 	background: #FFF;
-	width: 600px;
-	max-width: 600px;
-	height: 437px;
+	width: 500px;
+	max-width: 500px;
+	height: 377px;
 	position: absolute;
 	left: 35%;
 	top: 90px;
@@ -94,15 +94,15 @@ line-height: 2.7em;
 
 #tournext {
 	position: absolute;
-	left: 520px;
-	top: 385px;
+	left: 420px;
+	top: 339px;
 	z-index: 98;
 }
 
 #tourback {
 	position: absolute;
 	left: 20px;
-	top: 385px;
+	top: 339px;
 	z-index: 99;
 }
 
@@ -122,14 +122,24 @@ line-height: 2.7em;
 }
 
 #searchbox {
-	position: absolute;
+	position: static;
 	top: 100px;
 	left: 22%;
 	border: solid 2px #CCC;
 	width: 250px;
-	height: 120px;
 	background: #F2F2F3;
 	padding: 10px;
+}
+
+.buttonbox {
+padding-top: 140px;
+	
+}
+
+#whatfbknows {
+	margin-top: 32px;
+	border-color: #D4F0D4;
+	background: #EBF3EC;
 }
 
 /* header */

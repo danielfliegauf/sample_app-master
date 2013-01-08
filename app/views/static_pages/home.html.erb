@@ -297,7 +297,7 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
 
 
 <% else %>
-<div class="center">
+<div class="row-fluid">
 
 <!-- When sombody got redirected from Search (*knock knock) he should see a message that he has to be logged in -->
 <% if (@not_logged_in) %><h1>Connectify</h1>
@@ -305,26 +305,32 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
   <% else %>
 
   <% end %>
-  <div id="searchbox">
-    <p><symbol class="lsf-icon" title="search" style="font-size: 20px; color: #000;"></symbol><%= t('home.whatsupincity') %></p>
-      <%= form_tag({ :action => "search"}, :method => "get") do %>
-    <!-- <%= label_tag(:hobby, t('search_for')) %>
-     <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one_optional'), ""]))) %> -->
-    <%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_city'), ""],["-------------------------------------------", ""]))) %>
-    
-    <%= submit_tag t('home.micropost.searchwithoutreg'), :name => nil, class: "btn btn-inverse"%>
-    <% end %>
-</div>
+  <div class="span5">
+    <div id="searchbox">
+      <p><symbol class="lsf-icon" title="search" style="font-size: 20px; color: #000;"></symbol><%= t('home.whatsupincity') %></p>
+        <%= form_tag({ :action => "search"}, :method => "get") do %>
+      <!-- <%= label_tag(:hobby, t('search_for')) %>
+       <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one_optional'), ""]))) %> -->
+      <%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_city'), ""],["-------------------------------------------", ""]))) %>
+      
+      <%= submit_tag t('home.micropost.searchwithoutreg'), :name => nil, class: "btn btn-inverse"%>
+      <% end %>
+  </div>
+  <div class='buttonbox'>
   <span><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
 <%= link_to t('home.connectme'), "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary btn-success" %></span> <%= t('home.or') %>
 <%= link_to t('home.tourstart'), "#", id: "tourstart", class: "btn btn-large btn-primary btn-warning" %>
+</div>
 <div id="tourdiv"><div id='tourwrapper'>
   <%= link_to "x", "#", id: "tourclose" %>
   <div id="tourpic" style="position: relative;"><%= image_tag "Tour1.png" %></div>
-  <%= link_to t('home.next'), "#", id: "tournext", class: "btn btn-large" %>
-  <%= link_to t('home.back'), "#", id: "tourback", class: "btn btn-large" %></div>
+  <%= link_to t('home.next'), "#", id: "tournext", class: "btn" %>
+  <%= link_to t('home.back'), "#", id: "tourback", class: "btn" %></div>
 </div>
-<%= image_tag "connectifybanner2.jpg", width: "50%" %>
+</div>
+<div class="span7">
+<%= image_tag "connectifybanner2.jpg", width: "100%" %>
+</div>
 <div>
   <a href="#" id="show_whatfbknows" style="clear: both; padding-left: 0px; position: relative; top: 20px; z-index: 1;"><%= t('doesfbknow') %></a>
 </div>
