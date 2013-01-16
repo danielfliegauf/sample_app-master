@@ -59,7 +59,7 @@ en:
       when: 'When?'
       where: 'Where?*'
       whereexact: 'Where exactly? (click on the map)'
-      datetime: 'if not fix - just leave it blank'
+      datetime: 'not fixed? Just leave it blank.'
       about: 'About me:'
       select_one: 'Select one'
       select_city: 'Select city'
@@ -121,4 +121,4 @@ en:
   time:
     am: am
     formats:
-      default: ! '%A, %v, %l:%M %p'
+      default: ! '%A, %d. %b, %l:%M %p'

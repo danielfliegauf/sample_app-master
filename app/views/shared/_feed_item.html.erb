@@ -1,7 +1,7 @@
 <li id="<%= feed_item.id %>">
 	<%= link_to gravatar_for(feed_item.user), feed_item.user %>
 	<span class="user">
-		<%= link_to feed_item.user.name, feed_item.user %>
+		<%= link_to feed_item.user.name.split[0], feed_item.user %>
 	</span> | 
 	<b><span class="hobbyplace"><%= t('home.micropost.'+feed_item.hobby) %> <%= infrom(feed_item.hobby) %> <%= t('home.micropost.'+feed_item.place) %></b> 
 		<% if feed_item.weekday != "11" %>
@@ -9,7 +9,8 @@
 		<% else %>
 			<div style="color: red;"><%= t('home.micropost.time_till_delete_from_searchindex') + " (in " + time_ago_in_words(feed_item.datetime) + ")"  if ((feed_item.datetime - Time.now) < (60*60*24*7*3)) %></div>
 		<% end %>
-	<span class="content"><%= truncate(feed_item.content, length: 250) %></span>
+	<span class="content" style="line-height: 20px;
+padding-right: 50px;"><%= truncate(feed_item.content, length: 250) %></span>
 	</li><span class="timestamp">
 		<%= t('feed_item.posted') %> <%= time_ago_in_words(feed_item.created_at) %> <%= t('feed_item.ago') %>.
 	
