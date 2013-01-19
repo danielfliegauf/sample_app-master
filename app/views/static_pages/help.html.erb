@@ -1,10 +1,41 @@
 <% provide(:title, 'Help') %>
 <h1><%= t('help') %></h1>
-<p>
-<%= t('helptext') %>
-<% unless I18n.locale == I18n.default_locale %>
-	<%= image_tag("help_de.png") %>
-<% else %>
-	<%= image_tag("help_de.png") %>
-<% end %>
-</p>
+<!-- <p class="lead">Lieber User, hier bekommst du eine kleine Einführung, die dir zeigen soll,<br> was mit Connectify alles möglich ist:</p>
+<br><br> -->
+<div class="row-fluid">
+	<div class="span12">
+		<p class="lead">Triff Menschen aus deiner Umgebung, die die gleichen Interessen haben wie Du!<br> 
+			<b>Wie mache ich das?</b> Ganz einfach:
+		</p><br>
+		<div class="span8 offset1">
+			<p class="lead"><i class="icon-pencil"></i> <small><i>Erstelle ein Micropost</i></small></p>
+			<ol class="offset1">
+				<li>Klicke auf meine Pinnwand.</li>
+				<li>Auf der linken Seite kannst du nun Sportart und Ort auswählen. <br>Die anderen Angaben sind optional.<br> <i><small>Tipp: Du musst deinen Ort nicht in der Liste suchen, wenn du die Geolocation deines Browser nutzt (einfach auf "zulassen" klicken). Connectify speichert KEINE Bewegungsprofile noch verkauft es deine Daten!</small></i></li>
+				<li>Mit einem Klick auf die kleine Map markierst du den genauen Ort oder einen Treffpunkt.</li>
+				<li>Wenn du magst, kannst du noch einen genauen Zeitpunkt wählen oder etwas über dich schreiben.</li>
+				<li>Abschicken und fertig :) Dein Micropost erscheint jetzt auf deiner Pinnwand.<br>
+					<small><i>Jetzt musst du nur noch warten, bis jemand dein Micropost kommentiert oder sich via Facebook bei dir meldet. Um dein Micropost bekannter zu machen, kannst du es über den kleinen Facebook-Button am unteren Ende deines Microposts oder unter Details mit anderen auf Facebook teilen.</i></small></li>
+			</ol>
+		</div>
+		<div class="span8 offset1">
+			<p class="lead"><i class="icon-search"></i> <small><i>Suche Microposts von anderen Nutzern</i></small></p>
+			<ol class="offset1">
+				<li>Klicke auf Suche.</li>
+				<li>Wähle deine Stadt und drücke ganz fest beide Daumen.</li>
+				<li>Wenn du Glück hast, hat jemand schon ein Micropost für deine Stadt erstellt.<br> <i><small>
+					Wenn nicht, ist das auch nicht schlimm, dann sei doch einfach du der Erste!</i></small></li>
+				<li>Wenn du auf "Details" eines Microposts klickst, erfährst du zusätzliche Informationen und kannst außerdem einen Kommentar hinterlassen oder denjenigen direkt per Facebook kontaktieren.</li>
+
+		</div>
+		<div class="span8 offset1">
+			<p class="lead"><i class="icon-eye-open"></i> <small><i>Folge interessanten Nutzern</i></small></p>
+			<ol class="offset1">
+				<li>Du hast jemanden gefunden, der dein Hobby teilt, aber leider kein aktuelles Micropost hat.</li>
+				<li>Dann folge ihm/ihr doch einfach.</li>
+				<li>Damit erscheinen alle neuen Microposts der betreffenden Person direkt auf deiner Pinnwand.</li>
+
+		</div>	
+	</div>
+</div>
+
