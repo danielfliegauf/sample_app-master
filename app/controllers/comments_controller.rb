@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comment.read = false
     if @comment.save
       #due to HEROKU
-      # UserMailer.comment_email(@micropost, @comment).deliver
+      UserMailer.comment_email(@micropost, @comment).deliver
     	flash[:success] = "Comment was created successfully!"
     else
     	flash[:error] = "There was an Error!"
