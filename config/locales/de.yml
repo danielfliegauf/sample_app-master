@@ -44,7 +44,7 @@ de:
     next: "weiter"
     back: "zurück"
     or: "oder"
-    newmembers: "Neue Mitglieder:"
+    newmembers: "unsere neuen Mitglieder"
     micropost:
       hobby_example: "z.B. Klettern"
       from: 'ab'
@@ -104,7 +104,7 @@ de:
     delete: 'Löschen'
     profile: 'mein Profil'
     news: Neuigkeiten
-    agb: "Verhaltensregeln"
+    agb: "AGB"
     privacy: "Datenschutz"
     destroyuser: "Account löschen"
     settings: "Optionen"

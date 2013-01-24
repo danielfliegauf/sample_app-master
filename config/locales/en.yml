@@ -46,7 +46,7 @@ en:
     next: "next"
     back: "back"
     or: "or"
-    newmembers: "New members:"
+    newmembers: "our new members"
     micropost:
       hobby_example: "e.g. climbing"
       from: 'from'
@@ -108,7 +108,7 @@ en:
     news: 'News'
     destroyuser: "Delete account"
     settings: "Settings"
-    agb: "Rule of Conduct"
+    agb: "CT"
     destroyuser: "Delete user"
     privacy: "Privacy Politics"
     manage_micropost: "Manage your microposts"
