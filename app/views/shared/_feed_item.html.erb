@@ -18,7 +18,7 @@
 		  <%= link_to "trash", feed_item, method: :delete, data: { confirm: "You sure?" }, title: t('link.delete'), class: "lsf", style: "color: #9B9B9B; font-size: 25px;" %>&nbsp;&nbsp;&nbsp;
 		  <span class="lsf" style="color: #C9C9C9; font-size: 25px;">comment</span> <%= feed_item.comments.count %>
 		 <% @unread = feed_item.comments.where("read = ?", false).count %>
-		<b><%= "("+@unread+")" if (@unread > 0) %></b>
+		<b><%= "("+@unread.to_s+")" if (@unread > 0) %></b>
 	<% else %>
 		 <span class="lsf" style="color: #C9C9C9; font-size: 25px;">comment</span> <%= feed_item.comments.count %>
 	<% end %> 
