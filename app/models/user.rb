@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
       
       if (!where(auth.slice(:provider, :uid)).first)
         #send welcome email BEFORE USER SAFE!
-        #UserMailer.welcome_email(user).deliver
+        RegistrationMailer.welcome_email(user).deliver
       end
 
       user.save!

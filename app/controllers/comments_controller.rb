@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     @comment.read = false
     if @comment.save
-      #due to HEROKU
+      #sende Mail bei neuem Comment an Microposterteller
       UserMailer.comment_email(@micropost, @comment).deliver
     	flash[:success] = "Comment was created successfully!"
     else
