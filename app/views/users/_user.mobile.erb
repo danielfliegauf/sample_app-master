@@ -1,7 +1,7 @@
-<li><a href="users/<%= user.id %>">
+<li><a href="../../users/<%= user.id %>">
 	<img src="https://graph.facebook.com/<%= user.uid %>/picture?type=large" alt="" style="float: left;" />
 	<h3 style="margin-top: -1px;"><%= user.name %></h3>
-	<p>letzte Aktivität in <br><b><%= user.last_active %></b></p>
+	<p>letzte Aktivitäteeeee in <br><b><%= user.last_active %></b></p>
 </a>
 	<% if current_user.admin? && !current_user?(user) %>
 		<%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
