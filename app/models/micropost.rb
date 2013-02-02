@@ -1,7 +1,7 @@
 class Micropost < ActiveRecord::Base
   attr_accessible :content, :hobby, :place, :datetime, :weekly, :weekday, :status, :latlng, :level, :country, :micropost_id, :zeit #time_for TYPO!!!
   belongs_to :user
-  has_many :mindposts
+  has_many :mindposts, dependent: :destroy
   has_many :comments, :dependent => :destroy
 
   validates :user_id, presence: true

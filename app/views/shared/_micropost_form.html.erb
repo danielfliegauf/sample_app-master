@@ -48,7 +48,7 @@
 <!-- 		<%= f.select :level, options_for_select([[t('home.micropost.select_level'), ""], "Newbie", "Advanced", "Pro"]), :class => '' %>
  -->		<%= f.text_area :content, placeholder: t('home.micropost.textbox_text') %>
 	</div>
-	<%= f.submit t('home.micropost.submit'), class: "btn btn-large btn-primary" %>
+	<%= f.submit t('home.micropost.submit'), class: "btn btn-large btn-primary", :onclick => "return validateform()" %>
 <% end %>
 
     <script>
@@ -95,7 +95,8 @@
                     .val( value )
                     .attr( "title", "" )
                     .attr( "style", "float: left;")
-                    .attr( "placeholder", "<%= t('home.micropost.hobby_example') %>" ) 
+                    .attr( "placeholder", "<%= t('home.micropost.hobby_example') %>" )
+                    .attr( "id", "micropost_hobby")
                     .addClass( "ui-state-default ui-combobox-input" )
                     .autocomplete({
                         delay: 0,

@@ -59,24 +59,22 @@ class MicropostsController < ApplicationController
 		 	@micropost.country = " Germany"
 		# 	(@micropost.country == " Germany" || @micropost.country == " Deutschland") &&
 		 end
-		if ( @micropost.save )
+		if @micropost.save
 			flash[:success] = t('postsuccessfull')
-			# Tell the UserMailer to send a welcome Email after save // DISABLED FOR HEROKU need to install addon sendgrid http://stackoverflow.com/questions/11446094/heroku-errnoeconnrefused-connection-refused-connect2
-        		# UserMailer.welcome_email(@micropost.user).deliver
-        	if params[:mobile] == 0 || params[:mobile] == false || params[:mobile].nil?
-				redirect_to root_path
-			else
-				redirect_to current_user
-			end
+
+			redirect_to root_path
+			
 		else
-			@feed_items = current_user.feed.paginate(page: params[:page])
+			
 			# if @micropost.country != " Germany"
 			# 	flash[:error] = "We are sorry - your place must lie within Germany - yet... You chose:"+@micropost.country
 			# else
 				flash[:error] = "There was an Error... :( Please try again!"
 			# end
-			if params[:mobile] == 0
-				render 'static_pages/home'
+			if !mobile_device?
+				@feed_items = current_user.feed.paginate(page: params[:page])
+				# render 'static_pages/home'
+				redirect_to root_path
 			else
 				render 'static_pages/write'
 			end
@@ -85,7 +83,11 @@ class MicropostsController < ApplicationController
 
 	def destroy
 		@micropost.destroy
-		redirect_to current_user
+		if params[:mobile] == 0 || params[:mobile] == false || params[:mobile].nil?
+			redirect_to :back
+		else
+			redirect_to current_user
+		end
 	end
 
 

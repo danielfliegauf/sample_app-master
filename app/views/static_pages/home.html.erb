@@ -23,6 +23,29 @@
 
 <script type="text/javascript">
 
+function validateform(){
+
+  if (document.getElementById('micropost_hobby').value == '' || document.getElementById('combobox').value == null){
+    alert('Hobby muss ausgefüllt sein!');
+    document.getElementById('micropost_hobby').focus();
+    return false;
+  }
+
+  if (document.getElementById('micropost_place').value == '' || document.getElementById('micropost_place').value == null){
+    alert('Ort muss ausgefüllt sein!');
+    document.getElementById('micropost_place').focus();
+    return false;
+  }
+
+  if (document.getElementById('micropost_country').value == '' || document.getElementById('micropost_country').value){
+    alert('Country muss ausgefüllt sein! Klicke bitte auf die Google Maps - Karte!');
+    return true;
+  }
+
+  return true;
+}
+
+
 
 window.onload = initialize();
 
@@ -311,7 +334,7 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
         <%= form_tag({ :action => "search"}, :method => "get") do %>
       <!-- <%= label_tag(:hobby, t('search_for')) %>
        <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one_optional'), ""]))) %> -->
-      <%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_city'), ""],["-------------------------------------------", ""])), style: "border-bottom: 0px; margin-bottom: 0px; width: 75%; height: 30px;") %>
+      <%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_city'), ""],["-------------------------------------------", ""])), style: "border-bottom: 0px; margin-bottom: 0px; width: 75%;") %>
       
       <%= submit_tag t('home.micropost.searchwithoutreg'), :name => nil, class: "btn"%>
       <% end %>

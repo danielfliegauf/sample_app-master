@@ -14,7 +14,7 @@
 		<div class="ui-widget">
 	   <%= f.label t('home.micropost.what') %>
 	    <select id="combobox" name="micropost[hobby]" class="micropost_hobby" data-corners="false">
-	        <option value="">Select one...</option>
+	        <option value=""><%= t('home.micropost.select_one') %></option>
 	        <% sportlist.each do |a| %>
 	        	<option value="<%= a[1] %>"><%= a[0] %></option>
 	        <% end %>
@@ -25,14 +25,11 @@
 	<div class="field">
 		<%= f.label t('home.micropost.where') %>
 		<%= f.select :place, options_for_select(citylist.sort.unshift([t('home.micropost.select_one'), ""],["-------------------------------------------", ""])), :'data-corners' => 'false' %>
-
-
 	</div>
 		<div id="address"></div>
 	<%= t('home.micropost.whereexact') %>
 	<div class="canvas" id="canvas2">
-
-		<div id="map_canvas" style="width:85%; height:250px"></div>
+		<div id="map_canvas" style="width: 85%; height:250px"></div>
 	</div>
 	<br />
 	<div class="field">
@@ -45,7 +42,7 @@
 <!-- 		<%= f.select :level, options_for_select([[t('home.micropost.select_level'), ""], "Newbie", "Advanced", "Pro"]), :class => '' %>
  -->		<%= f.text_area :content, placeholder: t('home.micropost.textbox_text'), :'data-corners' => 'false' %>
 	</div>
-	<%= f.submit t('home.micropost.submit'), :'data-corners' => 'false' %>
+	<%= f.submit t('home.micropost.submit'), :'data-corners' => 'false', :onclick => "return validateform()" %>
 <% end %>
 
   

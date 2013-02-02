@@ -10,7 +10,7 @@
 			<h3><%= t('search_result') %> (<%= @microposts.count %>)</h3>
 			<% if @microposts.empty? %>
 				<br />
-				<p><%= t('knock') %><%= link_to "Change it!", root_path %></p>
+				<p><%= t('knock') %><%= link_to "Change it!", write_path %></p>
 			<% end %>
 			<ul class="microposts" data-role="listview">
 				<% for micropost in @microposts %>	
