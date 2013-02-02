@@ -88,7 +88,9 @@ document.getElementById('micropost_place').addEventListener("change",
                     //document.getElementById('address').innerHTML = address;
                     //document.getElementById('testland').innerHTML = country[country.length-1];
                     document.getElementById('micropost_country').value = country[country.length-1];
-                    //alert(document.getElementById('micropost_country').value); //TEST OB COUNTRY GESETZT WIRD.
+                    if (document.getElementById('micropost_country').value == ''){
+                      alert(document.getElementById('micropost_country').value); //TEST OB COUNTRY GESETZT WIRD.
+                    }
                     //refresh value  because of JQUERY MOBILE       
 					$('#select').selectmenu('refresh');
 					//refresh and force rebuild because of JQUERY MOBILE
@@ -236,7 +238,7 @@ function validateform(){
 
   if (document.getElementById('micropost_country').value == '' || document.getElementById('micropost_country').value){
     alert('Country muss ausgefüllt sein! Klicke bitte auf die Google Maps - Karte!');
-    return true;
+    return false;
   }
 
   return true;
