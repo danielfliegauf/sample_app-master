@@ -62,7 +62,14 @@ class MicropostsController < ApplicationController
 		if @micropost.save
 			flash[:success] = t('postsuccessfull')
 
-			redirect_to root_path
+			if !mobile_device?
+				@feed_items = current_user.feed.paginate(page: params[:page])
+				# render 'static_pages/home'
+				redirect_to root_path
+			else
+				redirect_to current_user
+			end
+			
 			
 		else
 			

@@ -2,13 +2,14 @@
   	<p class="hobby"><%= t('home.micropost.'+@micropost.hobby) %></p>
     <p class="place">in <%= t('home.micropost.'+@micropost.place) %></p>
     <p class="time"><%= t('home.micropost.time_on') %> <%= I18n.localize(@micropost.datetime) %></p>
-    <li>
-        <a href="https://facebook.com/messages/<%= @micropost.user.uid %>" target="_blank" data-role="button" data-corners="false" data-shadow="false"><symbol class="lsf-icon" title="facebook" style="font-size: 120%; color: #000; text-shadow: 0px 0px 0px; font-weight: normal;"> </symbol><%= t('write_on_fb')+@micropost.user.name%></a>
+    <li><% if !current_user?(@micropost.user) %>
+        <a href="https://facebook.com/messages/<%= @micropost.user.uid %>" target="_blank" data-role="button" data-corners="false" data-shadow="false"><symbol class="lsf-icon" title="facebook" style="font-size: 120%; color: #000; text-shadow: 0px 0px 0px; font-weight: normal;"> </symbol><%= t('write_on_fb')+@micropost.user.name%></a> 
+        <% end %>
      </li>
   	<li id="<%= @micropost.id %>">
-      <% if current_user?(@micropost.user) %>
+      
 
-  <% end %>
+ 
   					<div class="gravatar">
               <%= link_to gravatar_for(@micropost.user), @micropost.user %>
             </div>
@@ -39,7 +40,7 @@
 
   $(document).bind('pagechange', function () {
   
- 
+        
 
 
       var latlng = "<%=@micropost.latlng %>";
@@ -69,7 +70,6 @@
     
 
       });     
-
 
 
 

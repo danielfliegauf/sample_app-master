@@ -88,7 +88,7 @@ document.getElementById('micropost_place').addEventListener("change",
                     //document.getElementById('address').innerHTML = address;
                     //document.getElementById('testland').innerHTML = country[country.length-1];
                     document.getElementById('micropost_country').value = country[country.length-1];
-                    alert(document.getElementById('micropost_country').value); //TEST OB COUNTRY GESETZT WIRD.
+                    //alert(document.getElementById('micropost_country').value); //TEST OB COUNTRY GESETZT WIRD.
                     //refresh value  because of JQUERY MOBILE       
 					$('#select').selectmenu('refresh');
 					//refresh and force rebuild because of JQUERY MOBILE
@@ -132,7 +132,8 @@ document.getElementById('micropost_place').addEventListener("change",
                 if (results[0].address_components[i].types[b] == "locality") {
                     //this is the object you are looking for
                     city= results[0].address_components[i];
-                    country = results[0].address_components[4]; //TODO! stimmt das ?
+                    //country = results[0].address_components[4]; //TODO! stimmt das ?
+                    country = results[0].formatted_address.split(",");
                     break;
                 }
             }
@@ -144,6 +145,8 @@ document.getElementById('micropost_place').addEventListener("change",
           micropost_place.childNodes[0].value = city.short_name;
           micropost_place.childNodes[0].innerHTML = city.short_name;
           micropost_place.selectedIndex = 0;
+          document.getElementById('micropost_country').value = country[country.length-1];
+                    //alert(document.getElementById('micropost_country').value); //TEST OB COUNTRY GESETZT WIRD.
           //refresh value         
 			$('#select').selectmenu('refresh');
 			//refresh and force rebuild
@@ -207,7 +210,9 @@ document.getElementById('micropost_place').addEventListener("change",
           map.setCenter(results[0].geometry.location);
           //change hiden_field latlng
          document.getElementById("micropost_latlng").value = results[0].geometry.location;
-
+         country = results[0].formatted_address.split(",");
+        document.getElementById('micropost_country').value = country[country.length-1];
+                    //alert(document.getElementById('micropost_country').value); //TEST OB COUNTRY GESETZT WIRD.
         
         }
       } else {
@@ -234,10 +239,10 @@ function validateform(){
     return false;
   }
 
-  if (document.getElementById('micropost_country').value == '' || document.getElementById('micropost_country').value){
-    alert('Country muss ausgefüllt sein! Klicke bitte auf die Google Maps - Karte!');
-    return false;
-  }
+  //if (document.getElementById('micropost_country').value == '' || document.getElementById('micropost_country').value){
+   // alert('Country muss ausgefüllt sein! Klicke bitte auf die Google Maps - Karte!');
+  //  return false;
+  //}
 
   return true;
 }
