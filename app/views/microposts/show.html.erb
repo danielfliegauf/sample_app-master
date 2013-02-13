@@ -11,6 +11,7 @@
       <span class="writeFacebook"><%= link_to_function "poste an deine Facebook Pinnwand", "postToFeed('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', #{@micropost.weekday}); return false;", :class => "btn btn-primary btn-large" %> </span>
       
     <% else %>
+    <span><%= link_to_function "poste an #{@micropost.user.name.split[0]}'s Facebook Pinnwand", "postToUser('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', #{@micropost.weekday}, #{@micropost.user.uid}, #{current_user.uid}); return false;", :class => "btn btn-primary btn-large" %></span>
       <span class="writeFacebook"><%= link_to t('write_on_fb')+@micropost.user.name+t('write_on_fb2'), "https://facebook.com/messages/#{@micropost.user.uid}", :target => '_blank',class: "btn btn-large btn-primary" %></span>
       <% end %>
       <li>

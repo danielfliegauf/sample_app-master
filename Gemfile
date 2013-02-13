@@ -15,6 +15,8 @@ gem 'omniauth-facebook'
 gem "fb_graph", "~> 2.5.0"
 gem 'bootstrap-datepicker-rails'
 
+# gem "koala"
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

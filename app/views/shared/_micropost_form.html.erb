@@ -15,7 +15,7 @@
 	   <%= f.label t('home.micropost.what') %>
 	    <select id="combobox" name="micropost[hobby]" class="micropost_hobby">
 	        <option value="">Select one...</option>
-	        <% sportlist.each do |a| %>
+	        <% sportlist.sort.each do |a| %>
 	        	<option value="<%= a[1] %>"><%= a[0] %></option>
 	        <% end %>
 	    </select>

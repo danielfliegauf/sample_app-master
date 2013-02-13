@@ -113,6 +113,12 @@ line-height: 2.7em;
 	z-index: 98;
 }
 
+.banner {
+	margin-top: 105px;
+	width: 64%;
+	float: left;
+}
+
 #tourclose {
 	position: absolute;
 	left: 5px;
@@ -129,15 +135,21 @@ line-height: 2.7em;
 }
 
 #searchbox {
-	position: static;
-	top: 100px;
 	background: #F3F5F7;
 	padding: 10px;
+	border: 2px dashed gray;
 }
 
 .buttonbox {
 padding-top: 195px;
 	
+}
+
+.imagewrapper {
+	max-width: 30px;
+	max-height: 30px;
+	position: relative;
+	display: block;
 }
 
 #whatfbknows {

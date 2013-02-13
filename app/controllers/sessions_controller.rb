@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
 
   def destroy
   	session[:user_id] = nil
-    sleep 3
+    cookies.delete :sample_app_session
+    sleep 1
   	redirect_to root_url
   end
 end

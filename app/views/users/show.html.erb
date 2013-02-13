@@ -1,8 +1,10 @@
 <%provide(:title, @user.name) %>
 <% if signed_in? %>
+
 <div class="row">
 	<aside class="span4">
 		<section>
+			
 			<h1>
 				<%= gravatar_for @user, size: 110 %>
 				<%= @user.name %>
@@ -10,16 +12,27 @@
 		</section>
 		<section>
 			<%= render 'shared/stats' %>
-		</scetion>
-		<% unless current_user?(@user) %>
-		<section>
-			<%= link_to "write #{ @user.name } on Facebook", "https://facebook.com/messages/#{@user.uid}", :target => '_blank' %>
 		</section>
+		<section>
+		<% unless current_user?(@user) %>
+				<% if @user.group == true && current_user.group == true %>
+					<%= link_to "Schreibe #{ @user.name.split[0] } über Facebook", "https://facebook.com/messages/#{@user.uid}", class: 'btn btn-primary', :target => '_blank' %><br><br>
+				<% end %>
+				<%= link_to "#{ @user.name.split[0] }'s Profil auf Facebook", "https://facebook.com/#{@user.uid}", class: 'btn btn-primary', :target => '_blank' %><br><br>
+				<%= link_to "Schreibe #{ @user.name.split[0] } eine eMail", "mailto:"+@user.email, class: 'btn btn-success', :target => '' %>
+			
+		<% else %>
+			<% if @group_attribute == true %>
+				<a href="http://facebook.com/groups/connectify" class="btn btn-danger" target="_blank" id="togg" data-placement="bottom" data-toggle="tooltip" title="Du bist der Connectify-Gruppe beigetreten, nun kannst du anderen und andere Connectify Mitglieder dir Nachrichten über Facebook schreiben. Diese erscheinen in deiner Inbox und nicht im 'Sonstige' bzw. SPAM-Ordner."> Facebook Nachrichten nicht mehr erlauben (Gruppe verlassen)</a>
+			<% else %>
+				<a href="http://facebook.com/groups/connectify" class="btn btn-success" target="_blank" id="togg" data-placement="bottom" data-toggle="tooltip" title="Du kannst der Connectify-Gruppe beitreten, damit du anderen und andere Connectify Mitglieder dir Nachrichten direkt über Facebook schreiben können. Dazu klickst du einfach auf diesen Button. Daraufhin öffnet sich ein Facebook-Fenster, wo du nur noch auf 'Gruppe beitreten' klicken musst. Leider gibt es noch keine Möglichkeit, diesen Schritt zu automatisieren. Sobald du vom Administrator freigeschaltet wurdest, kann es losgehen. Du kannst diesen Vorgang jederzeit rückgängig machen, indem du die Gruppe verlässt. ">Facebook Nachrichten erlauben (Gruppe beitreten)</a>
+			<% end %>	
 		<% end %>
+		</section>
 	</aside>
 	<div class="span8">
 		<%= render 'follow_form' if signed_in? %>
-		<%= render 'invite_form' if signed_in? %>
+		<!-- <%= render 'invite_form' if signed_in? %> -->
 	</div>
 	<div class="span8">
 		<% if @user.microposts.any? %>
@@ -31,6 +44,7 @@
 		<% end %>
 	</div>
 </div>
+<script>$('#togg').tooltip('toggle')</script>
 
 <% else %>
 <div class="center hero-unit">

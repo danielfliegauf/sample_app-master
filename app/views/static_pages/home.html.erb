@@ -37,7 +37,7 @@ function validateform(){
     return false;
   }
 
-  if (document.getElementById('micropost_country').value == '' || document.getElementById('micropost_country').value){
+  if (document.getElementById('micropost_country').value == '' || document.getElementById('micropost_country').value == null){
     alert('Country muss ausgefüllt sein! Klicke bitte auf die Google Maps - Karte!');
     return true;
   }
@@ -339,7 +339,7 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
       <%= submit_tag t('home.micropost.searchwithoutreg'), :name => nil, class: "btn"%>
       <% end %>
   </div>
-  
+  <div class="banner"><%= image_tag "connectify9.png" %></div>
   <div class='buttonbox'>
   <span class="lead"><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
 <%= link_to t('home.connectme'), "/auth/facebook", id: "sign_in", class: "btn btn-large btn-success" %> <%= t('home.or') %>
@@ -389,11 +389,11 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
 <div class="span12 lead">
   <div><%= t('home.newmembers') %></div>
 <% @users.each do |user| %>
-  <%= link_to gravatar_for(user, size: 80), user, class: "img-polaroid" %>
+  <div class="imagewrapper"><%= link_to gravatar_for(user, size: 80), user, class: "img-polaroid" %></div>
 <% end %>
 </div>
 <div class="span12">
-  <%= image_tag "connectifybanner.jpg" %>
+  <%= image_tag "connectifycomic.png" %>
 </div>
 </div><!-- fluid-close -->
 

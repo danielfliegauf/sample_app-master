@@ -7,6 +7,26 @@ class UsersController < ApplicationController
   def show
 		@user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
+
+    if @user == current_user
+
+      fbuser = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
+      group = fbuser.groups
+      @test = group
+
+      @group_attribute = false
+      current_user.group = false
+      group.each do |x|
+        if x.name == 'Connectify'
+          @group_attribute = true
+          current_user.group = true  
+        end
+      end 
+      current_user.save
+    end
+
+
+
   end
 
   def new #deprecated

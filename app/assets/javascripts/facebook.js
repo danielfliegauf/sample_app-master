@@ -25,7 +25,35 @@ $(function() {
     });
   });
 });
+      
 
+      function postToUser(micropost, hobby, place, time, weekday, user_uid, current_user_uid) {
+
+          var caption_text;
+          if (weekday == "11"){
+            caption_text = hobby+' in '+place;
+          } else {
+            caption_text = hobby+' in '+place+' am '+time;
+          }
+
+        // calling the API ...
+        var obj = {
+          method: 'feed',
+          to: user_uid,
+          from: user_uid,
+          link: 'https://connectify.herokuapp.com/micropost/'+micropost,
+          picture: 'https://fbrell.com/f8.jpg',
+          name: 'schau dir das Post-it auf Connectify an...',
+          caption: caption_text,
+          description: 'Connectify - find the right people'
+        };
+
+        function callback(response) {
+          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+        }
+
+        FB.ui(obj, callback);
+      }
 
 
       function postToFeed(micropost, hobby, place, time, weekday) {
@@ -40,7 +68,7 @@ $(function() {
         // calling the API ...
         var obj = {
           method: 'feed',
-          link: 'https://connectify.herokuapp.com/'+micropost,
+          link: 'https://connectify.herokuapp.com/micropost/'+micropost,
           picture: 'https://fbrell.com/f8.jpg',
           name: 'schau dir das Post-it auf Connectify an...',
           caption: caption_text,

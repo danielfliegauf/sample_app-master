@@ -9,7 +9,22 @@ module ApplicationHelper
 	end
 
 	def citylist
-		@city = Array[[t('home.micropost.'+'Karlsruhe'), "Karlsruhe"], [t('home.micropost.'+'Munich'), "Munich"], [t('home.micropost.'+'Konstanz'), "Konstanz"], [t('home.micropost.'+'Berlin'), "Berlin"]]
+		@city = Array[	[t('home.micropost.'+'Karlsruhe'), "Karlsruhe"],
+						[t('home.micropost.'+'Hamburg'), "Hamburg"],
+						[t('home.micropost.'+'Bremen'), "Bremen"],
+						[t('home.micropost.'+'Stuttgart'), "Stuttgart"],
+						[t('home.micropost.'+'Nuremberg'), "Nuremberg"],
+						[t('home.micropost.'+'Bamberg'), "Bamberg"],
+						[t('home.micropost.'+'Regensburg'), "Regensburg"],
+						[t('home.micropost.'+'Dresden'), "Dresden"],
+						[t('home.micropost.'+'Dortmund'), "Dortmund"],
+						[t('home.micropost.'+'Leverkusen'), "Leverkusen"],
+						[t('home.micropost.'+'Bonn'), "Bonn"],
+						[t('home.micropost.'+'Freiburg'), "Freiburg"],
+						[t('home.micropost.'+'Munich'), "Munich"],
+						[t('home.micropost.'+'Konstanz'), "Konstanz"],
+						[t('home.micropost.'+'Berlin'), "Berlin"]
+				]
 
 	end
 
@@ -18,7 +33,7 @@ module ApplicationHelper
       @place = Array.new(@city.length)
 
       for city in @city
-      	unless city == nil || city == "" || city == "Karlsruhe"
+      	unless city == nil || city == "" || city == "Karlsruhe" #TODO:Karlsruhe raus!
       		@place.push([t('home.micropost.'+city.place), city.place])
       		@place.shift
       	end	
