@@ -14,7 +14,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'omniauth-facebook'
 gem "fb_graph", "~> 2.5.0"
 gem 'bootstrap-datepicker-rails'
-
+gem 'newrelic_rpm'
 # gem "koala"
 
 # Bundle edge Rails instead:
