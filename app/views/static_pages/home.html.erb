@@ -37,7 +37,7 @@ function validateform(){
     return false;
   }
 
-  if (document.getElementById('micropost_country').value == '' || document.getElementById('micropost_country').value == null){
+  if (document.getElementById('micropost_country').value == '' || document.getElementById('micropost_country').value == null ){
     alert('Country muss ausgefüllt sein! Klicke bitte auf die Google Maps - Karte!');
     return true;
   }
@@ -383,10 +383,9 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
   <li>Connectify-Nutzer können direkt in Facebook angeschrieben werden</li>
   </ul> --> </div>
   <a href="#" id="show_whatearns">Wie verdient Connectify Geld?</a><br>
-  <div id="whatearns" style="margin-bottom: 32px; width: 95%; text-align: left; float: right;">kostenlos + werbefrei = ___ EUR<br>
-    Connectify ist mein Hobby bzw. sogar ein Teil meiner Masterarbeit. Ich freue mich viel mehr, wenn es ein paar Besucher gibt, die meine Arbeit schätzen oder denen sie sogar hilft. Es gibt ein paar Ideen, über die ich auch in meiner Arbeit schreibe, um später einmal zumindest einen Teil der Serverkosten zahlen zu können. Diese bewegen sich eher im Freemium Bereich und werden vor einer Einführung zuerst einmal der Community vorgestellt und diskutiert. Connectify wird aber immer kostenlos und deine persönlichen Daten privat bleiben. </div>
+  <div id="whatearns" style="margin-bottom: 32px; width: 95%; text-align: left; float: right;">Connectify verfolgt keine Gewinnerzielungsabsichten, sondern ist mein Hobby und sogar ein Teil meiner Masterarbeit. Ich freue mich vielmehr, wenn es ein paar Besucher gibt, die meine Arbeit schätzen oder denen sie sogar hilft. Es gibt ein paar Ideen, über die ich auch in meiner Arbeit schreibe, um später einmal zumindest einen Teil der Serverkosten zahlen zu können. Diese bewegen sich eher im Freemium-Bereich und werden vor einer Einführung zuerst einmal der Community vorgestellt und diskutiert. Connectify wird aber immer kostenlos und deine persönlichen Daten privat bleiben. </div>
   </div>
-<div class="span12 lead">
+<div class="span3 lead">
   <div><%= t('home.newmembers') %></div>
 <% @users.each do |user| %>
   <div class="imagewrapper"><%= link_to gravatar_for(user, size: 80), user, class: "img-polaroid" %></div>

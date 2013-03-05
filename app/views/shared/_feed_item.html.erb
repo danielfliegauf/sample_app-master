@@ -9,7 +9,7 @@
 		<% else %>
 			<div style="color: red;"><%= t('home.micropost.time_till_delete_from_searchindex') + " (in " + time_ago_in_words(feed_item.datetime) + ")"  if ((feed_item.datetime - Time.now) < (60*60*24*7*3)) %></div>
 		<% end %>
-	<span class="content"><%= truncate(feed_item.content, length: 250) %></span>
+	<span class="content"><%= truncate(feed_item.content, length: 410) %></span>
 	</li><span class="timestamp">
 		<%= t('feed_item.posted') %> <%= time_ago_in_words(feed_item.created_at) %> <%= t('feed_item.ago') %>.
 	
