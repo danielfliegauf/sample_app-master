@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     if @user == current_user
 
       fbuser = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
+      #Teste ob User in FB Gruppe
       group = fbuser.groups
       @test = group
 

@@ -18,7 +18,7 @@
 		  <%= link_to "trash", micropost, method: :delete, data: { confirm: "You sure?" }, title: t('link.delete'), class: "lsf", style: "color: #9B9B9B; font-size: 25px;" %>&nbsp;&nbsp;&nbsp;
 		  <span class="lsf" style="color: #C9C9C9; font-size: 25px;">comment</span> <%= micropost.comments.count %>
 		 <% @unread = micropost.comments.where("read = ?", false).count %>
-		<b><%= "("+@unread+")" if (@unread > 0) %></b>
+		<b><%= "("+@unread.to_s+")" if (@unread > 0) %></b>
 	<% else %>
 		 <span class="lsf" style="color: #C9C9C9; font-size: 25px;">comment</span> <%= micropost.comments.count %>
 	<% end %> 

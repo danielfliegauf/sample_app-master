@@ -1,7 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     @not_logged_in = params[:not_logged_in]
-    @users = User.all(:order => "created_at DESC", :limit => 8)
+    @users = User.all(:order => "created_at DESC", :limit => 10)
   	if signed_in?
       if (Time.parse(current_user.oauth_expires_at)+(60*60*2) <= Time.new() )
           redirect_to "/auth/facebook" #TODO: remember redirect
