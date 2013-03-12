@@ -340,7 +340,7 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
       <% end %>
   </div>
   <div class="banner"><%= image_tag "connectify9.png" %></div>
-  <div class='buttonbox'>
+  <div class='buttonbox'><p class="lead" style="font-size: 1.2em; position: relative; top: -19px;">Finde einen Sportpartner, der zu dir passt.</p>
   <span class="lead"><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
 <%= link_to t('home.connectme'), "/auth/facebook", id: "sign_in", class: "btn btn-large btn-success" %> <%= t('home.or') %>
 <%= link_to t('home.tourstart'), "#", id: "tourstart", class: "btn btn-large btn-warning" %></span>
@@ -358,8 +358,9 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
 <div id="myCarousel" class="carousel slide">
   <!-- Carousel items -->
   <div class="carousel-inner">
-    <div class="active item"><%= image_tag "Beachvolleyball2@2x.jpg", width: "100%" %></div>
+    <div class="active item"><%= image_tag "Beachvolleyball2@2x2.jpg", width: "100%" %></div>
     <div class="item"><%= image_tag "Beachvolleyball1@2x.jpg", width: "100%" %></div>
+    <div class="item"><%= image_tag "front_bike_zweirad.jpg", width: "100%" %></div>
     <div class="item"><%= image_tag "Jogging@2x.jpg", width: "100%" %></div>
   </div>
   <!-- Carousel nav -->
@@ -478,10 +479,8 @@ $(document).ready(function() {
 
 });
 
-</script>
-<div class="hidden">
-  <script type="text/javascript">
-    <!--//--><![CDATA[//><!--
+
+<!--//--><![CDATA[//><!--
       var images = new Array()
       function preload() {
         for (i = 0; i < preload.arguments.length; i++) {
@@ -500,7 +499,12 @@ $(document).ready(function() {
         "/assets/Tour8.png"
       )
     //--><!]]>
-  </script>
+
+    $('.carousel').carousel({
+  interval: 8000
+})
+</script>
+<div class="hidden">
 </div>
 <% end %>
 

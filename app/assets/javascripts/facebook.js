@@ -42,10 +42,10 @@ $(function() {
           to: user_uid,
           from: user_uid,
           link: 'https://connectify.herokuapp.com/micropost/'+micropost,
-          picture: 'https://fbrell.com/f8.jpg',
-          name: 'schau dir das Post-it auf Connectify an...',
+          picture: '',
+          name: 'schau dir das Micropost auf Connectify an...',
           caption: caption_text,
-          description: 'Connectify - find the right people'
+          description: 'Connectify.de - finde einen Sportpartner, der zu dir passt'
         };
 
         function callback(response) {

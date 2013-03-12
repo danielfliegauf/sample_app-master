@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.email = auth.info.email
-      if user.name == "Daniel Fliegauf" #UNSAFE!! TODO:
+      if user.uid.to_s == "1423616689"
         user.admin = true
       end
       # user.update_attributes(:oauth_token => auth.credentials.token)

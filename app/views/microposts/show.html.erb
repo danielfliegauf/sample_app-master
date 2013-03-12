@@ -5,15 +5,22 @@
     <p class="time"><%= t('home.micropost.time_on') %> <%= I18n.localize(@micropost.datetime) %></p><br>
   <% end %>
   <li>
-    <p id='msg'></p>
-
     <% if current_user == @micropost.user %>
       <span class="writeFacebook"><%= link_to_function "poste an deine Facebook Pinnwand", "postToFeed('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', #{@micropost.weekday}); return false;", :class => "btn btn-primary btn-large" %> </span>
       
     <% else %>
-    <span><%= link_to_function "poste an #{@micropost.user.name.split[0]}'s Facebook Pinnwand", "postToUser('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', #{@micropost.weekday}, #{@micropost.user.uid}, #{current_user.uid}); return false;", :class => "btn btn-primary btn-large" %></span>
-      <span class="writeFacebook"><%= link_to t('write_on_fb')+@micropost.user.name+t('write_on_fb2'), "https://facebook.com/messages/#{@micropost.user.uid}", :target => '_blank',class: "btn btn-large btn-primary" %></span>
-      <% end %>
+        <% if @micropost.user.group == true && current_user.group == true %>
+          <%= link_to "Schreibe #{ @user.name.split[0] } über Facebook", "https://facebook.com/messages/#{@user.uid}", class: 'btn btn-warning btn-large', :target => '_blank' %><br><br>
+        <% else %>
+          <% if current_user.group == true %> <!-- false geht nicht da zelle in db standardm. l e e r ist.-->
+            <div class="sorry sorry_micropost">Leider ist <%= @micropost.user.name.split[0] %> nicht in der Connectify-Facebookgruppe und kann daher nicht über Facebook erreicht werden :(</div><br>
+          <% else %>
+            <div class="sorry sorry_micropost2">Du bist nicht in der Connectify-Facebookgruppe und kannst daher <%= @micropost.user.name.split[0] %> nicht über Facebook schreiben. Klicke, um zu das zu <%= link_to "ändern", "http://facebook.com/groups/connectify", class: 'btn btn-mini', :target => '_blank' %></div><br>
+          <% end %>
+        <% end %>
+        <%= link_to "#{ @micropost.user.name.split[0] }'s Profil auf Facebook", "https://facebook.com/#{@micropost.user.uid}", class: 'btn btn-primary btn-large', :target => '_blank' %>
+        <%= link_to "Schreibe #{ @micropost.user.name.split[0] } eine eMail", "mailto:"+@micropost.user.email, class: 'btn btn-success btn-large', :target => '' %>
+    <% end %>
       <li>
 	<li id="<%= @micropost.id %>">
 					<%= link_to gravatar_for(@micropost.user, size: 120), @micropost.user %>

@@ -23,7 +23,22 @@ module ApplicationHelper
 						[t('home.micropost.'+'Freiburg'), "Freiburg"],
 						[t('home.micropost.'+'Munich'), "Munich"],
 						[t('home.micropost.'+'Konstanz'), "Konstanz"],
-						[t('home.micropost.'+'Berlin'), "Berlin"]
+						[t('home.micropost.'+'Berlin'), "Berlin"],
+						[t('home.micropost.'+'Wuerzburg'), "Wuerzburg"],
+						[t('home.micropost.'+'Muenster'), "Muenster"],
+						[t('home.micropost.'+'Goettingen'), "Goettingen"],
+						[t('home.micropost.'+'Cologne'), "Cologne"],
+						[t('home.micropost.'+'Duesseldorf'), "Duesseldorf"],
+						[t('home.micropost.'+'Mannheim'), "Mannheim"],
+						[t('home.micropost.'+'Heidelberg'), "Heidelberg"],
+						[t('home.micropost.'+'Freiburg'), "Freiburg"],
+						[t('home.micropost.'+'Leipzig'), "Leipzig"],
+						[t('home.micropost.'+'Halle'), "Halle"],
+						[t('home.micropost.'+'Potsdam'), "Potsdam"],
+						[t('home.micropost.'+'Rostock'), "Rostock"],
+						[t('home.micropost.'+'Kiel'), "Kiel"],
+						[t('home.micropost.'+'Ingolstadt'), "Ingolstadt"],
+						[t('home.micropost.'+'Frankfurt'), "Frankfurt"]
 				]
 
 	end
@@ -33,7 +48,7 @@ module ApplicationHelper
       @place = Array.new(@city.length)
 
       for city in @city
-      	unless city == nil || city == "" || city == "Karlsruhe" #TODO:Karlsruhe raus!
+      	unless city == nil || city == "" #TODO:Karlsruhe raus!
       		@place.push([t('home.micropost.'+city.place), city.place])
       		@place.shift
       	end	
@@ -44,7 +59,32 @@ module ApplicationHelper
 	end
 
 	def sportlist
-		Array[[t('home.micropost.beachvolleyball'), "beachvolleyball"], [t('home.micropost.biking'), "biking"], [t('home.micropost.bouldering'), "bouldering"], [t('home.micropost.climbing'), "climbing"], [t('home.micropost.hiking'), "hiking"], [t('home.micropost.jogging'), "jogging"], [t('home.micropost.martialarts'), "martialarts"], [t('home.micropost.nordicwalking'), "nordicwalking"], [t('home.micropost.pilates'), "pilates"], [t('home.micropost.skiing'), "skiing"], [t('home.micropost.slacklining'), "slacklining"], [t('home.micropost.soccer'), "soccer"], [t('home.micropost.surfing'), "surfing"], [t('home.micropost.swimming'), "swimming"], [t('home.micropost.volleyball'), "volleyball"], [t('home.micropost.windsurfing'), "windsurfing"], [t('home.micropost.workout'), "workout"], [t('home.micropost.yoga'), "yoga"], [t('home.micropost.other'), "other"]]
+		Array[[t('home.micropost.beachvolleyball'), "beachvolleyball"],
+		[t('home.micropost.dancing'), "dancing"],
+		[t('home.micropost.archery'), "archery"],
+		[t('home.micropost.chess'), "chess"],
+		[t('home.micropost.parkour'), "parkour"],
+		[t('home.micropost.featherball'), "featherball"],
+		[t('home.micropost.tablesoccer'), "tablesoccer"],
+		[t('home.micropost.tabletennis'), "tabletennis"],
+		[t('home.micropost.biking'), "biking"], 
+		[t('home.micropost.bouldering'), "bouldering"],
+		[t('home.micropost.climbing'), "climbing"],
+		[t('home.micropost.hiking'), "hiking"],
+		[t('home.micropost.jogging'), "jogging"],
+		[t('home.micropost.martialarts'), "martialarts"],
+		[t('home.micropost.nordicwalking'), "nordicwalking"],
+		[t('home.micropost.pilates'), "pilates"],
+		[t('home.micropost.skiing'), "skiing"],
+		[t('home.micropost.slacklining'), "slacklining"],
+		[t('home.micropost.soccer'), "soccer"],
+		[t('home.micropost.surfing'), "surfing"],
+		[t('home.micropost.swimming'), "swimming"],
+		[t('home.micropost.volleyball'), "volleyball"],
+		[t('home.micropost.windsurfing'), "windsurfing"],
+		[t('home.micropost.workout'), "workout"],
+		[t('home.micropost.yoga'), "yoga"],
+		[t('home.micropost.other'), "other"]]
 	end
 
 	#helps to decide whether the hobby takes place from or in a City

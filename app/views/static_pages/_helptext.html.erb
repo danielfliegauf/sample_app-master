@@ -1,39 +1,46 @@
+
 <div id="helpinnertext">
+	<section style="border-bottom: 1px solid #FFF; padding-bottom: 25px;">
+		<p class="lead" style="border-left: 3px solid black; padding-left: 10px;"><b>Hinweis:</b> Damit du anderen Connectify-Nutzern direkt auf Facebook schreiben kannst (und umgekehrt), ohne dass die Nachrichten im "Sonstiges"-Ordner landen, musst du der Connectify-Facebookgruppe beitreten. <br><%= link_to "Mehr erfahren...", help_path+"/#facebook", class: "small" %></p>
+		<a href="http://facebook.com/groups/connectify" class="btn btn-success" target="_blank" id="togg" data-placement="bottom" data-toggle="tooltip" title="Es öffnet sich ein neues Fenster. Dort musst du der Gruppe durch einen entsprechenden Klick beitreten. Facebook erlaubt leider keinen automatischen Gruppenbeitritt.">Facebook Nachrichten erlauben (Gruppe beitreten)</a>
+	</section>
+
+	<br>
 	<section id="help_wall">
-		<h2>Schreibe</h2><%= image_tag "post-it.jpg", :size => "50x50" %><h3> an unsere </h3><h1>Connectfiy-Pinnwand</h1>
+		<h2>Schreibe </h2><%= image_tag "post-it.jpg", :size => "50x50" %><h3> an unsere </h3><h1>Connectify-Pinnwand</h1>
 	</section>
 
 	<section id="help_hobby">
-		<h4>1. DEIN HOBBY</h4>
+		<h4 class="lead">1. Dein Hobby</h4>
 		<p>Zuerst wählst du dein Hobby: z.B. Klettern, Joggen oder Bogenschießen.<br> Deines ist nicht dabei?! Schreib uns!</p>
 	</section>
 
 	<section id="help_place">
-		<h4>2. DEIN ORT</h4>
+		<h4 class="lead">2. Dein Ort</h4>
 		<p>Wenn du möchtest, wird deine aktuelle Stadt ermittelt. Keine Angst, wir speichern <em>KEINE</em> Bewegungsprofile oder ähnliche Dinge, die in deine Privatsphäre eingreifen. Es soll dir einfach helfen schneller zu sein. Sonst nichts.</p> 
 	</section>
 
 	<section id="help_optional">
-		<h2>und schon fertig :D Ab hier sind alle Angaben freiwillig!</h2>
-		<p>-----------------------------------------------------------------------------------------------------------------------------------</p> 
+		<h2 class="lead" style="border-bottom: 1px dashed #CCC; padding-bottom: 25px;">und schon fertig :-) Ab hier sind alle Angaben freiwillig!</h2>
 	</section>
 
 	<section id="help_map">
-		<h4>DER TREFFPUNKT</h4>
-		<p>Klick auf die Karte, um einen Treffpunkt festzulegen. Solltest du unentschlossen sein, lass diesen Schritt einfach aus. <br><br><em>Denke aber bitte daran, dass die Karte so wie du sie siehst, später auch allen anderen angezeigt wird. Solltest du also nicht wollen, dass jemand deinen ungefähren Wohnort kennt, setze den Marker einfach in die Stadtmitte oder deaktiviere die Geolocation-Funktion in deinem Browser.</em></p> 
+		<h4 class="lead">Dein Treffpunkt</h4>
+		<p>Klick auf die Karte, um einen Treffpunkt festzulegen. Solltest du unentschlossen sein, lass diesen Schritt einfach aus.<br><em>Denke aber bitte daran, dass die Karte so wie du sie siehst, später auch allen anderen angezeigt wird. Solltest du also nicht wollen, dass jemand deinen ungefähren Wohnort kennt, setze den Marker einfach in die Stadtmitte oder deaktiviere die Geolocation-Funktion in deinem Browser.</em></p> 
 	</section>
 
 	<section id="help_time">
-		<h4>DEINE ZEIT</h4>
+		<h4 class="lead">Deine Zeit</h4>
 		<p>Wähle aus dem Kalender einen Tag und eine Uhrzeit aus. Dann klicke neben den Kalender ...und weiter gehts!</p> 
 	</section>
 
 	<section id="help_about">
-		<h4>DEINE STORY</h4>
+		<h4 class="lead">Deine Story</h4>
 		<p>Jetzt kannst du noch etwas über dich oder die Welt schreiben - wenn du magst :)</p> 
 	</section>
 
 	<section id="help_submit">
-		<p>Ein Klick noch und du bist fertig.<br><br> Das war einfach... oder? Solltest du Probleme oder Fragen haben, schau dir die Einführung an. <br>Viel Spaß auf Connectify!</p>
+		<p>Ein Klick noch und du bist fertig.<br><br> Das war einfach... oder? Solltest du Probleme oder Fragen haben, schau dir die <%= link_to "Einführung", help_url %> an. <br>Viel Spaß auf Connectify!</p>
 	</section>
 </div>
+<script>$('#togg').tooltip('toggle')</script>

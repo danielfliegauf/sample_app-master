@@ -31,6 +31,7 @@ de:
   postsuccessfull: "Dein Micropost wurde erfolgreich erstellt!"
   whatweknow: "Was speichert Connectify über mich?"
   following: "folge ich"
+  following2: "folgt "
   followers: "follower"
   remember: "merken!"
   noremember: "nicht mehr merken!"
@@ -52,6 +53,12 @@ de:
       Konstanz: Konstanz
       Munich: München
       Berlin: Berlin
+      Nuremberg: Nürnberg
+      Wuerzburg: Würzburg
+      Muenster: Münster
+      Goettingen: Göttingen
+      Cologne: Köln
+      Duesseldorf: Düsseldorf
       create: 'Erstelle ein neues Micropost'
       what: 'Was?'
       when: 'Wann?'
@@ -76,6 +83,13 @@ de:
       biking: Biken
       bouldering: Bouldern
       climbing: Klettern
+      dancing: Tanzen
+      tabletennis: Tischtennis
+      featherball: Federball
+      tablesoccer: Tischfußball
+      parkour: Parkour
+      chess: Schach
+      archery: Bogenschießen
       hiking: Wandern
       jogging: Joggen
       martialarts: Kampfsportart

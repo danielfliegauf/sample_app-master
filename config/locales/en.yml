@@ -33,6 +33,7 @@ en:
   postsuccessfull: "Your micropost was created successfully!"
   whatweknow: "What data is saved on Connectify?"
   following: "following"
+  following2: "following"
   followers: "followers"
   remember: "remember!"
   noremember: "don't remember"
@@ -54,6 +55,12 @@ en:
       Konstanz: Constance
       Munich: Munich
       Berlin: Berlin
+      Nuremberg: Nuremberg
+      Wuerzburg: Wuerzburg
+      Muenster: Muenster
+      Goettingen: Goettingen
+      Cologne: Cologne
+      Duesseldorf: Duesseldorf
       create: 'Create a new Micropost'
       what: 'What?*'
       when: 'When?'
@@ -77,7 +84,14 @@ en:
       beachvolleyball: Beachvolleyball
       biking: Biking
       bouldering: Bouldering
+      featherball: Featherball
+      tablesoccer: Table Soccer
+      parkour: Parkour
+      chess: Chess
+      archery: Archery
       climbing: Climbing
+      dancing: Dancing
+      tabletennis: Tabletennis
       hiking: Hiking
       jogging: Jogging
       martialarts: Martialarts

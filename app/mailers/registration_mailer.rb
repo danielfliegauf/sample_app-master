@@ -19,7 +19,7 @@ def welcome_email(user)
 
     mail(:to => user.email,
          :subject => "Willkommen bei Connectify",
-         :body => "Hallo "+user.name+"! <br><br> Du hast dich erfolgreich bei Connectify eingeloggt und kannst ab sofort loslegen und dein erstes Micropost schreiben. Du weisst nicht was das ist? Dann lies dir die Einfuehrung durch! Es ist ganz einfach. <br><br> Viel Spass dabei!")
+         :body => "Hallo #{user.name}! \n\n Du hast dich erfolgreich bei Connectify eingeloggt und kannst ab sofort loslegen und dein erstes Micropost schreiben. Du weisst nicht was das ist? Dann lies dir die Einfuehrung (http://connecitfy.de/help) durch!\n Es ist ganz einfach.\n\n Viel Spass dabei!")
   end
 
 end

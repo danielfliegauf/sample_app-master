@@ -451,31 +451,56 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 			padding-bottom: 10px;}
 }
 
+.sorry{
+	color: #ccc;
+	border: 1px dotted;
+	padding: 5px;
+	width: 200px;
+	font-size: 0.8em;
+	line-height: 17px;
+}
+
+.sorry_micropost {
+	float: left;
+	margin-right: 10px;
+	margin-left: 65px;
+	position: relative;
+	bottom: -10px;
+}
+
+.sorry_micropost2 {
+	float: left;
+	margin-right: 10px;
+	margin-left: 65px;
+	position: relative;
+	bottom: 6px;
+}
 
 /* Helptext for Beginners */
 
 #helptext {
+	.small{font-size: 0.7em;}
 	float: left;
 	margin-right: 90px;
 	font-size: 0.8em;
 	#helpinnertext {
 		position: relative;
-		top: -1350px;
-		left: 150px;
+		top: 10px;
+		left: 34px;
 		#help_wall {
-			position: absolute;
-			margin-top: -110px;
+			position: relative;
+			
 			margin-left: 40px;
 				h2 {
 				margin-bottom: 0px;
 				}
 				img {
 					position: absolute;
-					left: 186px;
+					left: 293px;
 					top: -4px;
 				}
 		}
-		#help_place {
+/*		#help_place {
 			margin-top: 80px;
 			margin-left: 25px;
 		}
@@ -496,7 +521,7 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 		}
 		#help_submit {
 			margin-top: 230px;
-		}
+		} */
 	}
 }
 

@@ -14,18 +14,18 @@
 				<li>Auf der linken Seite kannst du nun Sportart und Ort auswählen. <br>Die anderen Angaben sind optional.<br> <i><small>Tipp: Du musst deinen Ort nicht in der Liste suchen, wenn du die Geolocation deines Browser nutzt (einfach auf "zulassen" klicken). Connectify speichert KEINE Bewegungsprofile noch verkauft es deine Daten!</small></i></li>
 				<li>Mit einem Klick auf die kleine Map markierst du den genauen Ort oder einen Treffpunkt.</li>
 				<li>Wenn du magst, kannst du noch einen genauen Zeitpunkt wählen oder etwas über dich schreiben.</li>
-				<li>Abschicken und fertig :) Dein Micropost erscheint jetzt auf deiner Pinnwand.<br>
+				<li>Abschicken und fertig :) Dein Micropost erscheint jetzt auf deiner <%= link_to "Pinnwand", root_path %> und auf deiner <%= link_to "Profilseite", current_user %>.<br>
 					<small><i>Jetzt musst du nur noch warten, bis jemand dein Micropost kommentiert oder sich via Facebook bei dir meldet. Um dein Micropost bekannter zu machen, kannst du es über den kleinen Facebook-Button am unteren Ende deines Microposts oder unter Details mit anderen auf Facebook teilen.</i></small></li>
 			</ol>
 		</div>
 		<div class="span8 offset1">
 			<p class="lead"><i class="icon-search"></i> <small><i>Suche Microposts von anderen Nutzern</i></small></p>
 			<ol class="offset1">
-				<li>Klicke auf Suche.</li>
+				<li>Klicke auf Suche um die gesamte Connectify-Pinnwand zu durchsuchen.</li>
 				<li>Wähle deine Stadt und drücke ganz fest beide Daumen.</li>
 				<li>Wenn du Glück hast, hat jemand schon ein Micropost für deine Stadt erstellt.<br> <i><small>
 					Wenn nicht, ist das auch nicht schlimm, dann sei doch einfach du der Erste!</i></small></li>
-				<li>Wenn du auf "Details" eines Microposts klickst, erfährst du zusätzliche Informationen und kannst außerdem einen Kommentar hinterlassen oder denjenigen direkt per Facebook kontaktieren.</li>
+				<li>Mit einem Klick auf "Details", bekommst du zusätzliche Informationen über das entsprechende Micropost und kannst außerdem einen Kommentar hinterlassen bzw. den Ersteller direkt per Facebook kontaktieren (sofern er der Connectify-Facebookgruppe beigetreten ist).</li>
 
 		</div>
 		<div class="span8 offset1">
@@ -39,11 +39,23 @@
 		<div class="span8 offset1">
 			<p class="lead"><i class="icon-star"></i> <small><i>Markiere dir wichtige Microposts</i></small></p>
 			<ol class="offset1">
-				<li>Auf der Suche nach neuen Microposts kannst du dir beliebig viele Microposts merken.</li>
+				<li>Auf der Suche nach neuen Microposts kannst du dir beliebig viele Microposts merken.</li><a name="facebook"></a>
 				<li>Dazu markierst du einfach ein Micropost deiner Wahl mit einem Stern.</li>
 				<li>Danach erscheint das markierte Micropost auf deiner Pinwand.</li>
 
-		</div>	
+		</div>
+		<div class="span8 offset1">
+			<p class="lead"> <span class="lsf" style="font-size: 25px;">facebook</span> <small><i>Tritt der Connectify-Facebookgruppe bei</i></small></p>
+			<ol class="offset1">
+				<li>Du möchtest andere Connectify-Mitglieder direkt über Facebook kontaktieren oder andere Connectify-Mitglieder sollen dich auch über Facebook erreichen können? <br>Kein Problem.</li>
+				<li>Damit das möglich wird, musst du den folgenden Button anklicken (den gibts auch auf deiner <%= link_to "Profilseite", current_user %>): <a href="http://facebook.com/groups/connectify" class="btn btn-success" target="_blank" id="togg" data-placement="bottom" data-toggle="tooltip" title="Es öffnet sich ein neues Fenster. Dort musst du der Gruppe durch einen entsprechenden Klick beitreten. Facebook erlaubt leider keinen automatischen Gruppenbeitritt.">Facebook Nachrichten erlauben (Gruppe beitreten)</a></li>
+					<li>Danach öffnet sich ein neues Tab auf dem du dann der Gruppe beitreten kannst. </li>
+				<li>Besuchst du nun die Profilseite von einem anderen Connectify-Mitglied und ihr seid <em>BEIDE</em> in der Connectify-Facebookgruppe erscheint der Button: "Nutzer auf Facebook schreiben".</li>
+				<li><b>Die Mitgliedschaft in der Connectify-Facebookgruppe dient NUR dazu, damit ihr private Nachrichten über Facebook an andere Connectify-Mitglieder schicken könnt</b>, ohne dass diese im SPAM- bzw. Sonstiges-Ordner landen.</li>
+				<li>Du kannst jederzeit wieder aus der Gruppe austreten. <a href="http://facebook.com/groups/connectify" class="btn btn-danger" target="_blank" id="togg" data-placement="bottom" data-toggle="tooltip" title="Du bist der Connectify-Gruppe beigetreten, nun kannst du anderen und andere Connectify Mitglieder dir Nachrichten über Facebook schreiben. Diese erscheinen in deiner Inbox und nicht im 'Sonstige' bzw. SPAM-Ordner."> Facebook Nachrichten nicht mehr erlauben (Gruppe verlassen)</a><br>Der Link dazu befindet sich auch auf deiner <%= link_to "Profilseite", current_user %></li>
+
+		</div>
+		
 	</div>
 </div>
-
+<script>$('#togg').tooltip('toggle')</script>
