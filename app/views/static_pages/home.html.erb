@@ -309,6 +309,9 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
 
 });
 
+//toggle tooltip for helptext and shared_feed
+$('#togg').tooltip('toggle');
+
 
 </script>
 
@@ -340,7 +343,7 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
       <% end %>
   </div>
   <div class="banner"><%= image_tag "connectify9.png" %></div>
-  <div class='buttonbox'><p class="lead" style="font-size: 1.2em; position: relative; top: -19px;">Finde einen Sportpartner, der zu dir passt.</p>
+  <div class='buttonbox'><p class="lead" style="font-size: 1.2em; position: relative; top: -19px;"><%= t('home.findasportpartner') %></p>
   <span class="lead"><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
 <%= link_to t('home.connectme'), "/auth/facebook", id: "sign_in", class: "btn btn-large btn-success" %> <%= t('home.or') %>
 <%= link_to t('home.tourstart'), "#", id: "tourstart", class: "btn btn-large btn-warning" %></span>
@@ -369,23 +372,17 @@ document.forms['new_micropost'].elements['micropost[latlng]'].value = '(50.29792
 </div>
 </div>
 <div class="span12">
-  <p class="lead">Probiere es aus. Es ist absolut <b>kostenlos</b>!</p>
+  <p class="lead"><%= t('home.tryitout') %><b><%= t('home.free') %></b>!</p>
 </div>
 <div class="span7 offset5" style="text-align: right; float: right;">
-  <p class="lead">Halt! Ich habe noch ein paar Fragen:</p>
-  <a href="#" id="show_reallyforfree">Ist Connectify wirklich kostenlos?</a><br>
-  <div id="reallyforfree" class="" style="margin-bottom: 32px; width: 95%; text-align: left; float: right;">Ja. Es gibt keine versteckten Kosten.</div>
+  <p class="lead"><%= t('home.stopquestion') %></p>
+  <a href="#" id="show_reallyforfree"><%= t('home.question1') %></a><br>
+  <div id="reallyforfree"><%= t('home.answer1') %><br></div>
   <a href="#" id="show_whatfbknows"><%= t('doesfbknow') %></a><br>
-  <div id="whatfbknows" class="" style="margin-top: 32px; margin-bottom: 32px; border-color: #D4F0D4; background: #EBF3EC; width: 95%; text-align: left; float: right;"><h4>Lieber Nutzer,</h4>es ist ein gutes Zeichen, dass du dir um deine Privatsphäre sorgen machst und deshalb auf diesen Link geklickt hast. Gerade in Zeiten, in denen Unternehmen die persönlichen Rechte der Menschen stark einschränken um Profite zu machen, ist es wichtig sich Gedanken zu machen, wem wir unsere Daten anvertrauen. Connectify ist ein Projekt (Masterarbeit) aber eigentlich vielmehr ein Hobby, dass aus dem Wunsch heraus geboren wurde, diesen Service eines Tages selbst nutzen zu können. Das selbsterklärte Ziel ist es Menschen miteinander zu verbinden: einfach, schnell und sicher. Aus diesem Grund habe ich mich bewusst dafür entschieden, Connectify mit Facebook zu verknüpfen. Facebook ist leider auch dafür bekannt, die Daten seiner User zu sammeln und damit zu arbeiten und daher sind die folgenden Sätze als eine Art Grundmanifest zu verstehen, welche meine persönliche Überzeugung widerspiegeln.<br><br><b>Sobald du Connectify nutzt, kann Facebook nur feststellen, dass du diese Seite besucht hast. Sonst nichts.</b><br> Es werden keine persönlichen Daten, die du hier auf Connectify erstellst, an Facebook übertragen.<br> Ich versuche deine Privatssphäre soweit es geht zu schützen, indem nur die nötigsten Informationen von Facebook angefordert werden. Dazu zählen deine eMail, dein Name und dein aktuelles Profilbild. <br><h4>Danke für dein Vertrauen!</h4>
-<!-- <br>Allerdings hast du von einem Login mit Facebook folgende Vorteile:<br>
-<ul>
-  <li>Melde dich superschnell an</li>
-  <li>Es stellt sicher, dass Connectify-Nutzer ihre wirkliche Identität verweden</li>
-  <li>Connectify-Nutzer können direkt in Facebook angeschrieben werden</li>
-  </ul> --> </div>
-  <a href="#" id="show_whatearns">Wie verdient Connectify Geld?</a><br>
-  <div id="whatearns" style="margin-bottom: 32px; width: 95%; text-align: left; float: right;">Connectify verfolgt keine Gewinnerzielungsabsichten, sondern ist mein Hobby und sogar ein Teil meiner Masterarbeit. Ich freue mich vielmehr, wenn es ein paar Besucher gibt, die meine Arbeit schätzen oder denen sie sogar hilft. Es gibt ein paar Ideen, über die ich auch in meiner Arbeit schreibe, um später einmal zumindest einen Teil der Serverkosten zahlen zu können. Diese bewegen sich eher im Freemium-Bereich und werden vor einer Einführung zuerst einmal der Community vorgestellt und diskutiert. Connectify wird aber immer kostenlos und deine persönlichen Daten privat bleiben. </div>
-  </div>
+  <div id="whatfbknows"><%= t('home.answer2') %><br></div>
+  <a href="#" id="show_whatearns"><%= t('home.question3') %></a><br>
+  <div id="whatearns"><%= t('home.answer3') %><br></div>
+ </div>
 <div class="span12 lead">
   <div><%= t('home.newmembers') %></div>
 <% @users.each do |user| %>

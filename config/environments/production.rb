@@ -1,4 +1,6 @@
 SampleApp::Application.configure do
+  ENV['FACEBOOK'] ='147347702004703'
+  ENV['FACEBOOK_KEY'] = '92909b6e4217f41cac177c809804424f'
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests

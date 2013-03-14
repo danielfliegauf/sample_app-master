@@ -40,6 +40,15 @@ de:
   nojs: "Du hast kein Javascript aktiviert. Leider ist Javascript nötig, um diese App zu nutzen."
   home:
     whatsupincity: "Was ist los in deiner Stadt?"
+    findasportpartner: "Finde einen Sportpartner, der zu dir passt."
+    tryitout: "Probiere es aus. Es ist absolut "
+    free: "kostenlos"
+    stopquestion: "Halt! Ich habe noch ein paar Fragen:"
+    question1: "Ist Connectify wirklich kostenlos?"
+    answer1: "Ja. Es gibt keine versteckten Kosten."
+    answer2: "Facebook weiß nur, dass du Connectify besuchst - sonst nichts."
+    question3: "Wie verdient Connectify Geld?"
+    answer3: "Connectify ist kein kommerzieller Service, sondern vielmehr ein Hobby. Daher ist es nicht nötig Daten zu verkaufen oder viel Werbung zu schalten. Sollte die Server-Rechnung eines Tages zu hoch werden, haben wir vor vielleicht kleine Werbebanner zu installieren."
     connectme: "Anmelden"
     tourstart: "Einführungstour"
     next: "weiter"
@@ -83,13 +92,38 @@ de:
       biking: Biken
       bouldering: Bouldern
       climbing: Klettern
+      badminton: Badminton
+      basketball: Basketball
+      boxing: Boxen
+      judo: Judo
+      karate: Karate
+      mountainbiking: Mountainbiken
+      ninjutsu: Nin-Jutsu
+      wheelchairsport: Rollstuhlsport
+      rugby: Rugby
+      taekwondo: Taekwondo
+      thaebo: Thaebo
+      trailrunning: Trailrunning
+      ultimatefrisbee: Ultimate Frisbee
+      wildlifetrekking: Wildlife-Trekking
+      zumba: Zumba
+      gymnastics: Gymnastik
+      capoeira: Capoeira
+      fencing: Fechten
+      handball: Handball
+      jujutsu: Ju-Jutsu
+      hockey: Hockey
+      futsal: Futsal
       dancing: Tanzen
+      aquafitness: Aquafitness
+      sailing: Segeln
+      aikido: Aikido
       tabletennis: Tischtennis
       featherball: Federball
       tablesoccer: Tischfußball
       parkour: Parkour
       chess: Schach
-      archery: Bogenschießen
+      archery: Bogensport
       hiking: Wandern
       jogging: Joggen
       martialarts: Kampfsportart

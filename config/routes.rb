@@ -22,7 +22,7 @@ scope "(:locale)", :locale => /en|de/ do
 root to: 'static_pages#home'
 
 match 'auth/:provider/callback', to: 'sessions#create'
-match 'auth/failure', to: redirect('/')
+match '/auth/failure', to: redirect('/')
 match 'signout', to: 'sessions#destroy', as: 'signout'
 
 match 'de/auth/:provider/callback', to: 'sessions#create'

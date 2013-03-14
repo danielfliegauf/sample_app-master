@@ -41,9 +41,18 @@ en:
   allusers: "discover the other Users..."
   nojs: "You don't have javascript enabled.  Unfortunatly you need it to access this app."
   home:
-    whatsupincity: "What's up in your city?"
+    whatsupincity: "What's going on in your city?"
+    findasportpartner: "Find the perfect sportpartner."
+    tryitout: "Try it out. It's for "
+    free: "free"
+    stopquestion: "Stop. I've got a few questions:"
     connectme: "Connect me!"
     tourstart: "Start the tour..."
+    question1: "Is Connectify really for free?"
+    answer1: "Yes it is."
+    answer2: "Facebook knows that you are visiting Connectify - nothing else."
+    question3: "How does Connectify earn money?"
+    answer3: "Connectify is not a commercial service, but rather a hobby and has therefore no need of financing itself: We don't have to sell data or anything else to exist. In case server-costs are getting too high we are thinking about (little) ads to pay the bill."
     next: "next"
     back: "back"
     or: "or"
@@ -62,9 +71,9 @@ en:
       Cologne: Cologne
       Duesseldorf: Duesseldorf
       create: 'Create a new Micropost'
-      what: 'What?*'
+      what: 'What?'
       when: 'When?'
-      where: 'Where?*'
+      where: 'Where?'
       whereexact: 'Where exactly? (click on the map)'
       datetime: 'not fixed? Just leave it blank.'
       about: 'About me:'
@@ -85,12 +94,37 @@ en:
       biking: Biking
       bouldering: Bouldering
       featherball: Featherball
+      basketball: Basketball
+      boxing: Boxing
+      capoeira: Capoeira
+      judo: Judo
+      karate: Karate
+      mountainbiking: Mountainbiking
+      ninjutsu: Nin-Jutsu
+      wheelchairsport: Wheelchair-Sport
+      taekwondo: Taekwondo
+      thaebo: Thaebo
+      trailrunning: Trailrunning
+      ultimatefrisbee: Ultimate Frisbee
+      wildlifetrekking: Wildlife-Trekking
+      zumba: Zumba
+      gymnastics: Gymnastics
+      rugby: Rugby
       tablesoccer: Table Soccer
       parkour: Parkour
       chess: Chess
+      hockey: Hockey
+      futsal: Futsal
+      jujutsu: Ju Jutsu
+      handball: Handball
       archery: Archery
       climbing: Climbing
       dancing: Dancing
+      aquafitness: Aquafitness
+      badminton: Badminton
+      fencing: Fencing
+      sailing: Sailing
+      aikido: Aikido
       tabletennis: Tabletennis
       hiking: Hiking
       jogging: Jogging
