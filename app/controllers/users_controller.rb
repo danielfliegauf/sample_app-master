@@ -8,22 +8,60 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
 
+    #nur für currentuser...
     if @user == current_user
-
+      #frage nach aktuellem user ob in grouppe, aber nur wenn user.group == nil...
       fbuser = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
       #Teste ob User in FB Gruppe
       group = fbuser.groups
       @test = group
 
-      @group_attribute = false
-      current_user.group = false
+      # @group_attribute = false
+      # current_user.group = false
       group.each do |x|
         if x.name == 'Connectify'
           @group_attribute = true
-          current_user.group = true  
+          current_user.group = true
+        else
+          @group_attribute = false
+          current_user.group = false
         end
-      end 
+      end
+
       current_user.save
+
+    else
+      #user nicht current_user
+      if @user.group != true
+        fbuser = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
+
+        fbuser.groups.each do |x|
+          if x.name == 'Connectify'
+            @group_attribute = true
+            @user.group = true
+          else
+            @group_attribute = false
+            @user.group = false
+          end
+        end
+        @user.save
+      end #if groupnil
+
+      if current_user.group != true
+        fbuser = FbGraph::User.fetch(current_user.uid, :access_token => current_user.oauth_token)
+
+        fbuser.groups.each do |x|
+          if x.name == 'Connectify'
+            @group_attribute = true
+            current_user.group = true
+          else
+            @group_attribute = false
+            current_user.group = false
+          end
+        end
+        current_user.save
+      end #if groupnil
+
     end
 
 
