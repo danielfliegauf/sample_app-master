@@ -35,6 +35,8 @@ en:
   following: "following"
   following2: "following"
   followers: "followers"
+  follow: "follow"
+  unfollow: "unfollow"
   remember: "remember!"
   noremember: "don't remember"
   doesfbknow: "...does Facebook know what I'm doing here?!"

@@ -18,7 +18,7 @@
 				<% if @user.group == true && current_user.group == true %>
 					<%= link_to "Schreibe #{ @user.name.split[0] } über Facebook", "https://facebook.com/messages/#{@user.uid}", class: 'btn btn-warning', :target => '_blank' %><br><br>
 				<% else %>
-					<% if current_user.group == true %>
+					<% if @group_current_user == true && @group_user != true %>
 						<div class="sorry">Leider ist <%= @user.name.split[0] %> nicht in der Connectify-Facebookgruppe und kann daher nicht über Facebook erreicht werden :(</div><br>
 					<% else %>
 						<div class="sorry">Du bist nicht in der Connectify-Facebookgruppe und kannst daher <%= @user.name.split[0] %> nicht über Facebook schreiben. Klicke, um zu das zu <%= link_to "ändern", "http://facebook.com/groups/connectify", class: 'btn btn-mini', :target => '_blank' %></div><br>

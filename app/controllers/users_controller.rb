@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   # before_filter :admin_user, only: :destroy
 	
   def show
+    
 		@user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
 
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
         if x.name == 'Connectify'
           @group_attribute = true
           current_user.group = true
+          break
         else
           @group_attribute = false
           current_user.group = false
@@ -32,35 +34,42 @@ class UsersController < ApplicationController
 
     else
       #user nicht current_user
-      if @user.group != true
+      
         fbuser = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
-
+        
+        #if group array emty!
         fbuser.groups.each do |x|
           if x.name == 'Connectify'
-            @group_attribute = true
+            @group_user = true
             @user.group = true
+            break
           else
-            @group_attribute = false
+            @group_user = false
             @user.group = false
           end
         end
+
+        if fbuser.groups.empty?
+           @group_user = false
+           @user.group = false
+        end
         @user.save
-      end #if groupnil
+ 
 
-      if current_user.group != true
-        fbuser = FbGraph::User.fetch(current_user.uid, :access_token => current_user.oauth_token)
-
-        fbuser.groups.each do |x|
+  
+        fbcurrent_user = FbGraph::User.fetch(current_user.uid, :access_token => current_user.oauth_token)
+        fbcurrent_user.groups.each do |x|
           if x.name == 'Connectify'
-            @group_attribute = true
+            @group_current_user = true
             current_user.group = true
+            break #sonst läuft die schleife über andereObjekte weiter und setzt @group wieder auf false!!!
           else
-            @group_attribute = false
+            @group_current_user = false
             current_user.group = false
           end
         end
         current_user.save
-      end #if groupnil
+
 
     end
 
