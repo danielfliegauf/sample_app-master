@@ -41,6 +41,8 @@ match '/search', to: 'static_pages#search'
 
 match '/terms', to: 'static_pages#terms'
 
+match '/news', to: 'static_pages#news'
+
 match '/privacy', to: 'static_pages#privacy'
 
 match '/microposts/:id', to: 'microposts#show'

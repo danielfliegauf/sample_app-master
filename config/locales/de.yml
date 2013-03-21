@@ -146,6 +146,7 @@ de:
     about: 'Impressum'
     contact: 'Kontakt'
     home: 'meine Pinnwand'
+    news: '*News*'
     search: 'Suche'
     help: 'Einführung'
     users: 'alle User'
@@ -154,7 +155,6 @@ de:
     details: 'Details'
     delete: 'Löschen'
     profile: 'mein Profil'
-    news: Neuigkeiten
     agb: "AGB"
     privacy: "Datenschutz"
     destroyuser: "Account löschen"

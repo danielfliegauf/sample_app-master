@@ -148,6 +148,7 @@ en:
     about: 'About'
     contact: 'Contact'
     home: 'my Pinwall'
+    news: '*News*'
     search: 'Search'
     help: 'Introduction'
     users: 'Users'
@@ -156,7 +157,6 @@ en:
     details: 'details'
     delete: 'delete'
     profile: 'view my profile'
-    news: 'News'
     destroyuser: "Delete account"
     settings: "Settings"
     agb: "CT"
