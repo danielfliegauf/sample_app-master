@@ -1,5 +1,6 @@
 <li>
-	<%= gravatar_for user, size: 92 %>
+	<div style="max-height= 140px; overflow=hidden;"><%= gravatar_for user, size: 92 %></div>
+	<img src="https://graph.facebook.com/<%= user.uid %>/picture?type=large" class="img-polaroid" width="140px" height="140px"/>
 	<h3><%= link_to user.name, user %></h3>
 	<% unless user.last_active.nil? %>
 		<p>letzte Aktivität in <b><%= t('home.micropost.'+user.last_active) %></b></p>

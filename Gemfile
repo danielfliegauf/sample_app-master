@@ -3,9 +3,9 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 
 # gem "bundler", "~> 1.3.0.pre.2"
-gem "bundler", "~> 1.2.0.rc.2" #version conflict on heroku
+gem "bundler", "~> 1.3.4" #version conflict on heroku
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.13'
 gem 'bootstrap-sass', '~> 2.2.2.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
