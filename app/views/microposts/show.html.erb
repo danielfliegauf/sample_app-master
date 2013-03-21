@@ -10,7 +10,7 @@
       
     <% else %>
         <% if @micropost.user.group == true && current_user.group == true %>
-          <%= link_to "Schreibe #{ @micropost.user.name.split[0] } über Facebook", "https://facebook.com/messages/#{@user.uid}", class: 'btn btn-warning btn-large', :target => '_blank' %><br><br>
+          <%= link_to "Schreibe #{ @micropost.user.name.split[0] } über Facebook", "https://facebook.com/messages/#{@micropost.user.uid}", class: 'btn btn-warning btn-large', :target => '_blank' %><br><br>
         <% else %>
           <% if current_user.group == true %> <!-- false geht nicht da zelle in db standardm. l e e r ist.-->
             <div class="sorry sorry_micropost">Leider ist <%= @micropost.user.name.split[0] %> nicht in der Connectify-Facebookgruppe und kann daher nicht über Facebook erreicht werden :(</div><br>
