@@ -60,9 +60,8 @@ $(function() {
         var obj = {
           method: 'send',
           to: user_uid,
-          
+          name: 'Connectify - find the perfect Sportpartner',
           link: 'https://connectify.herokuapp.com/micropost/'+micropost,
-          picture: '',
           name: 'schau dir das Micropost auf Connectify an...',
           caption: caption_text,
           description: 'Connectify - finde deinen Sportpartner'
