@@ -60,11 +60,10 @@ $(function() {
         var obj = {
           method: 'send',
           to: user_uid,
-          name: 'Connectify - finde einen Sportpartner, der zu dir passt.',
           link: 'https://connectify.herokuapp.com/micropost/'+micropost,
           name: 'schau dir mehr Infos auf Connectify an...',
           // caption: caption_text,
-          description: 'Connectify - finde deinen Sportpartner'
+          description: 'Connectify - finde einen Sportpartner, der zu dir passt.'
         };
 
         function callback(response) {
