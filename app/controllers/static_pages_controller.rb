@@ -22,6 +22,9 @@ class StaticPagesController < ApplicationController
   def contact
   end
 
+  def closeiframe
+  end
+
   def news
   end
 

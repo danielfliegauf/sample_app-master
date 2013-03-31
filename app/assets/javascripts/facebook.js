@@ -25,9 +25,29 @@ $(function() {
     });
   });
 });
+
+      function writeOnFacebook(user_uid) {
       
 
-      function postToUser(micropost, hobby, place, time, weekday, user_uid, current_user_uid) {
+        // calling the API ...
+        var obj = {
+          method: 'send',
+          to: user_uid,
+          name: 'Connectify - find the perfect Sportpartner',
+          link: 'http://connectify.herokuapp.com',
+          redirect_uri: 'http://connectify.herokuapp.com'
+          
+        };
+
+        function callback(response) {
+           
+        }
+
+        FB.ui(obj, callback);
+      }
+      
+
+      function postToUser(micropost, hobby, place, time, weekday, user_uid) {
 
           var caption_text;
           if (weekday == "11"){
@@ -40,12 +60,12 @@ $(function() {
         var obj = {
           method: 'feed',
           to: user_uid,
-          from: user_uid,
+          
           link: 'https://connectify.herokuapp.com/micropost/'+micropost,
           picture: '',
           name: 'schau dir das Micropost auf Connectify an...',
           caption: caption_text,
-          description: 'Connectify.de - finde einen Sportpartner, der zu dir passt'
+          description: 'Connectify - finde deinen Sportpartner'
         };
 
         function callback(response) {

@@ -33,6 +33,8 @@ match 'de/auth/:provider/callback', to: 'sessions#create'
 
 match '/help', to: 'static_pages#help'
 
+match '/closeiframe', to: 'static_pages#closeiframe'
+
 match '/about', to: 'static_pages#about'
 
 match '/contact', to: 'static_pages#contact'
