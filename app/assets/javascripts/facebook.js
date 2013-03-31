@@ -58,7 +58,7 @@ $(function() {
 
         // calling the API ...
         var obj = {
-          method: 'feed',
+          method: 'send',
           to: user_uid,
           
           link: 'https://connectify.herokuapp.com/micropost/'+micropost,
