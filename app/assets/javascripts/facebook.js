@@ -60,9 +60,9 @@ $(function() {
         var obj = {
           method: 'send',
           to: user_uid,
-          name: 'Connectify - find the perfect Sportpartner',
-          link: 'https://connectify.herokuapp.com/',
-          name: 'schau dir das Micropost auf Connectify an...',
+          name: 'Connectify - finde einen Sportpartner, der zu dir passt.',
+          link: 'https://connectify.herokuapp.com/micropost/'+micropost,
+          name: 'schau dir mehr Infos auf Connectify an...',
           // caption: caption_text,
           description: 'Connectify - finde deinen Sportpartner'
         };
@@ -88,10 +88,10 @@ $(function() {
         var obj = {
           method: 'feed',
           link: 'https://connectify.herokuapp.com/micropost/'+micropost,
-          picture: 'https://fbrell.com/f8.jpg',
-          name: 'schau dir das Post-it auf Connectify an...',
+          // picture: 'https://fbrell.com/f8.jpg',
+          name: 'mehr Infos auf Connectify.de...',
           caption: caption_text,
-          description: 'Connectify - find the right people'
+          description: 'Connectify - finde einen Sportpartner, der zu dir passt.'
         };
 
         function callback(response) {
