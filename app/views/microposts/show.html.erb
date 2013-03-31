@@ -11,8 +11,7 @@
       
     <% else %>
         <% if @micropost.user.group == true && current_user.group == true %>
-        <%= link_to_function "facebook", "postToUser('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', '#{@micropost.weekday}', '#{@micropost.user.uid}'); return false;", class: "lsf", style: "color: #9B9B9B; font-size: 25px;", title: "share on Facebook" %>
-          <%= link_to "Schreibe #{ @micropost.user.name.split[0] } über Facebook", "https://facebook.com/messages/#{@micropost.user.uid}", class: 'btn btn-warning btn-large', :target => '_blank' %><br><br>
+          <%= link_to_function "Schreibe #{ @micropost.user.name.split[0] } über Facebook", "postToUser('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', '#{@micropost.weekday}', '#{@micropost.user.uid}'); return false;", class: 'btn btn-warning btn-large', :target => '_blank' %><br><br>
         <% else %>
           <% if current_user.group == true %> <!-- false geht nicht da zelle in db standardm. l e e r ist.-->
             <div class="sorry sorry_micropost">Leider ist <%= @micropost.user.name.split[0] %> nicht in der Connectify-Facebookgruppe und kann daher nicht über Facebook erreicht werden :(</div><br>
