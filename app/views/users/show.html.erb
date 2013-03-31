@@ -16,7 +16,7 @@
 		<section>
 		<% unless current_user?(@user) %>
 				<% if @user.group == true && current_user.group == true %>
-					<%= link_to_function "Schreibe #{ @micropost.user.name.split[0] } über Facebook", "postToUser('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', '#{@micropost.weekday}', '#{@micropost.user.uid}'); return false;", class: 'btn btn-warning', :target => '_blank' %><br><br>
+					<%= link_to_function "Schreibe #{ @user.name.split[0] } über Facebook", "postToUser2( '#{@user.uid}'); return false;", class: 'btn btn-warning', :target => '_blank' %><br><br>
 				<% else %>
 					<% if @group_current_user == true && @group_user != true %>
 						<div class="sorry">Leider ist <%= @user.name.split[0] %> nicht in der Connectify-Facebookgruppe und kann daher nicht über Facebook erreicht werden :(</div><br>

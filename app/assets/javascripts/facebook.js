@@ -73,6 +73,25 @@ $(function() {
         FB.ui(obj, callback);
       }
 
+      function postToUser2(user_uid) {
+
+        // calling the API ...
+        var obj = {
+          method: 'send',
+          to: user_uid,
+          link: 'https://connectify.herokuapp.com/',
+          name: 'schau dir mehr Infos auf Connectify an...',
+          // caption: caption_text,
+          description: 'Connectify - finde einen Sportpartner, der zu dir passt.'
+        };
+
+        function callback(response) {
+          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+        }
+
+        FB.ui(obj, callback);
+      }
+
 
       function postToFeed(micropost, hobby, place, time, weekday) {
 
