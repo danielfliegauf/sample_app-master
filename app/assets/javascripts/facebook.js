@@ -73,14 +73,14 @@ $(function() {
         FB.ui(obj, callback);
       }
 
-      function postToUser2(user_uid) {
+      function postToUser2(user_uid, current_user) {
 
         // calling the API ...
         var obj = {
           method: 'send',
           to: user_uid,
           link: 'https://connectify.herokuapp.com/',
-          name: 'schau dir mehr Infos auf Connectify an...',
+          name: 'Diese Nachricht wurde dir von '+current_user+' via Connectify geschickt.',
           // caption: caption_text,
           description: 'Connectify - finde einen Sportpartner, der zu dir passt.'
         };
