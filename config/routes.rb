@@ -1,5 +1,8 @@
 SampleApp::Application.routes.draw do
 
+  resources :partners
+
+
 scope "(:locale)", :locale => /en|de/ do
 
   resources :users do

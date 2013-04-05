@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @partner.name %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @partner.url %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @partner.status %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @partner.email %>
+</p>
+
+<p>
+  <b>Street:</b>
+  <%= @partner.street %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @partner.city %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @partner.phone %>
+</p>
+
+
+<%= link_to 'Edit', edit_partner_path(@partner) %> |
+<%= link_to 'Back', partners_path %>

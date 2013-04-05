@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208225006) do
+ActiveRecord::Schema.define(:version => 20130404092324) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -64,6 +64,26 @@ ActiveRecord::Schema.define(:version => 20130208225006) do
   end
 
   add_index "mindposts", ["user_id"], :name => "index_mindposts_on_user_id"
+
+  create_table "partners", :force => true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.integer  "status"
+    t.string   "email"
+    t.string   "street"
+    t.string   "city"
+    t.integer  "phone"
+    t.string   "password"
+    t.string   "password_digest"
+    t.string   "remember_token"
+    t.integer  "ad_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "partners", ["email"], :name => "index_partners_on_email", :unique => true
+  add_index "partners", ["name"], :name => "index_partners_on_name", :unique => true
+  add_index "partners", ["remember_token"], :name => "index_partners_on_remember_token"
 
   create_table "relationships", :force => true do |t|
     t.integer  "follower_id", :limit => 8

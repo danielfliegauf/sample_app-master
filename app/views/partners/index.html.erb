@@ -1,0 +1,50 @@
+<h1>Connectify Partner</h1>
+<div class="offset8">
+<h3>Partner Login</h3>
+                    <%= form_for(:partner) do |f| %>
+
+                        
+
+                        <p> Email:</br> <%= f.text_field :email%> </p>
+
+                        <p> Password:</br> <%= f.password_field :password%></p>
+
+                        
+
+                        <%= f.submit "Login", class: "btn btn-large btn-primary" %>
+                    <% end %>
+
+  </div>   <br>               
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Url</th>
+    <th>Status</th>
+    <th>Email</th>
+    <th>Street</th>
+    <th>City</th>
+    <th>Phone</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @partners.each do |partner| %>
+  <tr>
+    <td><%= partner.name %></td>
+    <td><%= partner.url %></td>
+    <td><%= partner.status %></td>
+    <td><%= partner.email %></td>
+    <td><%= partner.street %></td>
+    <td><%= partner.city %></td>
+    <td><%= partner.phone %></td>
+    <td><%= link_to 'Show', partner %></td>
+    <td><%= link_to 'Edit', edit_partner_path(partner) %></td>
+    <td><%= link_to 'Destroy', partner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Partner', new_partner_path %>
