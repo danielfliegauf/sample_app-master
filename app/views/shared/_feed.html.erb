@@ -1,6 +1,6 @@
 <% if @feed_items.any? %>
 	<ol class="microposts">
-		<h3><%= t('home.mypinwall') %></h3><a href="#" id="element" rel="tooltip" title="Hier erscheinen 1. deine Microposts  2. Microposts von Leuten, denen du folgst  3. Microposts, die du mit einem Stern markiert hast.">was wird hier angezeigt?</a>
+		<h3><%= t('home.mypinwall') %></h3><a href="#" id="element" rel="tooltip" title="Hier erscheinen 1. deine Activities  2. Activities von Leuten, denen du folgst  3. Activities, die du mit einem Stern markiert hast.">was wird hier angezeigt?</a>
 		<%= render partial: 'shared/feed_item', collection: @feed_items %>
 	</ol>
 	<%= will_paginate @feed_items %>

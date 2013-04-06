@@ -13,6 +13,7 @@
 </li> -->
 					<li><a href="" class="lsf-icon" title="tilemenu" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 					<li><%= link_to t('link.home'), root_path %></li>
+					<li><a href="<%= news_path %>" class="lsf-icon" title="next" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 					<li><%= link_to t('link.news'), news_path %></li>
 					<li><a href="<%= search_path %>" class="lsf-icon" title="search" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 					<li> <%= link_to t('link.search'), search_path %></li>
@@ -24,7 +25,7 @@
 						<li><a href="#" class="lsf-icon" title="gear" style="font-size: 20px; color: #CCC; margin-right: -32px;"></a></li>
 						<li id="fat-menu" class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<%= t('signed_in_as') %> <strong><%= current_user.name %></strong>! <b class="caret"></b>
+									<b class="caret"></b>
 								</a>
 				    		<ul class="dropdown-menu">
 				    			<li><%= link_to t('link.profile'), current_user %></li>

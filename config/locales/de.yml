@@ -28,7 +28,7 @@ de:
   aboutus: "Über uns"
   help: "Einführung"
   helptext: "bald bekommst du hier Hilfe! ;)"
-  postsuccessfull: "Dein Micropost wurde erfolgreich erstellt!"
+  postsuccessfull: "Deine Activity wurde erfolgreich erstellt!"
   whatweknow: "Was speichert Connectify über mich?"
   following: "folge ich"
   following2: "folgt "
@@ -56,7 +56,7 @@ de:
     next: "weiter"
     back: "zurück"
     or: "oder"
-    mypinwall: "Meine Pinnwand"
+    mypinwall: "Activities"
     newmembers: "unsere neuen Mitglieder"
     micropost:
       hobby_example: "z.B. Klettern"
@@ -71,7 +71,7 @@ de:
       Goettingen: Göttingen
       Cologne: Köln
       Duesseldorf: Düsseldorf
-      create: 'Erstelle ein neues Micropost'
+      create: 'Erstelle eine neue Activity'
       what: 'Was?'
       when: 'Wann?'
       where: 'Wo?'
@@ -141,12 +141,12 @@ de:
       windsurfing: Windsurfen
       workout: Fitnessstudio
       yoga: Yoga
-    feed_header: 'Micropost Ticker'
+    feed_header: 'Activity Ticker'
   link:
     about: 'Impressum'
     contact: 'Kontakt'
-    home: 'meine Pinnwand'
-    news: '*News*'
+    home: 'Activities'
+    news: 'News'
     search: 'Suche'
     help: 'Einführung'
     users: 'alle User'
@@ -159,7 +159,7 @@ de:
     privacy: "Datenschutz"
     destroyuser: "Account löschen"
     settings: "Optionen"
-    manage_micropost: "Verwalte deine Microposts"
+    manage_micropost: "Verwalte deine Activities"
     take_tour: "Was kann ich hier machen?"
     write_us: "Schreib uns!"
     read_terms: "Lies unsere AGB's..."

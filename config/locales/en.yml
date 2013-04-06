@@ -30,7 +30,7 @@ en:
   aboutus: "about Us"
   help: "Introduction"
   helptext: "you'll get help here - soon ;)"
-  postsuccessfull: "Your micropost was created successfully!"
+  postsuccessfull: "Your Activity was created successfully!"
   whatweknow: "What data is saved on Connectify?"
   following: "following"
   following2: "following"
@@ -59,7 +59,7 @@ en:
     back: "back"
     or: "or"
     newmembers: "our new members"
-    mypinwall: "My Pinwall"
+    mypinwall: "Activities"
     micropost:
       hobby_example: "e.g. climbing"
       from: 'from'
@@ -73,7 +73,7 @@ en:
       Goettingen: Goettingen
       Cologne: Cologne
       Duesseldorf: Duesseldorf
-      create: 'Create a new Micropost'
+      create: 'Create a new Activity'
       what: 'What?'
       when: 'When?'
       where: 'Where?'
@@ -143,12 +143,12 @@ en:
       windsurfing: Windsurfing
       workout: Workout
       yoga: Yoga
-    feed_header: 'Micropost Feed'
+    feed_header: 'Activity Feed'
   link:
     about: 'About'
     contact: 'Contact'
-    home: 'my Pinwall'
-    news: '*News*'
+    home: 'Activities'
+    news: 'News'
     search: 'Search'
     help: 'Introduction'
     users: 'Users'
@@ -162,7 +162,7 @@ en:
     agb: "CT"
     destroyuser: "Delete user"
     privacy: "Privacy Politics"
-    manage_micropost: "Manage your microposts"
+    manage_micropost: "Manage your Activities"
     take_tour: "Take a tour"
     write_us: "Write us!"
     read_terms: "Read the terms..."

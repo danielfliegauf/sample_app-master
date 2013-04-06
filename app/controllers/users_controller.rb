@@ -108,7 +108,16 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.paginate(page: params[:page]).searchplace(params[:place])
+    @city = Micropost.find_by_sql('SELECT DISTINCT place FROM microposts')
+      @place = Array.new(@city.length)
+
+      for city in @city
+        unless city == nil || city == ""
+          @place.push(city.place)
+          @place.shift
+        end 
+      end
   end
 
   def destroy

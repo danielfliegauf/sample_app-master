@@ -1,10 +1,9 @@
-<li>
-	<img src="https://graph.facebook.com/<%= user.uid %>/picture?type=large" class="img-polaroid" width="140px" height="140px"/>
-	<h3><%= link_to user.name, user %></h3>
+<div><%= link_to gravatar_for(user, size: "140"), user %>
+	<!-- <img src="https://graph.facebook.com/<%= user.uid %>/picture?type=large" class="" style="max-width: 140px;" /> -->
+	
+	<!-- <h3><%= link_to user.name, user %></h3>
 	<% unless user.last_active.nil? %>
 		<p>letzte Aktivität in <b><%= t('home.micropost.'+user.last_active) %></b></p>
-	<% end %>
-	<% if current_user.admin? && !current_user?(user) %>
-	| <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
-	<% end %>
-</li>
+	<% end %> -->
+	
+</div>

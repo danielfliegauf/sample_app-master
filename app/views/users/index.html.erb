@@ -1,11 +1,20 @@
 <% provide(:title, 'All users') %>
 <h2><%= t('allusers') %></h1>
+	<!-- <div class="allusers row">
+	<div class="input-append span2 offset4 input-prepend">
+		<span class="add-on">in</span>
+  <input class="input-large" id="prependedInput appendedInputButtons" type="text" data-provide="typeahead" data-source="<%= @place %>" data-items="7" data-minLength="1" data-matcher="">
+  <button class="btn" type="button">Suche</button>
+</div>
+</div> -->
 <br><br>
 <%= will_paginate %>
 
-<ul class="users">
+<div class="users row">
 	<%= render @users %>
-</ul>
+</div>
 
 <%= will_paginate %>
 <br><br>
+
+<script type="text/javascript">$('.typeahead').typeahead()</script>

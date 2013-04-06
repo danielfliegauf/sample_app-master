@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :hobby, :place, :datetime, :weekly, :weekday, :status, :latlng, :level, :country, :micropost_id, :zeit #time_for TYPO!!!
+  attr_accessible :content, :hobby, :place, :datetime, :weekly, :weekday, :status, :latlng, :level, :country, :zeit #time_for TYPO!!!
   belongs_to :user
   has_many :mindposts, dependent: :destroy
   has_many :comments, :dependent => :destroy
@@ -7,7 +7,7 @@ class Micropost < ActiveRecord::Base
   validates :user_id, presence: true
   validates :hobby, presence: true
   # validates :latlng, presence: true
-  validates :country, presence: true
+  # validates :country, presence: true
   # validates :content, presence: true, length: { maximum: 1340 }
   # validates :level, presence: true
   validates :place, presence: true

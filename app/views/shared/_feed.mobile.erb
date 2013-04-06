@@ -1,6 +1,6 @@
 <% if @feed_items.any? %>
 	<ul class="microposts" data-role="listview">
-		<h3>Micropost Pinnwand</h3>
+		<h3>Activities Pinnwand</h3>
 		<%= render partial: 'shared/feed_item', collection: @feed_items %>
 	</ul>
 	<%= will_paginate @feed_items %>

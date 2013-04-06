@@ -46,6 +46,7 @@ class MicropostsController < ApplicationController
 		@micropost = current_user.microposts.build(params[:micropost])
 		@user = current_user
 		@user.last_active = @micropost.place
+		@micropost.user = current_user
 		@user.save
 		if (params[:micropost][:datetime] != "")
 			@micropost.datetime = Time.parse(params[:micropost][:datetime])

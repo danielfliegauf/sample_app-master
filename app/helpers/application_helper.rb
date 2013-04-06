@@ -48,7 +48,7 @@ module ApplicationHelper
       @place = Array.new(@city.length)
 
       for city in @city
-      	unless city == nil || city == "" #TODO:Karlsruhe raus!
+      	unless city == nil || city == ""
       		@place.push([t('home.micropost.'+city.place), city.place])
       		@place.shift
       	end	

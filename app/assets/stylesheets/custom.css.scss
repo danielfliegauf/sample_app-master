@@ -29,6 +29,7 @@ text-align: center;
 h1 {
 margin-bottom: 10px;
 }
+
 }
 
 
@@ -325,16 +326,32 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 /* users index */
 
 .users {
-	list-style: none;
-	margin: 0;
-	li {
-		overflow: auto;
-		padding: 10px 0;
-		border-top: 1px solid $grayMediumLight;
+		div {
+		overflow: hidden;
+		float: left;
+		width: 140px;
+		height: 140px;
+		margin: 2px;
+		border: 2px solid rgb(255, 255, 255);
+		box-shadow: 3px 2px 4px #CCC;
+
+		
+		img {
+			border: none;
+		}
+
+		
 		&:last-child {
-			border-bottom: 1px solid $grayMediumLight;
+			margin-bottom: 100px;
+		
 		}
 	}
+}
+
+.allusers {
+	.input-append input {
+			height: auto;
+		}
 }
 
 /* search result */
@@ -484,7 +501,7 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 	font-size: 0.8em;
 	#helpinnertext {
 		position: relative;
-		top: 10px;
+		
 		left: 34px;
 		#help_wall {
 			position: relative;
@@ -493,10 +510,11 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 				h2 {
 				margin-bottom: 0px;
 				}
+
 				img {
-					position: absolute;
-					left: 293px;
-					top: -4px;
+					width: 30%;
+					border: 2px solid;
+					box-shadow: 2px 2px gray;
 				}
 		}
 /*		#help_place {
@@ -506,6 +524,8 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 		#help_optional {
 			margin-top: 20px;
 			margin-left: -40px;
+			
+			
 		}
 		#help_map {
 			margin-top: 90px;

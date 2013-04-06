@@ -27,6 +27,14 @@ class User < ActiveRecord::Base
 
   # validates :password_confirmation, presence: true
 
+  def self.searchplace(place)
+    if place != '' #place ist immer != '' auch wenn man zuerst die seite aufruft :/
+      find(:all)# find(:all, :order => 'id DESC', :conditions => ['homebase LIKE ?', "%#{place}%",])
+    else
+      find(:all)
+    end
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       
