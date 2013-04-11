@@ -2,7 +2,7 @@
 
 <% if signed_in? %>
 
-<% if current_user.homebase == '' || nil %>
+<% if current_user.homebase == '' || current_user.homebase == nil %>
 <div class="homebase_linkkill">
   <div class="homebase">
     <div id="hombase_form" class="allusers row">
