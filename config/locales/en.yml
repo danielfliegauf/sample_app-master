@@ -42,6 +42,8 @@ en:
   doesfbknow: "...does Facebook know what I'm doing here?!"
   allusers: "discover the other Users..."
   nojs: "You don't have javascript enabled.  Unfortunatly you need it to access this app."
+  savecity: "Update Hombebase"
+  saveinterest: "Update Interests"
   home:
     whatsupincity: "What's going on in your city?"
     findasportpartner: "Find the perfect sportpartner."
@@ -59,26 +61,29 @@ en:
     back: "back"
     or: "or"
     newmembers: "our new members"
-    mypinwall: "Activities"
+    mypinwall: "my Pinwall"
     micropost:
       hobby_example: "e.g. climbing"
       from: 'from'
-      Karlsruhe: Carlsruhe
-      Konstanz: Constance
+      Karlsruhe: Karlsruhe
+      Konstanz: Konstanz
+      Singen: Singen
+      Stuttgart: Stuttgart
       Munich: Munich
       Berlin: Berlin
       Nuremberg: Nuremberg
-      Wuerzburg: Wuerzburg
-      Muenster: Muenster
-      Goettingen: Goettingen
+      Wuerzburg: "Würzburg"
+      Muenster: "Münster"
+      Goettingen: "Göttingen"
+      Lubeck: Lubeck
       Cologne: Cologne
-      Duesseldorf: Duesseldorf
+      Dusseldorf: Dusseldorf
       create: 'Create a new Activity'
       what: 'What?'
       when: 'When?'
       where: 'Where?'
       whereexact: 'Where exactly? (click on the map)'
-      datetime: 'not fixed? Just leave it blank.'
+      datetime: "Doesn't matter? Just leave it blank."
       about: 'About me:'
       select_one: 'Select one'
       select_city: 'Select city'
@@ -147,7 +152,7 @@ en:
   link:
     about: 'About'
     contact: 'Contact'
-    home: 'Activities'
+    home: 'my Pinwall'
     news: 'News'
     search: 'Search'
     help: 'Introduction'

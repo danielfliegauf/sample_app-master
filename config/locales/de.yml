@@ -40,6 +40,8 @@ de:
   doesfbknow: "...kann Facebook sehen, was ich hier mache?!"
   allusers: "Entdecke die anderen User..."
   nojs: "Du hast kein Javascript aktiviert. Leider ist Javascript nötig, um diese App zu nutzen."
+  savecity: "Heimatstadt aktualisieren"
+  saveinterest: "Interessen aktualisieren"
   home:
     whatsupincity: "Was ist los in deiner Stadt?"
     findasportpartner: "Finde einen Sportpartner, der zu dir passt."
@@ -56,21 +58,24 @@ de:
     next: "weiter"
     back: "zurück"
     or: "oder"
-    mypinwall: "Activities"
+    mypinwall: "Meine Pinnwand"
     newmembers: "unsere neuen Mitglieder"
     micropost:
       hobby_example: "z.B. Klettern"
       from: 'ab'
       Karlsruhe: Karlsruhe
       Konstanz: Konstanz
-      Munich: München
+      Lubeck: "Lübeck"
+      Stuttgart: Stuttgart
+      Singen: Singen
+      Munich: "München"
       Berlin: Berlin
       Nuremberg: Nürnberg
       Wuerzburg: Würzburg
       Muenster: Münster
       Goettingen: Göttingen
       Cologne: Köln
-      Duesseldorf: Düsseldorf
+      Dusseldorf: Düsseldorf
       create: 'Erstelle eine neue Activity'
       what: 'Was?'
       when: 'Wann?'
@@ -145,7 +150,7 @@ de:
   link:
     about: 'Impressum'
     contact: 'Kontakt'
-    home: 'Activities'
+    home: 'meine Pinnwand'
     news: 'News'
     search: 'Suche'
     help: 'Einführung'

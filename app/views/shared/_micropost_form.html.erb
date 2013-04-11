@@ -2,6 +2,7 @@
 	<%= render 'shared/error_messages', object: f.object %>
 	<%= f.hidden_field :latlng, :value => "" %>
 	<%= f.hidden_field :country, :value => "" %>
+    <%= f.hidden_field :zipcode, :value => "" %>
 	<br /><p><b><span class="lsf-icon" title="plus" style="font-size: 23px; float: left;"></span><%= t('home.micropost.create') %></b></p>
     <span style="clear:both;"></span>
 	<!-- <div class="field">

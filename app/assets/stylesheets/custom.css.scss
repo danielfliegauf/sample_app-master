@@ -1,13 +1,13 @@
 @import "bootstrap";
 
 /* mixins, variables, etc. */
-$grayMediumLight: #eaeaea;
-$gray: #08C;
-$blue: #EEFFCC;
+$grayMediumLight: hsl(0, 0%, 92%);
+$gray: hsl(200, 100%, 40%);
+$blue: hsl(80, 100%, 90%);
 
 @mixin box_sizing {
 	-moz-box-sizing: border-box;
-	-webkit-bix-sizing: border-box;
+	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 }
 
@@ -158,12 +158,39 @@ padding-top: 195px;
 #whatfbknows {
 }
 
+.hombase > #combobox {
+	
+}
 /* header */
 #logo {
 float: left;
 margin-bottom: -41px;
 }
 
+/* Hombebase Question Div*/
+
+.homebase_linkkill{
+	width: 100%;
+	height: 2000px;
+	background: rgba(10,10,10,0.5);
+	z-index: 1099;
+	position: absolute;
+	top: -20px;
+	left: 0px;
+
+}
+
+.homebase {
+h2 {color: #fff}
+	color: #fff;
+	width: 600px;
+	height: 200px;
+	background: rgba(10,10,10,0.8);
+	position: absolute;
+	top: 100px;
+	left: 300px;
+	z-index: 200;
+}
 
 
 /* footer */
@@ -269,6 +296,10 @@ aside {
 
 /* forms */
 
+.centerinput {
+	margin-bottom: 0px !important;
+}
+
 input, textarea, .uneditable-input {
 	border: 1px solid #bbb;
 	width: 100%;
@@ -319,6 +350,10 @@ clock_mobile {
 div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 	width:40%;
 	float: left;
+}
+
+#editHomebaseDiv {
+	display: none;
 }
 
 
@@ -373,7 +408,7 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 	li {
 		height: 90px;
 		padding: 30px 28px 110px 30px;
-		border-top: 1px solid #E8E8E8;
+		border-top: 1px solid hsl(0, 0%, 91%);
 		background-image: url("/assets/paper.jpg");
 		line-height: 29px;
 	}
@@ -415,14 +450,14 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 }
 
 .timestamp {
-	color: #5F5F5F;
+	color: hsl(0, 0%, 37%);
 	position: relative;
 	bottom: 35px;
 	left: 30px;
 }
 
 .timestamp_details {
-	color: #CCCCCC;
+	color: hsl(0, 0%, 80%);
 	float: right;
 }
 
@@ -542,6 +577,16 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 			margin-top: 230px;
 		} */
 	}
+}
+/* InteressenAuswahl nebeneinander und Button weiter unten */
+.interestbutton {
+	margin-top: 30px;
+}
+
+.left {
+	float: left;
+	margin: 0px;
+	padding-bottom: 7px;
 }
 
 /* Micropost Form ----------- */

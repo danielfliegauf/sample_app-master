@@ -16,6 +16,20 @@
 					<br>
 					<p><%= t('knock') %><%= link_to "Change it!", root_path(:not_logged_in => true) %></p>
 				<% else %>
+
+
+					<h3 style="padding-left: 20px;">Andere Interessenten</h3>
+				<table class="span4 table table-condensed table-hover">
+					
+					<% @interests.each do |interest|%>
+
+					<tr>
+						<td><%= interest.hobby %></td>
+					</tr>		
+					<% end %>
+				</table>
+
+
 					<h3><%= t('search_result') %></h3>
 					<ol class="microposts">
 						<% for @micropost in @microposts %>

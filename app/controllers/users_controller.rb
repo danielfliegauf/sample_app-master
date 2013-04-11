@@ -11,7 +11,11 @@ class UsersController < ApplicationController
 
     #nur für currentuser...
     if @user == current_user
-      #frage nach aktuellem user ob in grouppe, aber nur wenn user.group == nil...
+      @interests = Array.new
+      @user.interests.each do |i|
+        @interests.push(i.hobby)
+      end
+      #frage nach aktuellem user ob in gruppe, aber nur wenn user.group == nil...
       fbuser = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
       #Teste ob User in FB Gruppe
       group = fbuser.groups
@@ -34,6 +38,27 @@ class UsersController < ApplicationController
 
     else
       #user nicht current_user
+
+      #Zuerst schauen ob CurrentUser in Gruppe
+      if current_user.group == false
+          #frage nach aktuellem user ob in gruppe, aber nur wenn user.group == nil...
+        fbcurrent_user = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
+        #Teste ob User in FB Gruppe
+        group = fbcurrent_user.groups
+
+        group.each do |x|
+          if x.name == 'Connectify'
+            @group_attribute = true
+            current_user.group = true
+            break
+          else
+            @group_attribute = false
+            current_user.group = false
+          end
+        end
+
+        current_user.save
+      end
       
         fbuser = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
         
@@ -94,16 +119,29 @@ class UsersController < ApplicationController
 
   def edit #deprecated!
     #@user = User.find(params[:id]) #GIBTS SCHON IN correct_user before_filter!!
+    
+
   end
 
   def update
     #@user = User.find(params[:id]) #GIBTS SCHON IN correct_user before_filter!!
-    if @user.update_attributes(params[:user])
-      flash[:success] = "Profile updated"
-      sign_in @user
-      redirect_to @user
-    else
-      render 'edit'
+    # if @user.update_attributes(params[:user])
+    #   flash[:success] = "Profile updated"
+    #   sign_in @user
+    #   redirect_to @user
+    # else
+    #   render 'edit'
+    # end
+    current_user.homebase = params[:user][:homebase] #TODO: brauchen die translation in der db!
+    current_user.save!
+    current_user.interests.each do |i|
+      i.homebase = params[:user][:homebase]
+      i.save!
+    end
+    respond_to do |format|
+      format.html {
+        redirect_to user_path}
+      format.js
     end
   end
 

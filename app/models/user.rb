@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :reverse_invitations, foreign_key: "invited_id", class_name: "Invitation", dependent: :destroy
   has_many :inviters, through: :reverse_invitations, source: :inviter
 
+  has_many :interests, dependent: :destroy
   # has_secure_password
 
   # before_save { |user| user.email = email.downcase }
@@ -89,6 +90,14 @@ class User < ActiveRecord::Base
 
   def invited?(other_user)
     invitations.find_by_invited_id(other_user)
+  end
+
+  def interested!(interest, homebase)
+      interests.create!(hobby: interest, homebase: homebase)
+  end
+
+  def not_interested!(interest)
+      interests.find_by_hobby(interest).destroy
   end
 
 

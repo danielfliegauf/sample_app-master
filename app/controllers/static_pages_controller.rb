@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   def home
     @not_logged_in = params[:not_logged_in]
+    #new users list 
     @users = User.all(:order => "created_at DESC", :limit => 10)
   	if signed_in?
       if (Time.parse(current_user.oauth_expires_at)+(60*60*2) <= Time.new() )
@@ -8,6 +9,12 @@ class StaticPagesController < ApplicationController
         end
 	  	@micropost = current_user.microposts.build
 	  	@feed_items = current_user.feed.paginate(page: params[:page])
+
+      unless current_user.homebase
+
+        @place 
+         
+      end
       # @city = Micropost.find(:distinct)
       # @city = Micropost.find_by_sql('SELECT DISTINCT place FROM microposts') #evtl unnötig ?!!yep
       end
@@ -39,6 +46,8 @@ class StaticPagesController < ApplicationController
       if @microposts.length == 0
         flash[:error] = "NO MICROPOSTS"
       end
+
+      @interests = Interest.where("homebase = ? AND hobby = ?", params[:place], "climbing") #homebase muss unique sein
   end
 
   def write

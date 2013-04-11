@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404092324) do
+ActiveRecord::Schema.define(:version => 20130410211542) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -23,6 +23,16 @@ ActiveRecord::Schema.define(:version => 20130404092324) do
   end
 
   add_index "comments", ["micropost_id"], :name => "index_comments_on_micropost_id"
+
+  create_table "interests", :force => true do |t|
+    t.string   "hobby"
+    t.string   "homebase"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "interests", ["user_id"], :name => "index_interests_on_user_id"
 
   create_table "invitations", :force => true do |t|
     t.integer  "inviter_id", :limit => 8
@@ -52,8 +62,10 @@ ActiveRecord::Schema.define(:version => 20130404092324) do
     t.string   "status"
     t.string   "latlng"
     t.string   "level"
+    t.integer  "zipcode"
   end
 
+  add_index "microposts", ["place", "user_id"], :name => "index_microposts_on_place_and_user_id"
   add_index "microposts", ["user_id", "created_at"], :name => "index_microposts_on_user_id_and_created_at"
 
   create_table "mindposts", :force => true do |t|
@@ -110,6 +122,7 @@ ActiveRecord::Schema.define(:version => 20130404092324) do
     t.string   "oauth_expires_at"
     t.string   "last_active"
     t.boolean  "group"
+    t.string   "homebase"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

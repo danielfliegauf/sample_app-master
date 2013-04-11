@@ -2,11 +2,10 @@
 <% if signed_in? %>
 <% if current_user.admin? && !current_user?(@user) %>
 	| <%= link_to "delete", @user, method: :delete, data: { confirm: "You sure?" } %>
-	<% end %>
+<% end %>
 <div class="row">
 	<aside class="span4">
-		<section>
-			
+		<section>			
 			<h1>
 				<%= gravatar_for @user, size: 110 %>
 				<%= @user.name %>
@@ -16,7 +15,7 @@
 			<%= render 'shared/stats' %>
 		</section>
 		<section>
-		<% unless current_user?(@user) %>
+		<% unless current_user?(@user) #Facebook Gruppentest%>
 				<% if @user.group == true && current_user.group == true %>
 					<%= link_to_function "Schreibe #{ @user.name.split[0] } über Facebook", "postToUser2( '#{@user.uid}', '#{current_user.name.split[0]}'); return false;", class: 'btn btn-warning', :target => '_blank' %><br><br>
 				<% else %>
@@ -43,13 +42,79 @@
 		<!-- <%= render 'invite_form' if signed_in? %> -->
 	</div>
 	<div class="span8">
-		<% if @user.microposts.any? %>
-			<h3>Microposts (<%= @user.microposts.count %>)</h3>
-			<ol class="microposts">
-				<%= render @microposts %>
-			</ol>
-			<%= will_paginate @microposts %>
+		<% unless current_user?(@user) %>
+			<% if @user.microposts.any? %>
+				<h3><%=@user.name.split[0] %>'s Activities (<%= @user.microposts.count %>)</h3>
+				<ol class="microposts">
+					<%= render @microposts %>
+				</ol>
+				<%= will_paginate @microposts %>
+				<% else %>
+				<h3><%=@user.name.split[0] %> ist neu auf Connectify und hat bisher noch keine Activities erstellt.</h3>
+				<p class="lead">Folge <%=@user.name.split[0] %>, um seine/ihre zukünftigen Activities auf deiner Pinnwand einzublenden.</p>
+			<% end %>
+		<% else %>
+			<% if @user.microposts.any? %>
+				<h3 style="padding-left: 20px;">Meine Activities</h3>
+				<table class="span4 table table-condensed table-hover">
+					<% i= @microposts.count %>
+					<% @microposts.each do |micropost|%>
+
+					<tr>
+						<td><%= i %></td>
+						<td>
+							<a href="<%= micropost_path(micropost.id) %>">
+								<%= t('home.micropost.'+micropost.hobby) %> <%= infrom(micropost.hobby) %> <%= t('home.micropost.'+micropost.place) %>
+								<% if micropost.weekday != "11" %>
+									<em><%= t('home.micropost.time_on') %> <%= I18n.localize(micropost.datetime) %></em>
+								<% else %>
+									<div style="color: red;"><%= t('home.micropost.time_till_delete_from_searchindex') + " (in " + time_ago_in_words(micropost.datetime) + ")"  if ((micropost.datetime - Time.now) < (60*60*24*7*3)) %></div>
+								<% end %>
+							</a>
+						</td>
+						<td>
+							<span class="lsf" style="color: #C9C9C9; font-size: 25px;">comment</span>
+							<%= micropost.comments.count %>
+							<% @unread = micropost.comments.where("read = ?", false).count %>
+							<b><%= "("+@unread.to_s+")" if (@unread > 0) %></b>
+						</td>
+						<td><%= link_to "trash", micropost, method: :delete, data: { confirm: "You sure?" }, title: t('link.delete'), class: "lsf", style: "" %></td>
+						</tr>
+						<% i = i-1 %>
+					<% end %>
+				</table>
+			<% end %><!-- any? -->
+				<div class="span5">
+					<h3>Meine Heimatstadt</h3>
+					<div class="span2"><p class="lead"><%= t('home.micropost.'+@user.homebase) %></div>
+					<div class="span2"></p><a href="#" id="editHomebase">edit</a></div>
+					<div class="span5" id="editHomebaseDiv">
+						<%= form_for(current_user, method: "PUT") do |f| %>
+						<input class="input-large centerinput" id="prependedInput" name="user[homebase2]" type="text" data-provide="typeahead" >
+						<%= hidden_field_tag "user[homebase]", '' %>					
+						<%= f.submit t('savecity'), class: "btn btn-small btn-primary", :onclick => "return validateHomebase()" %>
+						<% end %>
+					</div>
+				</div>
+			<div class="span8"><%= @interest %>
+				<h3>Meine Interessen</h3>
+				<%= form_for(current_user.interests.build) do |f| %>
+			      <% sports.sort.each do |hobby| %>
+			      <div class="span2 left">
+			      		<% if @interests.include?(hobby) %>       
+			            <label><%= check_box_tag "interests["+hobby+"]", hobby, true %> <%= t('home.micropost.'+hobby) %></label>
+			            <% else %>
+			            <label><%= check_box_tag "interests["+hobby+"]", hobby, false %> <%= t('home.micropost.'+hobby) %></label>
+			            <% end %>
+			      </div>	      
+			     <% end %>
+			    <div class="span8">
+    				<%= f.submit t('saveinterest'), class: "btn btn-primary btn-small interestbutton" %>
+    			</div>
+  <% end %>
+			</div>
 		<% end %>
+
 	</div>
 </div>
 <script>$('#togg').tooltip('toggle')</script>
@@ -64,3 +129,80 @@
 <%= link_to "Connect me!", "/auth/facebook", id: "sign_in", class: "btn btn-large btn-primary" %>
 </div>
 <% end %>
+
+<script type="text/javascript">
+var selectedState;
+
+$('#prependedInput').typeahead({
+    source: function (query, process) {
+        states = [];
+    map = {};
+ 
+    var data = [
+        {"stateCode": "Karlsruhe", "stateName": "<%= escape_javascript(t('home.micropost.Karlsruhe')) %>"},
+        {"stateCode": "Munich", "stateName": "<%= escape_javascript(t('home.micropost.Munich')) %>"},
+        {"stateCode": "Konstanz", "stateName": "<%= escape_javascript(t('home.micropost.Konstanz')) %>"},
+        {"stateCode": "Stuttgart", "stateName": "<%= escape_javascript(t('home.micropost.Stuttgart')) %>"},
+        {"stateCode": "Singen", "stateName": "<%= escape_javascript(t('home.micropost.Singen')) %>"}
+    ];
+ 
+    $.each(data, function (i, state) {
+        map[state.stateName] = state;
+        states.push(state.stateName);
+    });
+ 
+    process(states);
+    },
+    updater: function (item) {
+        selectedState = map[item].stateCode;
+        document.getElementById('user_homebase').value = selectedState;
+        return item;
+    },
+    matcher: function (item) {
+        if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) != -1) {
+        return true;
+    }
+    },
+    sorter: function (items) {
+        return items.sort();
+    },
+    highlighter: function (item) {
+       var regex = new RegExp( '(' + this.query + ')', 'gi' );
+       return item.replace( regex, "<strong>$1</strong>" );
+    },
+});
+
+function validateHomebase(){
+  var citylist = new Array("Karlsruhe",
+              "Konstanz",
+              "Munich",
+              "Stuttgart",
+              "Singen"
+
+          );
+  var item = document.getElementById('user_homebase').value;
+  
+  if (item == '' || item == null){
+    document.getElementById('prependedInput').focus();
+    return false;
+  }
+  for (var i = 0; i < citylist.length; i++) {
+    if(item == citylist[i]) {
+      return true;
+      break;
+      
+    }
+    
+  }
+  
+    return false;
+};
+
+$(document).ready( function () {
+	$("#editHomebase").click( function (event) {
+		event.preventDefault();
+		$("#editHomebaseDiv").fadeToggle();
+	});
+});
+
+</script>

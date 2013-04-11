@@ -1,13 +1,13 @@
 <ol class="micropost">
 
-    <p class="hobby"><%= t('home.micropost.'+@micropost.hobby) %></p>
+  <p class="hobby"><%= t('home.micropost.'+@micropost.hobby) %></p>
   <p class="place"><%= infrom(@micropost.hobby) %> <%= t('home.micropost.'+@micropost.place) %></p>
   <% if @micropost.weekday != "11" %>
     <p class="time"><%= t('home.micropost.time_on') %> <%= I18n.localize(@micropost.datetime) %></p><br>
   <% end %>
   <li>
     <% if current_user == @micropost.user %>
-      <span class="writeFacebook"><%= link_to_function "poste an deine Facebook Pinnwand", "postToFeed('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', #{@micropost.weekday}); return false;", :class => "btn btn-primary btn-large" %> </span>
+     <!--  <span class="writeFacebook"><%= link_to_function "poste an deine Facebook Pinnwand", "postToFeed('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', #{@micropost.weekday}); return false;", :class => "btn btn-primary btn-large" %> </span> -->
       
     <% else %>
         <% if @micropost.user.group == true && current_user.group == true %>
@@ -22,19 +22,14 @@
         <%= link_to "#{ @micropost.user.name.split[0] }'s Profil auf Facebook", "https://facebook.com/#{@micropost.user.uid}", class: 'btn btn-primary btn-large', :target => '_blank' %>
         <%= link_to "Schreibe #{ @micropost.user.name.split[0] } eine eMail", "mailto:"+@micropost.user.email, class: 'btn btn-success btn-large', :target => '' %>
     <% end %>
-      <li>
+  </li>
 	<li id="<%= @micropost.id %>">
-					<%= link_to gravatar_for(@micropost.user, size: 120), @micropost.user %>
-					<span class="user">
-						<%= link_to @micropost.user.name, @micropost.user %>
-					<span class="content"><%= @micropost.content %></span>
-					
-					<span class="timestamp_details">
-    <%= t('feed_item.posted') %> <%= time_ago_in_words(@micropost.created_at) %> <%= t('feed_item.ago') %>.
-  </span>
-					
-<div style="clear: both"></div>
-						
+		<%= link_to gravatar_for(@micropost.user, size: 120), @micropost.user %>
+		<span class="user"><%= link_to @micropost.user.name, @micropost.user %></span>
+		<span class="content"><%= @micropost.content %></span>
+		<span class="timestamp_details"><%= t('feed_item.posted') %> <%= time_ago_in_words(@micropost.created_at) %> <%= t('feed_item.ago') %>.</span>
+    <div style="clear: both"></div>
+	</li>
   <li>
     <div id="map_canvas" style="width:80%; height:350px"></div>
   </li>
@@ -48,6 +43,8 @@
     <%= render "comments/form" %>
   </li>
 </ol>
+
+
 <script type="text/javascript">
 
 window.onload = initialize();

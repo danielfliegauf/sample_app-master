@@ -1,5 +1,5 @@
 class Micropost < ActiveRecord::Base
-  attr_accessible :content, :hobby, :place, :datetime, :weekly, :weekday, :status, :latlng, :level, :country, :zeit #time_for TYPO!!!
+  attr_accessible :content, :hobby, :place, :datetime, :weekly, :weekday, :status, :latlng, :level, :country, :zeit, :zipcode #time_for TYPO!!!
   belongs_to :user
   has_many :mindposts, dependent: :destroy
   has_many :comments, :dependent => :destroy

@@ -1,6 +1,45 @@
 <% provide(:title, 'Home') %>
 
 <% if signed_in? %>
+
+<% if current_user.homebase == '' || nil %>
+<div class="homebase_linkkill">
+  <div class="homebase">
+    <div id="hombase_form" class="allusers row">
+      <h2 style="font-weight: bold;">2 Dinge noch bevor es losgeht</h2>
+  <div class="input-append span2 offset2">
+
+    <%= form_for(current_user, remote: true) do |f| %>
+
+    <%= f.label :homebase, "Deine Heimatstadt", class: "lead" %>:
+  
+  <input class="input-large" id="prependedInput" name="user[homebase2]" type="text" data-provide="typeahead" >
+  <%= hidden_field_tag "user[homebase]", '' %>
+
+  <%= f.submit "Weiter", class: "btn btn-primary", :onclick => "return validateHomebase()" %>
+<% end %>
+    </div></div>
+<div id="homebase_form2" class="allusers row" style="display: none;">
+      <h2 style="font-weight: bold; margin-bottom: -10px;">Wähle deine Interessen:</h2><p class="" style="text-align: center;">(klicke auf die Namen)</p>
+  <div class="span4 offset2">
+    <% i=2 %>
+    <%= form_for(current_user.interests.build, remote: true) do |f| %>
+      <% sports.sort.each do |hobby| %>
+      <div class="field span2 left">       
+            <label><%= check_box_tag "interests["+hobby+"]" %> <%= t('home.micropost.'+hobby) %></label>
+      </div>
+      
+     <% end %>
+     <br><br>
+    <%= f.submit "Fertig", class: "btn btn-primary interestbutton" %>
+  <% end %>
+
+</div>
+</div>
+  
+
+</div></div>
+<% end %>
 <div class="row">
   <aside class="span4">
     <section>
@@ -22,6 +61,73 @@
 </div>
 
 <script type="text/javascript">
+var selectedState;
+
+$('#prependedInput').typeahead({
+    source: function (query, process) {
+        states = [];
+    map = {};
+ 
+    var data = [
+        {"stateCode": "Karlsruhe", "stateName": "<%= escape_javascript(t('home.micropost.Karlsruhe')) %>"},
+        {"stateCode": "Munich", "stateName": "<%= escape_javascript(t('home.micropost.Munich')) %>"},
+        {"stateCode": "Konstanz", "stateName": "<%= escape_javascript(t('home.micropost.Konstanz')) %>"},
+        {"stateCode": "Stuttgart", "stateName": "<%= escape_javascript(t('home.micropost.Stuttgart')) %>"},
+        {"stateCode": "Singen", "stateName": "<%= escape_javascript(t('home.micropost.Singen')) %>"}
+    ];
+ 
+    $.each(data, function (i, state) {
+        map[state.stateName] = state;
+        states.push(state.stateName);
+    });
+ 
+    process(states);
+    },
+    updater: function (item) {
+        selectedState = map[item].stateCode;
+        document.getElementById('user_homebase').value = selectedState;
+        return item;
+    },
+    matcher: function (item) {
+        if (item.toLowerCase().indexOf(this.query.trim().toLowerCase()) != -1) {
+        return true;
+    }
+    },
+    sorter: function (items) {
+        return items.sort();
+    },
+    highlighter: function (item) {
+       var regex = new RegExp( '(' + this.query + ')', 'gi' );
+       return item.replace( regex, "<strong>$1</strong>" );
+    },
+});
+
+function validateHomebase(){
+  var citylist = new Array("Karlsruhe",
+              "Konstanz",
+              "Munich",
+              "Stuttgart",
+              "Singen"
+
+          );
+  var item = document.getElementById('user_homebase').value;
+  
+  if (item == '' || item == null){
+    document.getElementById('prependedInput').focus();
+    return false;
+  }
+  for (var i = 0; i < citylist.length; i++) {
+    if(item == citylist[i]) {
+      return true;
+      break;
+      
+    }
+    
+  }
+  
+    return false;
+};
+
 
 function validateform(){
 
@@ -57,6 +163,7 @@ window.onload = initialize();
   var marker;
   var city; //2mal vorhanden!
   var country;
+  var zipcode;
  
    
 
@@ -119,12 +226,17 @@ window.onload = initialize();
 
                         //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
                         if (results[0].address_components[i].types[b] == "locality") {
-                            //this is the object you are looking for
+                    //this is the object you are looking for
                             city= results[0].address_components[i];
-                            address = results[0].formatted_address;
-                            country = results[0].formatted_address.split(","); //TODO! stimmt das ?
+                        }
+                        if (results[0].address_components[i].types[b] == "postal_code") {
+                            //this is the object you are looking for
+                            zipcode = results[0].address_components[i];
                             
-                            break;
+                        }
+                        if (results[0].address_components[i].types[b] == "country") {
+                            //this is the object you are looking for
+                            country = results[0].address_components[i];
                         }
                       }
                       }
@@ -136,7 +248,8 @@ window.onload = initialize();
                     document.getElementById('micropost_place').selectedIndex = 0;
                     //document.getElementById('address').innerHTML = address;
                     //document.getElementById('testland').innerHTML = country[country.length-1];
-                    document.getElementById('micropost_country').value = country[country.length-1];
+                    document.getElementById('micropost_country').value = country.short_name;
+                    document.getElementById('micropost_zipcode').value = zipcode.short_name;
                   }
                   } else {
                   alert("Geocoder failed due to: " + status);
@@ -175,8 +288,15 @@ window.onload = initialize();
                 if (results[0].address_components[i].types[b] == "locality") {
                     //this is the object you are looking for
                     city= results[0].address_components[i];
-                    country = results[0].address_components[4]; //TODO! stimmt das ?
-                    break;
+                }
+                if (results[0].address_components[i].types[b] == "postal_code") {
+                    //this is the object you are looking for
+                    zipcode = results[0].address_components[i];
+                    
+                }
+                if (results[0].address_components[i].types[b] == "country") {
+                    //this is the object you are looking for
+                    country = results[0].address_components[i];
                 }
             }
             }
@@ -187,10 +307,8 @@ window.onload = initialize();
           document.getElementById('micropost_place').childNodes[0].innerHTML = city.short_name;
           document.getElementById('micropost_place').selectedIndex = 0;
           //document.getElementById('address').innerHTML = results[0].formatted_address;
-          //Array for country
-          country = results[0].formatted_address.split(","); //TODO! stimmt das ?
-          //document.getElementById('testland').innerHTML = country[country.length-1];
-          document.getElementById('micropost_country').value = country[country.length-1];
+          document.getElementById('micropost_country').value = country.short_name;
+          document.getElementById('micropost_zipcode').value = zipcode.short_name;
         }
       } else {
         alert("Geocoder failed due to: " + status);
@@ -250,7 +368,7 @@ window.onload = initialize();
         else {
           document.getElementById('ie08').innerHTML = "Please get yourself a better and SAFE browser: <a href='http://abetterbrowser.org/' target='_new'>Go here for more Information</a>";
           document.getElementById('micropost_latlng').value = '(50.2979254, 10.486495800000057)';
-           document.getElementById('micropost_country').value = "Germany"; //TODO: Need to get city.object!
+           document.getElementById('micropost_country').value = "DE"; //TODO: Need to get city.object!
            document.getElementById('canvas2').innerHTML = "Sorry but this function is not supported with your browser!";
         }
   }
@@ -262,7 +380,7 @@ window.onload = initialize();
           map.setCenter(results[0].geometry.location);
           //change hiden_field latlng
          document.getElementById("micropost_latlng").value = results[0].geometry.location;
-         document.getElementById("micropost_country").value = " Germany";
+         document.getElementById("micropost_country").value = " DE";
 
         
         }

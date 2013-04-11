@@ -7,15 +7,17 @@ scope "(:locale)", :locale => /en|de/ do
 
   resources :users do
     member do
-      get :following, :followers
+      get :following, :followers, :interests, :microposts
     end
   end
 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :microposts, only: [:create, :destroy, :update] do
+  resources :microposts do
     resources :comments
     
   end
+
+  resources :interests, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :invitations, only: [:create, :destroy]
   resources :mindposts, only: [:create, :destroy]
