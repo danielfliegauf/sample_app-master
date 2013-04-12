@@ -15,6 +15,7 @@ gem 'omniauth-facebook'
 gem "fb_graph", "~> 2.5.0"
 gem 'bootstrap-datepicker-rails'
 gem 'newrelic_rpm'
+gem 'trackman'
 # gem "koala"
 
 # Bundle edge Rails instead:
