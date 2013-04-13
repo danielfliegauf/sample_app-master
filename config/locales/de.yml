@@ -42,6 +42,8 @@ de:
   nojs: "Du hast kein Javascript aktiviert. Leider ist Javascript nötig, um diese App zu nutzen."
   savecity: "Heimatstadt aktualisieren"
   saveinterest: "Interessen aktualisieren"
+  whovisited: 'die dein Profil'
+  yourprofile: 'besucht haben'
   home:
     whatsupincity: "Was ist los in deiner Stadt?"
     findasportpartner: "Finde einen Sportpartner, der zu dir passt."

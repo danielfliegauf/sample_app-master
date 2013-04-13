@@ -383,10 +383,33 @@ div[class=ui-select]:nth-child(5), div[class=ui-select]:nth-child(6){
 	}
 }
 
+.nomargin {
+	&:last-child {
+		margin-bottom: 20px !important;
+	}
+}
+
 .allusers {
 	.input-append input {
 			height: auto;
 		}
+}
+
+.small {
+	color: rgb(175, 174, 174);
+	font-size: 0.8em;
+	line-height: 13px;
+	padding-top: 20px;
+}
+
+.newsheadline {
+	padding-top: 20px;
+	margin-bottom: 0px;
+}
+
+.newstext {
+	font-size: 1em;
+	max-width: 450px;
 }
 
 /* search result */

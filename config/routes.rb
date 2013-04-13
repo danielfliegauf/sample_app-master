@@ -7,7 +7,7 @@ scope "(:locale)", :locale => /en|de/ do
 
   resources :users do
     member do
-      get :following, :followers, :interests, :microposts
+      get :following, :followers, :interests, :microposts, :visitors
     end
   end
 

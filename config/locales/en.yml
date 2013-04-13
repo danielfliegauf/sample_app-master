@@ -44,6 +44,8 @@ en:
   nojs: "You don't have javascript enabled.  Unfortunatly you need it to access this app."
   savecity: "Update Hombebase"
   saveinterest: "Update Interests"
+  whovisited: 'who visited'
+  yourprofile: 'your profile'
   home:
     whatsupincity: "What's going on in your city?"
     findasportpartner: "Find the perfect sportpartner."

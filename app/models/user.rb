@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
   has_many :inviters, through: :reverse_invitations, source: :inviter
 
   has_many :interests, dependent: :destroy
+
+  has_many :user_visits, dependent: :destroy
+  has_many :visitors, :through => :user_visits, :source => :visitor
   # has_secure_password
 
   # before_save { |user| user.email = email.downcase }
@@ -46,9 +49,10 @@ class User < ActiveRecord::Base
       user.oauth_token = auth.credentials.token
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.email = auth.info.email
-      if user.uid.to_s == "1423616689"
-        user.admin = true
-      end
+      user.group = false
+      # if user.uid.to_s == "1423616689"
+      #   user.admin = true
+      # end
       # user.update_attributes(:oauth_token => auth.credentials.token)
       
       if (!where(auth.slice(:provider, :uid)).first)

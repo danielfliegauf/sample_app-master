@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
     @microposts = @user.microposts.paginate(page: params[:page])
 
+    
     #nur für currentuser...
     if @user == current_user
       @interests = Array.new
@@ -37,70 +38,79 @@ class UsersController < ApplicationController
       current_user.save
 
     else
+      begin
       #user nicht current_user
-
-      #Zuerst schauen ob CurrentUser in Gruppe
-      if current_user.group == false
-          #frage nach aktuellem user ob in gruppe, aber nur wenn user.group == nil...
-        fbcurrent_user = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
-        #Teste ob User in FB Gruppe
-        group = fbcurrent_user.groups
-
-        group.each do |x|
-          if x.name == 'Connectify'
-            @group_attribute = true
-            current_user.group = true
-            break
-          else
-            @group_attribute = false
-            current_user.group = false
-          end
-        end
-
-        current_user.save
+      @exist = UserVisit.where(user_id: @user.id).where(visitor_id: current_user.id).first
+      if @exist.nil?
+      @user.user_visits.build(:visitor_id => current_user.id).save!
       end
+
+
+      #user oauth abgelaufen
+      if ((Time.now <=> (Time.parse(@user.oauth_expires_at)+(60*60))) == 1)
+        #do something
+        
+
+      else #user oauth noch nicht abgelaufen
+      #Zuerst schauen ob CurrentUser in Gruppe
+        if current_user.group == false || current_user.group == nil
+            #frage nach aktuellem user ob in gruppe, aber nur wenn user.group == nil...
+          fbcurrent_user = FbGraph::User.fetch(current_user.uid, :access_token => current_user.oauth_token)
+          #Teste ob User in FB Gruppe
+          group = fbcurrent_user.groups
+
+          group.each do |x|
+            if x.name == 'Connectify'
+              current_user.group = true
+              break
+            else
+              current_user.group = false
+            end
+          end
+
+          if fbcurrent_user.groups.empty?
+          current_user.group = false
+          
+          end
+          current_user.save
+        end
       
         fbuser = FbGraph::User.fetch(@user.uid, :access_token => @user.oauth_token)
         
-        #if group array emty!
         fbuser.groups.each do |x|
           if x.name == 'Connectify'
-            @group_user = true
             @user.group = true
             break
           else
-            @group_user = false
             @user.group = false
           end
         end
 
         if fbuser.groups.empty?
-           @group_user = false
            @user.group = false
         end
         @user.save
- 
 
-  
-        fbcurrent_user = FbGraph::User.fetch(current_user.uid, :access_token => current_user.oauth_token)
-        fbcurrent_user.groups.each do |x|
-          if x.name == 'Connectify'
-            @group_current_user = true
-            current_user.group = true
-            break #sonst läuft die schleife über andereObjekte weiter und setzt @group wieder auf false!!!
-          else
-            @group_current_user = false
-            current_user.group = false
-          end
+
+      end #end user oauth abgelaufen
+
+      rescue FbGraph::Unauthorized => e
+        case e.message
+        when /Duplicate status message/
+          
+          # handle dup code
+        when /Error validating access token/
+                 
+          # handle bad credentials
+        else
+          raise e
         end
-        current_user.save
-
-
-    end
+       end #end rescue
+    end # end current oder other user
 
 
 
-  end
+  end #end class
 
   def new #deprecated
   	@user = User.new

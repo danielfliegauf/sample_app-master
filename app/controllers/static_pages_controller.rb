@@ -5,10 +5,12 @@ class StaticPagesController < ApplicationController
     @users = User.all(:order => "created_at DESC", :limit => 10)
   	if signed_in?
       if (Time.parse(current_user.oauth_expires_at)+(60*60*2) <= Time.new() )
+        store_location
           redirect_to "/auth/facebook" #TODO: remember redirect
         end
 	  	@micropost = current_user.microposts.build
 	  	@feed_items = current_user.feed.paginate(page: params[:page])
+      @visitors = UserVisit.where(user_id: current_user.id).order("created_at DESC").limit(6)
 
       unless current_user.homebase
 

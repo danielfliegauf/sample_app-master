@@ -54,7 +54,15 @@
     </section>
   </aside>
   <div class="span8">
-    
+    <div class="users row" style="margin-left: 20px;">
+    <% @visitors.each do |v| %>
+    <div class="nomargin" style="width: 70px; height: 70px;">
+      <%= link_to gravatar_for(v.visitor, size: "70"), v.visitor %>
+    </div>
+    <% end %>
+    <%= image_tag "angelbracket.png", style: "padding-left: 10px; padding-top: 5px; float: left;" %>
+    <p class="small lead">User,<br> <%= t('whovisited') %><br> <%= t('yourprofile') %></p>
+  </div>
     <%= render 'shared/feed' %>
 
   </div>

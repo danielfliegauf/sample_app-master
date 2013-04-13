@@ -19,7 +19,7 @@
             <div class="sorry sorry_micropost2">Du bist nicht in der Connectify-Facebookgruppe und kannst daher <%= @micropost.user.name.split[0] %> nicht über Facebook schreiben. Klicke, um zu das zu <%= link_to "ändern", "http://facebook.com/groups/connectify", class: 'btn btn-mini', :target => '_blank' %></div><br>
           <% end %>
         <% end %>
-        <%= link_to "#{ @micropost.user.name.split[0] }'s Profil auf Facebook", "https://facebook.com/#{@micropost.user.uid}", class: 'btn btn-primary btn-large', :target => '_blank' %>
+        <%= button_to raw("<i class=\"icon-search icon-white\">Add To Cart</i>"), "https://facebook.com/#{@micropost.user.uid}", class: 'btn btn-primary btn-large', :target => '_blank' %>
         <%= link_to "Schreibe #{ @micropost.user.name.split[0] } eine eMail", "mailto:"+@micropost.user.email, class: 'btn btn-success btn-large', :target => '' %>
     <% end %>
   </li>
