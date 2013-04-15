@@ -13,8 +13,8 @@
 
     <%= f.label :homebase, "Deine Heimatstadt", class: "lead" %>:
   <div id="prependedInputErr"></div>
-  <input class="input-large" id="prependedInput" name="user[homebase2]" type="text" data-provide="typeahead" autocomplete="off">
-  <%= hidden_field_tag "user[homebase]", '' %>
+  <input class="input-large" id="prependedInput" name="user[homebase]" type="text" data-provide="typeahead" autocomplete="off">
+  
 
   <%= f.submit "Weiter", class: "btn btn-primary", :onclick => "return validateHomebase()" %>
 <% end %>

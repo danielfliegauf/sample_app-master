@@ -15,8 +15,10 @@ class User < ActiveRecord::Base
 
   has_many :interests, dependent: :destroy
 
-  has_many :user_visits, dependent: :destroy
+  has_many :user_visits, foreign_key: "user_id", dependent: :destroy
   has_many :visitors, :through => :user_visits, :source => :visitor
+
+  has_many :visited_users, foreign_key: "visitor_id", class_name: "UserVisit", dependent: :destroy
   # has_secure_password
 
   # before_save { |user| user.email = email.downcase }
