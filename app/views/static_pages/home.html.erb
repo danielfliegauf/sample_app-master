@@ -55,9 +55,9 @@
   </aside>
   <div class="span8">
       <% if @visitors.any? %>
-
     <div class="users row" style="margin-left: 20px;">
       <% @visitors.each do |v| %>
+      <% if v.uid.nil? %> <% break %> <% end %>
       <div class="nomargin" style="width: 70px; height: 70px;">
         <%= link_to gravatar_for(v.visitor, size: "70"), v.visitor %>
       </div>
