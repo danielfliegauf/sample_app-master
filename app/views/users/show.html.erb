@@ -89,7 +89,7 @@
 					<div class="span2"></p><a href="#" id="editHomebase">edit</a></div>
 					<div class="span5" id="editHomebaseDiv">
 						<%= form_for(current_user, method: "PUT") do |f| %>
-						<input class="input-large centerinput" id="prependedInput" name="user[homebase2]" type="text" data-provide="typeahead" >
+						<input class="input-large centerinput" id="prependedInput" name="user[homebase2]" type="text" data-provide="typeahead" autocomplete="off" >
 						<%= hidden_field_tag "user[homebase]", '' %>					
 						<%= f.submit t('savecity'), class: "btn btn-small btn-primary", :onclick => "return validateHomebase()" %>
 						<% end %>

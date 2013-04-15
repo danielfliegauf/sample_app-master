@@ -12,8 +12,8 @@
     <%= form_for(current_user, remote: true) do |f| %>
 
     <%= f.label :homebase, "Deine Heimatstadt", class: "lead" %>:
-  <div id="prependedInputErr"></div>
-  <input class="input-large" id="prependedInput" name="user[homebase2]" type="text" data-provide="typeahead" autocomplete="off">
+  
+  <input class="input-large" id="prependedInput" name="user[homebase2]" type="text" data-provide="typeahead" >
   <%= hidden_field_tag "user[homebase]", '' %>
 
   <%= f.submit "Weiter", class: "btn btn-primary", :onclick => "return validateHomebase()" %>
@@ -54,18 +54,15 @@
     </section>
   </aside>
   <div class="span8">
-      <% if @visitors.any? %>
-
     <div class="users row" style="margin-left: 20px;">
-      <% @visitors.each do |v| %>
-      <div class="nomargin" style="width: 70px; height: 70px;">
-        <%= link_to gravatar_for(v.visitor, size: "70"), v.visitor %>
-      </div>
-      <% end %>
-      <%= image_tag "angelbracket.png", style: "padding-left: 10px; padding-top: 5px; float: left;" %>
-      <p class="small lead">User,<br> <%= t('whovisited') %><br> <%= t('yourprofile') %></p>
+    <% @visitors.each do |v| %>
+    <div class="nomargin" style="width: 70px; height: 70px;">
+      <%= link_to gravatar_for(v.visitor, size: "70"), v.visitor %>
     </div>
     <% end %>
+    <%= image_tag "angelbracket.png", style: "padding-left: 10px; padding-top: 5px; float: left;" %>
+    <p class="small lead">User,<br> <%= t('whovisited') %><br> <%= t('yourprofile') %></p>
+  </div>
     <%= render 'shared/feed' %>
 
   </div>
@@ -113,14 +110,6 @@ $('#prependedInput').typeahead({
     },
 });
 
-if(typeof(String.prototype.trim) === "undefined")
-{
-    String.prototype.trim = function() 
-    {
-        return String(this).replace(/^\s+|\s+$/g, '');
-    };
-}
-
 function validateHomebase(){
   var citylist = new Array("Karlsruhe",
               "Konstanz",
@@ -129,10 +118,9 @@ function validateHomebase(){
               "Singen"
 
           );
-  var item = document.getElementById('user_homebase').value.trim();
+  var item = document.getElementById('user_homebase').value;
   
   if (item == '' || item == null){
-    document.getElementById('prependedInputErr').value = "Error: Bitte erneut eingeben!"
     document.getElementById('prependedInput').focus();
     return false;
   }
@@ -465,25 +453,27 @@ $('#togg').tooltip('toggle');
 
 <!-- When sombody got redirected from Search (*knock knock) he should see a message that he has to be logged in -->
 <% if (@not_logged_in) %><h1>Connectify</h1>
-  <p> We're sorry, but you must be logged in to write a Micropost.</p>
-<% end %>
- <div class="span12" style="background: url('/assets/shut_climbing.jpg') no-repeat right top; height: 600px;">
+<p> We're sorry, but you must be logged in to write a Micropost.</p>
+  <% else %>
 
- <div class="span6">
-  <div class="banner span6"><%= image_tag "connectify9.png" %></div>
-  <div class='buttonbox'><p class="lead" style="font-size: 1.2em; position: relative; top: -19px;"><%= t('home.findasportpartner') %></p>
-    <span class="lead"><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
-    <%= link_to t('home.connectme'), "/auth/facebook", id: "sign_in", class: "btn btn-large btn-success" %> <%= t('home.or') %>
-    <%= link_to t('home.tourstart'), "#", id: "tourstart", class: "btn btn-large btn-warning" %></span>
+  <% end %>
+  <div class="span5">
+    <div id="searchbox">
+      <p><symbol class="lsf-icon" title="search" style="font-size: 20px; color: #000;"></symbol><%= t('home.whatsupincity') %></p>
+        <%= form_tag({ :action => "search"}, :method => "get") do %>
+      <!-- <%= label_tag(:hobby, t('search_for')) %>
+       <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one_optional'), ""]))) %> -->
+      <%= select_tag(:place, options_for_select(citylist2.sort.unshift([t('home.micropost.select_city'), ""],["-------------------------------------------", ""])), style: "border-bottom: 0px; margin-bottom: 0px; width: 75%;") %>
+      
+      <%= submit_tag t('home.micropost.searchwithoutreg'), :name => nil, class: "btn"%>
+      <% end %>
   </div>
- <p class="lead"><%= t('home.tryitout') %><b><%= t('home.free') %></b>!</p>
-
-
-
- <p class="lead"><br><br><b>Hallo Konstanzer,</b><br>
-  eure Stadt wurde für den Start der BETA-Phase ausgewählt. Für <a href="matilto:comment.connectify@gmail.com">Verbesserungsvorschläge</a> oder <a href="matilto:comment.connectify@gmail.com">Fehlerbenachrichtungen</a> wären wir euch sehr dankbar. <b>Viel Spaß :D </b> </p>
+  <div class="banner"><%= image_tag "connectify9.png" %></div>
+  <div class='buttonbox'><p class="lead" style="font-size: 1.2em; position: relative; top: -19px;"><%= t('home.findasportpartner') %></p>
+  <span class="lead"><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
+<%= link_to t('home.connectme'), "/auth/facebook", id: "sign_in", class: "btn btn-large btn-success" %> <%= t('home.or') %>
+<%= link_to t('home.tourstart'), "#", id: "tourstart", class: "btn btn-large btn-warning" %></span>
 </div>
-
 <div id="tourdiv"><div id='tourwrapper'>
   <%= link_to "x", "#", id: "tourclose" %>
   <div id="tourpic" style="position: relative;"><%= image_tag "Tour1.png" %></div>
@@ -492,12 +482,42 @@ $('#togg').tooltip('toggle');
   <%= link_to t('home.connectme'), "/auth/facebook", id: "login", class: "btn btn-large btn-success" %></div>
 </div>
 </div>
+<div class="span7">
+
+<div id="myCarousel" class="carousel slide">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item"><%= image_tag "Beachvolleyball2@2x2.jpg", width: "100%" %></div>
+    <div class="item"><%= image_tag "Beachvolleyball1@2x.jpg", width: "100%" %></div>
+    <div class="item"><%= image_tag "front_bike_zweirad.jpg", width: "100%" %></div>
+    <div class="item"><%= image_tag "Jogging@2x.jpg", width: "100%" %></div>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
-
-
-
-
-
+</div>
+<div class="span12">
+  <p class="lead"><%= t('home.tryitout') %><b><%= t('home.free') %></b>!</p>
+</div>
+<div class="span7 offset5" style="text-align: right; float: right;">
+  <p class="lead"><%= t('home.stopquestion') %></p>
+  <a href="#" id="show_reallyforfree"><%= t('home.question1') %></a><br>
+  <div id="reallyforfree"><%= t('home.answer1') %><br></div>
+  <a href="#" id="show_whatfbknows"><%= t('doesfbknow') %></a><br>
+  <div id="whatfbknows"><%= t('home.answer2') %><br></div>
+  <a href="#" id="show_whatearns"><%= t('home.question3') %></a><br>
+  <div id="whatearns"><%= t('home.answer3') %><br></div>
+ </div>
+<div class="span12 lead">
+  <div><%= t('home.newmembers') %></div>
+<% @users.each do |user| %>
+  <div class="imagewrapper"><%= link_to gravatar_for(user, size: 80), user, class: "img-polaroid" %></div>
+<% end %>
+</div>
+<div class="span12">
+  <%= image_tag "connectifycomic.png" %>
+</div>
 </div><!-- fluid-close -->
 
 <script>

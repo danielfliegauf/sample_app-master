@@ -1,4 +1,4 @@
-<div><%= link_to gravatar_for(user, size: "140"), user %>
+<div class="imgdiv"><span class="imgtext"><%= user.name.split[0] %></span><%= link_to gravatar_for(user, size: "140"), user %>
 	<!-- <img src="https://graph.facebook.com/<%= user.uid %>/picture?type=large" class="" style="max-width: 140px;" /> -->
 	
 	<!-- <h3><%= link_to user.name, user %></h3>
@@ -7,3 +7,12 @@
 	<% end %> -->
 	
 </div>
+
+<script type="text/javascript">
+
+    $(".imgdiv").hover( function () {
+        $(this).children(":first").fadeIn(100); }, function () { 
+        $(this).children(":first").fadeOut(500);
+    });
+
+</script>
