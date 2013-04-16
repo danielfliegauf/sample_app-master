@@ -20,22 +20,22 @@ class Micropost < ActiveRecord::Base
     where("user_id IN (?) OR user_id = ? OR id IN (?)", followed_user_ids, user, mindpostings)
   end
 
-  def self.search(place)
-    # if hobby != '' && place != ''
-    #   find(:all, :order => 'id DESC', :conditions => ['hobby LIKE ? AND place LIKE ? AND datetime >= ?', "%#{hobby}%", "%#{place}%", Time.now])
-    #   #find(:all, :order => 'hobby ASC')
-    #   #find_by_sql('SELECT * FROM microposts WHERE hobby = "klettern"')
-    # elsif hobby == '' && place != ''
-    #   find(:all, :order => 'id DESC', :conditions => ['place LIKE ? AND datetime >= ?', "%#{place}%", Time.now])
-    # else
-    #   find(:all)
-    # end
-
-    if place != ''
+  def self.search(place, hobby)
+    if hobby != '' && place != ''
+      find(:all, :order => 'id DESC', :conditions => ['hobby LIKE ? AND place LIKE ? AND datetime >= ?', "%#{hobby}%", "%#{place}%", Time.now])
+      #find(:all, :order => 'hobby ASC')
+      #find_by_sql('SELECT * FROM microposts WHERE hobby = "klettern"')
+    elsif hobby == '' && place != ''
       find(:all, :order => 'id DESC', :conditions => ['place LIKE ? AND datetime >= ?', "%#{place}%", Time.now])
     else
       find(:all)
     end
+
+    # if place != ''
+    #   find(:all, :order => 'id DESC', :conditions => ['place LIKE ? AND datetime >= ?', "%#{place}%", Time.now])
+    # else
+    #   find(:all)
+    # end
   end
 
 

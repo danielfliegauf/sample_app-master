@@ -1,6 +1,8 @@
 <%= form_tag({ :action => "search"}, :method => "get") do %>
-<!-- <%= label_tag(:hobby, t('search_for')) %>
- <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one_optional'), ""]))) %> -->
-<%= select_tag(:place, options_for_select(citylist.sort.unshift([t('home.micropost.select_city'), ""],["-------------------------------------------", ""]))) %>
+<%= label_tag(:hobby, t('search_for_hobby')) %>
+ <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one_optional'), ""]))) %>
+ <%= label_tag(:place, t('search_for')) %>
+
+<%= select_tag(:place, options_for_select(citylist.sort.unshift([t('home.micropost.'+@lastsearch), @lastsearch_value],["-------------------------------------------", ""]))) %>
 <%= submit_tag t('home.micropost.gogetit'), :name => nil, class: "btn btn-large btn-primary"%>
 <% end %>

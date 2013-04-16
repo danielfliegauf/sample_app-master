@@ -44,12 +44,18 @@ class StaticPagesController < ApplicationController
   end
 
   def search
-      @microposts = Micropost.search(params[:place])
-      if @microposts.length == 0
-        flash[:error] = "NO MICROPOSTS"
+      @microposts = Micropost.search(params[:place], params[:hobby])
+      @interests = Interest.where("homebase = ? AND hobby = ?", params[:place], params[:hobby]) #homebase muss unique sein
+    if params[:place]
+      @lastsearch = params[:place]
+      if params[:place].nil?
+        @lastsearch = "select_city"
       end
-
-      @interests = Interest.where("homebase = ? AND hobby = ?", params[:place], "climbing") #homebase muss unique sein
+      @lastsearch_value = params[:place]
+    else
+      @lastsearch = "select_city"
+      @lastsearch_value = ""
+    end
   end
 
   def write

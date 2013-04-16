@@ -12,24 +12,35 @@
 		<br>
 			<%= t('search_not_valid') %>
 		<% else %>
+					<% if @interests.any? %>
+						<h3 style="padding-left: 20px;">Leute in deiner Nähe mit gleichen Interessen</h3>
+						<table class="span4 table table-condensed table-hover">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Name</th>
+									<th>Interessen</th>
+									<th></th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+						<% @interests.each do |interest|%>
+							<tr>
+								<td><%= gravatar_for(interest.user, size: "20") %></td>
+								<td><%= link_to interest.user.name.split[0], interest.user %></td>
+								<td><%= t('home.micropost.'+interest.user.interests[0].hobby) %></td>
+								<td><%= interest.user.interests[1] ? t('home.micropost.'+interest.user.interests[1].hobby) : "" %></td>
+								<td><%= interest.user.interests[2] ? t('home.micropost.'+interest.user.interests[2].hobby) : "" %></td>
+							</tr>
+						<% end %>
+					</tbody>
+						</table>
+					<% end %>
 				<% if @microposts.empty? %>
 					<br>
 					<p><%= t('knock') %><%= link_to "Change it!", root_path(:not_logged_in => true) %></p>
 				<% else %>
-
-
-					<h3 style="padding-left: 20px;">Andere Interessenten</h3>
-				<table class="span4 table table-condensed table-hover">
-					
-					<% @interests.each do |interest|%>
-
-					<tr>
-						<td><%= interest.hobby %></td>
-					</tr>		
-					<% end %>
-				</table>
-
-
 					<h3><%= t('search_result') %></h3>
 					<ol class="microposts">
 						<% for @micropost in @microposts %>

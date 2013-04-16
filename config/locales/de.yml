@@ -22,6 +22,7 @@ de:
   search_result: Suchergebnis
   search_not_valid: Bitte gib alle Such-Parameter an. :)
   search_for: 'Wähle deine Stadt:'
+  search_for_hobby: 'Bitte Activity auswählen'
   knock: '*klopf *klopf ... niemand da :[ '
   datetime_clock: Uhr
   allusers: "alle User"
@@ -87,7 +88,7 @@ de:
       about: 'Über mich:'
       select_one: Bitte auswählen
       select_city: 'Bitte Stadt auswählen'
-      select_one_optional: "Hobby auswählen (optional)"
+      select_one_optional: "optional"
       select_level: 'Wie gut bist du?'
       textbox_text: 'Schreib ein paar Zeilen über dich...'
       submit: 'Abschicken'

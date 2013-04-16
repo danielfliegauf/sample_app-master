@@ -21,7 +21,8 @@ en:
   signed_in_as: ""
   search_result: Search Result
   search_not_valid: Please enter all search parameters.
-  search_for: 'Chose your city:'
+  search_for: 'Select your city:'
+  search_for_hobby: 'Select your Activity'
   knock: "*knock *knock ... nobody's there :[ "
   destroyuser: "Delete user"
   privacy: "Privacy Politics"
@@ -89,7 +90,7 @@ en:
       about: 'About me:'
       select_one: 'Select one'
       select_city: 'Select city'
-      select_one_optional: "Select hobby (optional)"
+      select_one_optional: "optional"
       select_level: 'Select your level'
       textbox_text: 'Write a few lines...'
       submit: 'Post'
