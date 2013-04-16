@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412084913) do
+ActiveRecord::Schema.define(:version => 20130416084431) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(:version => 20130412084913) do
   add_index "invitations", ["micropost"], :name => "index_invitations_on_micropost"
 
   create_table "microposts", :force => true do |t|
-    t.string   "content"
+    t.text     "content"
     t.integer  "user_id",    :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
