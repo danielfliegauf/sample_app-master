@@ -6,7 +6,7 @@
     body { background-color: #fff; color: #000; text-align: center; font-family: arial, sans-serif; }
     a {
       text-decoration: none;
-      color: #000;
+      color: #f00;
     }
 
     a:hover {
@@ -16,24 +16,39 @@
       width: 25em;
       padding: 0 4em;
       margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
+      border: 6px solid #ccc;
       border-right-color: #999;
       border-bottom-color: #999;
+      box-shadow: 2px 2px 14px;
     }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
+    h1 { font-size: 100%; color: #000; line-height: 1.5em; }
+
+    .cat {
+      border: 1px solid black;
+      box-shadow: 2px 2px 13px;
+      padding: 10px 10px 50px 10px;
+    }
+    p {
+      font-size: 0.6em;
+    }
   </style>
 </head>
 
-<body>
+<body style="">
   <!-- This file lives in public/500.html -->
   <h2>Connectify.de: 500</h2>
-  <div class="dialog">
-    <h1>We're sorry, but something went not the way it should (Beta) :( Please try this <a href="http://connectify.herokuapp.com/signout">LINK</a>. Thank you!</h1>
+  <img src="/assets/cat.jpg" class="cat" />
+  <div class="dialog lead">
+    <h1>Tut uns leid. :(<br>Irgendetwas klappt nicht so wie es soll... <br>(Wir sind noch in der BETA-Phase) <br>
+      Versuche bitte folgenden <a href="http://connectify.herokuapp.com/signout">LINK</a>. Danke!</h1>
+      <p>Connectify wurde &uumlber den Fehler informiert und versucht diesen so schnell wie m&oumlglich zu beheben. Danke f&uumlr deine Mithilfe!</p>
   </div>
-  <br>
-  <br>
+  <br><br>
   <div class="dialog">
-    <h1>Tut uns leid. Irgendetwas klappt nicht so wie es soll... (BETA-Phase) :( Versuche bitte folgenden <a href="http://connectify.herokuapp.com/signout">LINK</a>. Danke!</h1>
+    <h1>We're sorry, but something went not the way it should (We're still Beta) :( Please try this <a href="http://connectify.herokuapp.com/signout">LINK</a>. Thank you!</h1>
+    <p>Connectify was informed about the error and will try to fix it as soon as possible. Thank you for helping to make Connectify better!</p>
   </div>
+
+  
 </body>
 </html>
