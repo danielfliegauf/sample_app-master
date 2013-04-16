@@ -82,6 +82,10 @@ module ApplicationHelper
 			"workout",
 			"yoga",
 			"jogging",
+			"speedbike",
+			"pilates",
+			"rowing"
+
 		]
 	end
 

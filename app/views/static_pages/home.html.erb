@@ -7,12 +7,13 @@
   <div class="homebase">
     <div id="hombase_form" class="allusers row">
       <h2 style="font-weight: bold;">2 Dinge noch bevor es losgeht</h2>
+
+  <span id="prependedInputErr" style="color: red; font-size: 1em !important; padding-left: 70px;"></span><br>
   <div class="input-append span2 offset2">
 
     <%= form_for(current_user, remote: true) do |f| %>
 
     <%= f.label :homebase, "Deine Heimatstadt", class: "lead" %>:
-  <div id="prependedInputErr"></div>
   <input class="input-large" id="prependedInput" name="user[homebase]" type="text" data-provide="typeahead" autocomplete="off">
   
 
@@ -76,7 +77,7 @@ var selectedState;
 
 $('#prependedInput').typeahead({
     source: function (query, process) {
-        states = [];
+    states = [];
     map = {};
  
     var data = [
@@ -96,7 +97,7 @@ $('#prependedInput').typeahead({
     },
     updater: function (item) {
         selectedState = map[item].stateCode;
-        document.getElementById('user_homebase').value = selectedState;
+        document.getElementsByName('user[homebase]').value = selectedState;
         return item;
     },
     matcher: function (item) {
@@ -129,22 +130,24 @@ function validateHomebase(){
               "Singen"
 
           );
-  var item = document.getElementById('user_homebase').value.trim();
+  var item = document.getElementById('prependedInput').value.trim();
   
   if (item == '' || item == null){
-    document.getElementById('prependedInputErr').value = "Error: Bitte erneut eingeben!"
+    document.getElementById('prependedInputErr').value = "Error: Bitte erneut eingeben!";
     document.getElementById('prependedInput').focus();
     return false;
   }
   for (var i = 0; i < citylist.length; i++) {
     if(item == citylist[i]) {
+      document.getElementById('prependedInput').value = item
       return true;
       break;
       
     }
     
   }
-  
+    document.getElementById('prependedInputErr').innerHTML = "Error: Du kannst nur die Städte auswählen, die dir angezeigt werden (BETA)!";
+    document.getElementById('prependedInput').focus();
     return false;
 };
 

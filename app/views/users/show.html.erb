@@ -29,7 +29,7 @@
 			
 		<% else %>
 			<% if @group_attribute == true %>
-				<a href="http://facebook.com/groups/connectify" class="btn btn-danger" target="_blank" id="togg" data-placement="bottom" data-toggle="tooltip" title="Du bist der Connectify-Gruppe beigetreten, nun kannst du anderen und andere Connectify Mitglieder dir Nachrichten über Facebook schreiben. Diese erscheinen in deiner Inbox und nicht im 'Sonstige' bzw. SPAM-Ordner."> Facebook Nachrichten nicht mehr erlauben (Gruppe verlassen)</a>
+				<a href="http://facebook.com/groups/connectify" class="btn btn-danger" target="_blank" id="togg" data-placement="bottom" data-toggle="tooltip" title="Wenn du keine Nachrichten mehr über Facebook erhalten möchtest, klick auf den Button und trete einfach aus der Connectify-Facebookgruppe aus. Du kannst jederzeit wieder eintreten."> Facebook Nachrichten nicht mehr erlauben (Gruppe verlassen)</a>
 			<% else %>
 				<a href="http://facebook.com/groups/connectify" class="btn btn-success" target="_blank" id="togg" data-placement="bottom" data-toggle="tooltip" title="Du kannst der Connectify-Gruppe beitreten, damit du anderen und andere Connectify Mitglieder dir Nachrichten direkt über Facebook schreiben können. Dazu klickst du einfach auf diesen Button. Daraufhin öffnet sich ein Facebook-Fenster, wo du nur noch auf 'Gruppe beitreten' klicken musst. Leider gibt es noch keine Möglichkeit, diesen Schritt zu automatisieren. Sobald du vom Administrator freigeschaltet wurdest, kann es losgehen. Du kannst diesen Vorgang jederzeit rückgängig machen, indem du die Gruppe verlässt. ">Facebook Nachrichten erlauben (Gruppe beitreten)</a>
 			<% end %>	
@@ -88,6 +88,7 @@
 					<div class="span2"><p class="lead"><%= t('home.micropost.'+@user.homebase) %></div>
 					<div class="span2"></p><a href="#" id="editHomebase">edit</a></div>
 					<div class="span5" id="editHomebaseDiv">
+                        <span id="prependedInputErr" style="color: red; font-size: 1em !important; padding-left: 70px;"></span><br>
 						<%= form_for(current_user, method: "PUT") do |f| %>
 						<input class="input-large centerinput" id="prependedInput" name="user[homebase]" type="text" data-provide="typeahead" autocomplete="off" >
 						
@@ -154,7 +155,7 @@ $('#prependedInput').typeahead({
     },
     updater: function (item) {
         selectedState = map[item].stateCode;
-        document.getElementById('user_homebase').value = selectedState;
+        document.getElementsByName('user[homebase]').value = selectedState;
         return item;
     },
     matcher: function (item) {
@@ -171,6 +172,14 @@ $('#prependedInput').typeahead({
     },
 });
 
+if(typeof(String.prototype.trim) === "undefined")
+{
+    String.prototype.trim = function() 
+    {
+        return String(this).replace(/^\s+|\s+$/g, '');
+    };
+}
+
 function validateHomebase(){
   var citylist = new Array("Karlsruhe",
               "Konstanz",
@@ -179,23 +188,27 @@ function validateHomebase(){
               "Singen"
 
           );
-  var item = document.getElementById('user_homebase').value;
+  var item = document.getElementById('prependedInput').value.trim();
   
   if (item == '' || item == null){
+    document.getElementById('prependedInputErr').value = "Error: Bitte erneut eingeben!";
     document.getElementById('prependedInput').focus();
     return false;
   }
   for (var i = 0; i < citylist.length; i++) {
     if(item == citylist[i]) {
+      document.getElementById('prependedInput').value = item
       return true;
       break;
       
     }
     
   }
-  
+    document.getElementById('prependedInputErr').innerHTML = "Error: Du kannst nur die Städte auswählen, die dir angezeigt werden (BETA)!";
+    document.getElementById('prependedInput').focus();
     return false;
 };
+
 
 $(document).ready( function () {
 	$("#editHomebase").click( function (event) {
