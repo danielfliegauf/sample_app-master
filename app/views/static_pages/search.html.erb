@@ -1,31 +1,32 @@
 <% provide(:title, 'Search') %>
 
 <div class="row">
-	<aside class="span4">
+	<aside class="span3">
 		<section>
 			<%= render 'shared/search_form' %>
 		</section>
 	</aside>
-	<div class="span8">
+	<div class="span8 offset1">
 		<% if params[:place] == '' %>
 		<br>
 		<br>
 			<%= t('search_not_valid') %>
 		<% else %>
 					<% if @interests.any? %>
-						<h3 style="padding-left: 20px;">Leute in deiner Nähe mit gleichen Interessen</h3>
+						<p class="lead" style="">Leute in deiner Nähe mit gleichen Interessen (<%= t('home.micropost.'+params[:hobby]) %>)</p>
 						<table class="span4 table table-condensed table-hover">
 							<thead>
 								<tr>
 									<th></th>
 									<th>Name</th>
-									<th>Interessen</th>
+									<th>weitere Interessen</th>
 									<th></th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
 						<% @interests.each do |interest|%>
+						<% current_user == interest.user && @interests.length >=3 ? break : %>
 							<tr>
 								<td><%= gravatar_for(interest.user, size: "20") %></td>
 								<td><%= link_to interest.user.name.split[0], interest.user %></td>
@@ -38,8 +39,8 @@
 						</table>
 					<% end %>
 				<% if @microposts.empty? %>
-					<br>
-					<p><%= t('knock') %><%= link_to "Change it!", root_path(:not_logged_in => true) %></p>
+					<br><br><br>
+					<p class="lead"><%= t('knock') %><%= link_to "Change it!", root_path(:not_logged_in => true) %></p>
 				<% else %>
 					<h3><%= t('search_result') %></h3>
 					<ol class="microposts">

@@ -3,6 +3,6 @@
  <%= select_tag(:hobby, options_for_select(sportlist.sort.unshift([t('home.micropost.select_one_optional'), ""]))) %>
  <%= label_tag(:place, t('search_for')) %>
 
-<%= select_tag(:place, options_for_select(citylist.sort.unshift([t('home.micropost.'+@lastsearch), @lastsearch_value],["-------------------------------------------", ""]))) %>
+<%= select_tag(:place, options_for_select(citylist.sort.unshift([t('home.micropost.'+@lastsearch), @lastsearch_value],["--------------------", ""]))) %>
 <%= submit_tag t('home.micropost.gogetit'), :name => nil, class: "btn btn-large btn-primary"%>
 <% end %>

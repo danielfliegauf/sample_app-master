@@ -5,6 +5,30 @@ $grayMediumLight: hsl(0, 0%, 92%);
 $gray: hsl(200, 100%, 40%);
 $blue: hsl(80, 100%, 90%);
 
+/* kill blue margin */
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus, 
+select,
+nav ul li,
+.dropdown-toggle,
+.ui-widget select { 
+	outline: none !important;
+}
+
 @mixin box_sizing {
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;

@@ -85,8 +85,15 @@ module ApplicationHelper
 			"speedbike",
 			"pilates",
 			"rowing"
-
 		]
+	end
+
+	def sportlist_translated 
+		@sports = Array.new()
+		for sport in sports
+			@sports.push([t('home.micropost.'+sport)])
+		end
+		@sports
 	end
 
 

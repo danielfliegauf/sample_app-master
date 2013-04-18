@@ -25,14 +25,15 @@
   <div class="span4 offset2">
     <% i=2 %>
     <%= form_for(current_user.interests.build, remote: true) do |f| %>
-      <% sports.sort.each do |hobby| %>
+      <% sportlist.sort.each do |hobby| %>
       <div class="field span2 left">       
-            <label><%= check_box_tag "interests["+hobby+"]" %> <%= t('home.micropost.'+hobby) %></label>
+            <label><%= check_box_tag "interests["+hobby[1]+"]" %> <%= t('home.micropost.'+hobby[1]) %></label>
       </div>
       
      <% end %>
      <br><br>
     <%= f.submit "Fertig", class: "btn btn-primary interestbutton btn-large" %>
+    <br><br>
   <% end %>
 
 </div>

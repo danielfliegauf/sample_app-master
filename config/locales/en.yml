@@ -23,7 +23,7 @@ en:
   search_not_valid: Please enter all search parameters.
   search_for: 'Select your city:'
   search_for_hobby: 'Select your Activity'
-  knock: "*knock *knock ... nobody's there :[ "
+  knock: "There is no Activity - yet. "
   destroyuser: "Delete user"
   privacy: "Privacy Politics"
   datetime_clock: "o'clock"

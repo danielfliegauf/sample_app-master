@@ -23,7 +23,7 @@ de:
   search_not_valid: Bitte gib alle Such-Parameter an. :)
   search_for: 'Wähle deine Stadt:'
   search_for_hobby: 'Bitte Activity auswählen'
-  knock: '*klopf *klopf ... niemand da :[ '
+  knock: 'Bisher gibt es noch keine Activity. '
   datetime_clock: Uhr
   allusers: "alle User"
   aboutus: "Über uns"

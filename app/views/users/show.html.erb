@@ -99,12 +99,12 @@
 			<div class="span8"><%= @interest %>
 				<h3>Meine Interessen</h3>
 				<%= form_for(current_user.interests.build) do |f| %>
-			      <% sports.sort.each do |hobby| %>
+			      <% sportlist.sort.each do |hobby| %>
 			      <div class="span2 left">
 			      		<% if @interests.include?(hobby) %>       
-			            <label><%= check_box_tag "interests["+hobby+"]", hobby, true %> <%= t('home.micropost.'+hobby) %></label>
+			            <label><%= check_box_tag "interests["+hobby[1]+"]", hobby[1], true %> <%= t('home.micropost.'+hobby[1]) %></label>
 			            <% else %>
-			            <label><%= check_box_tag "interests["+hobby+"]", hobby, false %> <%= t('home.micropost.'+hobby) %></label>
+			            <label><%= check_box_tag "interests["+hobby[1]+"]", hobby[1], false %> <%= t('home.micropost.'+hobby[1]) %></label>
 			            <% end %>
 			      </div>	      
 			     <% end %>
