@@ -18,8 +18,8 @@ def welcome_email(user)
     @url = "http://www.connectify.de/"
 
     mail(:to => user.email,
-         :subject => "Willkommen bei Connectify",
-         :body => "Hallo #{user.name}! \n\n Du hast dich erfolgreich bei Connectify eingeloggt und kannst ab sofort loslegen und dein erstes Micropost schreiben. Du weisst nicht was das ist? Dann lies dir die Einfuehrung (http://connecitfy.de/help) durch!\n Es ist ganz einfach.\n\n Viel Spass dabei!")
+         :subject => "Willkommen bei Connectify.de",
+         :body => "Hallo #{user.name.split[0]}! \n\nConnectify ist ein neues (April 2013) Portal, auf dem du Partner zum Sport machen finden kannst. Connectify ist mit Facebook verbunden, daher kannst du alle Connectify-User auch direkt auf Facebook besuchen und direkt anschreiben.\n\nIm Moment sind wir noch in der BETA-Phase, das heisst wir arbeiten mit Hochdruck an neuen Features und Partnern, um in Zukunft noch mehr Menschen fuer Connectify zu begeistern. Denn nur mit einer grossen Community kann Connectify funktionieren. Auch du kannst dabei helfen, indem du Connectify in deinem Freundeskreis bekannt machst.\n\nViel Spass!\nEuer Connectify-Team")
   end
 
 end
