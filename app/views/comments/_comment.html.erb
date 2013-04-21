@@ -1,15 +1,15 @@
-<p><%= link_to gravatar_for(comment.user), comment.user %></p>
+<div class="comment">
+  <%= link_to gravatar_for(comment.user), comment.user %>
 <p>
-  <%= link_to comment.user.name.split[0], comment.user %><%= " "+t('says') %>:
+  <%= link_to comment.user.name.split[0], comment.user %>:
   <br>
   <%= comment.body %>
 </p>
-<p>
+<span class="commentnav">
 	<% if current_user?(comment.user) %>
-		<%= link_to t('destroy_comment'), [comment.micropost, comment],
-               :confirm => 'Are you sure?',
-               :method => :delete %> <em> | </em>
-        <%= link_to t('edit_comment'), [comment.micropost, comment] %>
+		<%= link_to "close", micropost_comment_path(comment.micropost, comment, return_to: request.fullpath), title: "remove the comment", class: "lsf", :confirm => 'Are you sure?', 
+               :method => :delete %>
+        <%= link_to "pen", [comment.micropost, comment], class: "lsf" %>
 	<% end %>
   <% if current_user.admin %>
     <%= link_to t('destroy_comment')+"ADMIN", [comment.micropost, comment],
@@ -18,4 +18,5 @@
         <%= link_to t('edit_comment')+"ADMIN", [comment.micropost, comment] %>
   <% end %>
     <br><br>
-</p>
+</span>
+</div>

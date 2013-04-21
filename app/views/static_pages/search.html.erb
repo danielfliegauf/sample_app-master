@@ -45,23 +45,7 @@
 					<h3><%= t('search_result') %></h3>
 					<ol class="microposts">
 						<% for @micropost in @microposts %>
-							<li class="<%= @micropost.id %>">
-								<%= link_to gravatar_for(@micropost.user), @micropost.user %>
-								<span class="user">
-									<%= link_to @micropost.user.name, @micropost.user %>
-								</span> | 
-								<b><span class="hobbyplace"><%= t('home.micropost.'+@micropost.hobby) %> <%= infrom(@micropost.hobby) %> <%= t('home.micropost.'+@micropost.place) %></b>
-								<% if @micropost.weekday != "11" %>
-									<em><%= t('home.micropost.time_on') %> <%= I18n.localize(@micropost.datetime) %></em>
-								<% else %>
-									<div style="color: red;"><%= t('home.micropost.time_till_delete_from_searchindex') + " (in " + time_ago_in_words(feed_item.datetime) + ")"  if ((@micropost.datetime - Time.now) < (60*60*24*7*3) && current_user == @micropost.user) %></div>
-								<% end %></span>
-								<span class="content"><%= truncate(@micropost.content, length: 250) %></span>
-								</li><span class="timestamp">
-									<%= t('feed_item.posted') %> <%= time_ago_in_words(@micropost.created_at) %> <%= t('feed_item.ago') %>.
-								
-								<%= link_to t('link.details'), @micropost, method: :show %>
-								| <%= link_to t('link.delete'), @micropost, method: :delete, data: { confirm: "You sure?" }, title: @micropost.content if current_user?(@micropost.user) %></span>
+							<li id="<%= @micropost.id %>">
 								<% if signed_in? %>
 									<div class="follow_form_<%= @micropost.id %>" id="remember">
 										<% unless current_user.remembering?(@micropost) %>
@@ -71,6 +55,51 @@
 										<% end %>
 									</div>
 								<% end %>
+	<div class="paper_up"></div>
+	<div class="paper_middle">
+	<div>
+	<%= link_to gravatar_for(@micropost.user), @micropost.user %>
+	<span class="user">
+		<%= link_to @micropost.user.name.split[0], @micropost.user %>
+	</span> | 
+	<b><span class="hobbyplace"><%= t('home.micropost.'+@micropost.hobby) %> <%= infrom(@micropost.hobby) %> <%= t('home.micropost.'+@micropost.place) %></b> 
+		<% if @micropost.weekday != "11" %>
+			<em><%= t('home.micropost.time_on') %> <%= I18n.localize(@micropost.datetime) %></em>
+		<% else %>
+			<div style="color: red;"><%= t('home.micropost.time_till_delete_from_searchindex') + " (in " + time_ago_in_words(@micropost.datetime) + ")"  if ((@micropost.datetime - Time.now) < (60*60*24*7*3)) %></div>
+		<% end %></span>
+
+	<span class="content"><%= truncate(@micropost.content, length: 810) %></span>
+	</div>
+  <% if @micropost.comments.any? %>
+    <div><hr>
+      <%= render @micropost.comments %>
+    </div>
+  <% end %>
+	<div class="commentform"><hr>
+		<%= form_for([@micropost, @micropost.comments.build]) do |f| %>
+		  <div class="field">
+		  	<%= gravatar_for(current_user, size: "25") %>
+		    <%= f.text_area :body, placeholder: "Schreibe einen Kommentar..." %>
+			<%= f.hidden_field :return_to, value: request.fullpath, name: :return_to %>
+		    <%= f.submit t('home.micropost.submit'), class: "btn btn-small btn-primary" %>
+		  </div>
+		<% end %>
+	</div>
+</div>
+<div class="paper_down">
+<div class="timestamp">
+	<%= t('@micropost.posted') %> <%= time_ago_in_words(@micropost.created_at) %> <%= t('@micropost.ago') %>.
+	<%= link_to t('link.details'), @micropost, method: :show %> | &nbsp;
+	<% if current_user?(@micropost.user) %>
+		  <%= link_to "trash", @micropost, method: :delete, data: { confirm: "You sure?" }, title: t('link.delete'), class: "lsf" %>&nbsp;&nbsp;&nbsp; 
+	<% end %> 
+	<%= link_to "comment", "#", title: "comment", class: "lsf", id: "commentbutton" %> <%= @micropost.comments.count %>
+	 &nbsp;&nbsp;&nbsp;
+	 <%= link_to_function "facebook", "postToFeed('#{@micropost.id}', '#{t('home.micropost.'+@micropost.hobby)}', '#{@micropost.place}', '#{I18n.localize(@micropost.datetime)}', '#{@micropost.weekday}'); return false;", class: "lsf", title: "share on Facebook" %>
+</div>
+</div>
+</li>
 							
 						<% end %>
 					</ol>
