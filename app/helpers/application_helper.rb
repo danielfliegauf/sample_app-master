@@ -84,6 +84,14 @@ module ApplicationHelper
 			"jogging",
 			"speedbike",
 			"pilates",
+			
+			# "billard",
+			# "golf",
+			# "minigolf",
+			# "baseball",
+			# "bowling",
+			# "dart",
+			# "lacrosse",
 			"rowing"
 		]
 	end
