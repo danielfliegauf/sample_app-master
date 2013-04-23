@@ -480,7 +480,7 @@ $('#togg').tooltip('toggle');
     <div class="alert clearfix"><b>ACHTUNG!!!</b> Es gibt zur Zeit ein Problem mit der Domain: http://connectify.de und http://www.connectify.de. <br>Solltest du von dort kommen (schau einfach in die Adressleiste deines Browsers) nutze bitte folgenden Link, damit die Anmeldung funktioniert: <%= link_to "Connectify (Server)", "http://connectify.herokuapp.com", :target => '_blank'  %><br>
     Der Umzug zu einem anderen Domainverwalter, wird leider ein paar Tage dauern.</div>
     <span class="lead"><%= image_tag "facebook2.png", title: "Connect with Facebook", width: "31px" %>
-    <%= link_to t('home.connectme'), "/auth/facebook", id: "sign_in", class: "btn btn-large btn-success" %> <%= t('home.or') %>
+    <%= link_to t('home.connectme'), "/auth/facebook", id: "sign_in", class: "btn btn-large btn-success", target: '_top' %> <%= t('home.or') %>
     <%= link_to t('home.tourstart'), "#", id: "tourstart", class: "btn btn-large btn-warning" %></span>
   </div>
  <p class="lead"><%= t('home.tryitout') %><b><%= t('home.free') %></b>!</p>
