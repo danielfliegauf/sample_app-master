@@ -87,6 +87,7 @@ GEM
     json (1.7.7)
     jwt (0.1.8)
       multi_json (>= 1.5)
+    magic_encoding (0.0.2)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -214,8 +215,9 @@ DEPENDENCIES
   faker (= 1.0.1)
   fb_graph (~> 2.5.0)
   jquery-rails (= 2.0.2)
+  magic_encoding
   newrelic_rpm
-  omniauth-facebook (~> 1.4.0)
+  omniauth-facebook
   pg (= 0.12.2)
   rails (= 3.2.13)
   rspec-rails (= 2.10.0)

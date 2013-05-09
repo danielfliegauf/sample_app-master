@@ -11,11 +11,13 @@ gem 'bcrypt-ruby', '3.0.1'
 gem 'faker', '1.0.1'
 gem 'will_paginate', '3.0.3'
 gem 'bootstrap-will_paginate', '0.0.6'
-gem 'omniauth-facebook', '~>  1.4.0'
+gem 'omniauth-facebook'
 gem "fb_graph", "~> 2.5.0"
 gem 'bootstrap-datepicker-rails'
 gem 'newrelic_rpm'
 gem 'trackman'
+
+gem 'magic_encoding'
 # gem "koala"
 
 # Bundle edge Rails instead:
